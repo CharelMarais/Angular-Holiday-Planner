@@ -1,0 +1,10 @@
+<p>sign-up works!</p>
+<div>
+  <form>
+    <input type="email" placeholder="Email" #email required />
+    <input type="password" placeholder="Password" #password required />
+    <button type="button" (click)="signUp(auth, email.value, password.value)">
+      Sign Up
+    </button>
+  </form>
+</div>

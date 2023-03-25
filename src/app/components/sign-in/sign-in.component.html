@@ -1,0 +1,10 @@
+<p>sign-in works!</p>
+<div>
+  <form>
+    <input type="email" placeholder="Email" #email required />
+    <input type="password" placeholder="Password" #password required />
+    <button type="button" (click)="signIn(auth, email.value, password.value)">
+      Login
+    </button>
+  </form>
+</div>
