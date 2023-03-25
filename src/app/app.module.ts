@@ -11,7 +11,13 @@ import { SignInComponent } from './components/sign-in/sign-in.component';
 import { SignOutComponent } from './components/sign-out/sign-out.component';
 
 @NgModule({
-  declarations: [AppComponent, SignUpComponent, UserCheckComponent, SignInComponent, SignOutComponent],
+  declarations: [
+    AppComponent,
+    SignUpComponent,
+    UserCheckComponent,
+    SignInComponent,
+    SignOutComponent,
+  ],
   imports: [
     BrowserModule,
     AppRoutingModule,
