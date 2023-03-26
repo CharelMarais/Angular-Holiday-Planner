@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { Router } from '@angular/router';
 import { FirebaseAuthService } from 'src/app/shared/auth/firebase-auth.service';
 
 @Component({
@@ -7,5 +8,12 @@ import { FirebaseAuthService } from 'src/app/shared/auth/firebase-auth.service';
   styleUrls: ['./sign-in.component.scss'],
 })
 export class SignInComponent {
-  constructor(protected fireAuthService: FirebaseAuthService) {}
+  constructor(
+    protected fireAuthService: FirebaseAuthService,
+    private router: Router
+  ) {}
+
+  navigateToSignUp() {
+    this.router.navigate(['sign-up']);
+  }
 }

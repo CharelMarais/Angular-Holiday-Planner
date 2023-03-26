@@ -6,6 +6,7 @@ import {
   User,
   user,
 } from '@angular/fire/auth';
+import { Router } from '@angular/router';
 import { Subscription } from 'rxjs';
 
 @Injectable({
@@ -17,7 +18,7 @@ export class FirebaseAuthService {
   userSubscription: Subscription;
   user: User | undefined;
 
-  constructor() {
+  constructor(private router: Router) {
     this.userSubscription = this.user$.subscribe((aUser: User | null) => {
       //handle user state changes here. Note, that user will be null if there is no currently logged in user.
     });
@@ -27,7 +28,7 @@ export class FirebaseAuthService {
     signInWithEmailAndPassword(auth, email, password)
       .then((userCredential) => {
         // Signed in
-        const user = userCredential.user;
+        this.router.navigate(['dashboard']);
       })
       .catch((error) => {
         const errorCode = error.code;
@@ -43,7 +44,7 @@ export class FirebaseAuthService {
     createUserWithEmailAndPassword(auth, email, password)
       .then((userCredential) => {
         // Signed in
-        const user = userCredential.user;
+        this.router.navigate(['dashboard']);
       })
       .catch((error) => {
         const errorCode = error.code;
