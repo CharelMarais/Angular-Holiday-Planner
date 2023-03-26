@@ -1,5 +1,7 @@
 <p>user-check works!</p>
 
-<p *ngIf="user$ | async as user; else signedOut">Welcome {{ user.email }}!</p>
+<p *ngIf="fireAuthService.user$ | async as user; else signedOut">
+  Welcome {{ user.email }}!
+</p>
 
 <ng-template #signedOut>No User Signed In</ng-template>

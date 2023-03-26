@@ -3,7 +3,16 @@
   <form>
     <input type="email" placeholder="Email" #email required />
     <input type="password" placeholder="Password" #password required />
-    <button type="button" (click)="signIn(auth, email.value, password.value)">
+    <button
+      type="button"
+      (click)="
+        fireAuthService.signIn(
+          fireAuthService.auth,
+          email.value,
+          password.value
+        )
+      "
+    >
       Login
     </button>
   </form>

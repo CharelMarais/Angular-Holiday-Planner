@@ -1,5 +1,5 @@
-import { Component, inject } from '@angular/core';
-import { Auth, createUserWithEmailAndPassword, User } from '@angular/fire/auth';
+import { Component } from '@angular/core';
+import { FirebaseAuthService } from 'src/app/shared/auth/firebase-auth.service';
 
 @Component({
   selector: 'app-sign-up',
@@ -7,19 +7,5 @@ import { Auth, createUserWithEmailAndPassword, User } from '@angular/fire/auth';
   styleUrls: ['./sign-up.component.scss'],
 })
 export class SignUpComponent {
-  auth: Auth = inject(Auth);
-
-  constructor() {}
-
-  signUp(auth: Auth, email: string, password: string) {
-    createUserWithEmailAndPassword(auth, email, password)
-      .then((userCredential) => {
-        // Signed in
-        const user = userCredential.user;
-      })
-      .catch((error) => {
-        const errorCode = error.code;
-        const errorMessage = error.message;
-      });
-  }
+  constructor(protected fireAuthService: FirebaseAuthService) {}
 }
