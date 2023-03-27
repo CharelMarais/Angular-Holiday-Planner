@@ -3,11 +3,11 @@ import { Router } from '@angular/router';
 import { FirebaseAuthService } from 'src/app/shared/auth/firebase-auth.service';
 
 @Component({
-  selector: 'app-sign-in',
-  templateUrl: './sign-in.component.html',
-  styleUrls: ['./sign-in.component.scss'],
+  selector: 'app-launch-page',
+  templateUrl: './launch-page.component.html',
+  styleUrls: ['./launch-page.component.scss'],
 })
-export class SignInComponent {
+export class LaunchPageComponent {
   constructor(
     protected fireAuthService: FirebaseAuthService,
     private router: Router
@@ -15,5 +15,12 @@ export class SignInComponent {
 
   navigateToSignUp() {
     this.router.navigate(['sign-up']);
+  }
+
+  navigateToSignIn() {
+    this.router.navigate(['sign-in']);
+  }
+  navigateToDashboard() {
+    this.router.navigate(['dashboard']);
   }
 }
