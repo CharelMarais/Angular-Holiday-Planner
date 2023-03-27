@@ -1,0 +1,32 @@
+<p>firestore-add-item works!</p>
+<section>
+  <h1>Itinerary Items</h1>
+  <ul>
+    <li *ngFor="let item of itinerary$ | async">
+      {{ item.name }},{{ item.tag }},{{ item.startDate }},{{ item.endDate }},{{
+        item.cost
+      }}
+    </li>
+  </ul>
+</section>
+<form>
+  <input type="text" placeholder="Name" #name />
+  <input type="text" placeholder="Tag" #tag />
+  <input type="date" #start_date />
+  <input type="date" #end_date />
+  <input type="number" #cost />
+  <button
+    type="button"
+    (click)="
+      addItineraryItem(
+        name.value,
+        tag.value,
+        start_date.value,
+        end_date.value,
+        cost.value
+      )
+    "
+  >
+    Add Item
+  </button>
+</form>
