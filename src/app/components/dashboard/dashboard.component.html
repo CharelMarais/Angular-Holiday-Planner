@@ -2,5 +2,5 @@
 <div *ngIf="this.fireAuthService.user$ | async as user">
   <app-user-check></app-user-check>
   <app-firestore-add-item></app-firestore-add-item>
-  <button (click)="this.fireAuthService.signOut()">Sign Out</button>
+  <app-sign-out></app-sign-out>
 </div>

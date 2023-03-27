@@ -1,0 +1,12 @@
+<p>launch-page works!</p>
+<div *ngIf="this.fireAuthService.user$ | async as user; else newUser">
+  <app-user-check></app-user-check>
+  <button (click)="navigateToDashboard()">View Dashboard</button>
+  <button (click)="fireAuthService.signOut()">Sign Out</button>
+</div>
+
+<ng-template #newUser>
+  <p>Welcome New User</p>
+  <button (click)="navigateToSignIn()">Login</button>
+  <button (click)="navigateToSignUp()">Sign Up</button>
+</ng-template>

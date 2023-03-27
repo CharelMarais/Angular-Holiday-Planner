@@ -13,6 +13,7 @@ import { SignOutComponent } from './components/sign-out/sign-out.component';
 import { FirestoreAddItemComponent } from './components/firestore-add-item/firestore-add-item.component';
 import { DashboardComponent } from './components/dashboard/dashboard.component';
 import { ErrorPageComponent } from './components/error-page/error-page.component';
+import { LaunchPageComponent } from './components/launch-page/launch-page.component';
 
 @NgModule({
   declarations: [
@@ -24,6 +25,7 @@ import { ErrorPageComponent } from './components/error-page/error-page.component
     FirestoreAddItemComponent,
     DashboardComponent,
     ErrorPageComponent,
+    LaunchPageComponent,
   ],
   imports: [
     BrowserModule,
