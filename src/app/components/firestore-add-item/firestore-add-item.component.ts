@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { FirebaseAuthService } from 'src/app/shared/auth/firebase-auth.service';
 import { FirebaseStoreService } from 'src/app/shared/store/firebase-store.service';
 
 @Component({
@@ -7,5 +8,8 @@ import { FirebaseStoreService } from 'src/app/shared/store/firebase-store.servic
   styleUrls: ['./firestore-add-item.component.scss'],
 })
 export class FirestoreAddItemComponent {
-  constructor(protected firebaseStore: FirebaseStoreService) {}
+  constructor(
+    protected firebaseStore: FirebaseStoreService,
+    protected fireAuthService: FirebaseAuthService
+  ) {}
 }
