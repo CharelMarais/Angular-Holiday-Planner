@@ -2,7 +2,7 @@
 <section>
   <h1>Itinerary Items</h1>
   <ul>
-    <li *ngFor="let item of itinerary$ | async">
+    <li *ngFor="let item of firebaseStore.itinerary$ | async">
       {{ item.name }},{{ item.tag }},{{ item.startDate }},{{ item.endDate }},{{
         item.cost
       }}
@@ -18,7 +18,7 @@
   <button
     type="button"
     (click)="
-      addItineraryItem(
+      firebaseStore.addItineraryItem(
         name.value,
         tag.value,
         start_date.value,

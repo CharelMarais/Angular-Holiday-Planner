@@ -1,5 +1,5 @@
-import { Component, inject } from '@angular/core';
-import { Auth, createUserWithEmailAndPassword, User } from '@angular/fire/auth';
+import { Component } from '@angular/core';
+import { FirebaseAuthService } from 'src/app/shared/auth/firebase-auth.service';
 
 @Component({
   selector: 'app-sign-out',
@@ -7,9 +7,5 @@ import { Auth, createUserWithEmailAndPassword, User } from '@angular/fire/auth';
   styleUrls: ['./sign-out.component.scss'],
 })
 export class SignOutComponent {
-  auth: Auth = inject(Auth);
-
-  signOut() {
-    this.auth.signOut();
-  }
+  constructor(protected fireAuthService: FirebaseAuthService) {}
 }
