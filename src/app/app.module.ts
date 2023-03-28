@@ -5,7 +5,7 @@ import { AppComponent } from './app.component';
 import { provideFirebaseApp, initializeApp } from '@angular/fire/app';
 import { getAuth, provideAuth } from '@angular/fire/auth';
 import { getFirestore, provideFirestore } from '@angular/fire/firestore';
-import { environment } from './enviroments/enviroment';
+import { environment } from './environments/environment';
 import { SignUpComponent } from './components/sign-up/sign-up.component';
 import { UserCheckComponent } from './components/user-check/user-check.component';
 import { SignInComponent } from './components/sign-in/sign-in.component';

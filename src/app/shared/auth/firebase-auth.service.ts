@@ -1,4 +1,4 @@
-import { Injectable, inject } from '@angular/core';
+import { Injectable, inject, OnInit } from '@angular/core';
 import {
   Auth,
   createUserWithEmailAndPassword,
@@ -16,7 +16,6 @@ export class FirebaseAuthService {
   auth: Auth = inject(Auth);
   user$ = user(this.auth);
   userSubscription: Subscription;
-  user: User | undefined;
 
   constructor(private router: Router) {
     this.userSubscription = this.user$.subscribe((aUser: User | null) => {
@@ -29,7 +28,7 @@ export class FirebaseAuthService {
 
   signIn(auth: Auth, email: string, password: string) {
     signInWithEmailAndPassword(auth, email, password)
-      .then(() => {
+      .then((response) => {
         // Signed in
         this.router.navigate(['dashboard']);
       })

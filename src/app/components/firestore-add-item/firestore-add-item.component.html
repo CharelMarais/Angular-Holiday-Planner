@@ -15,10 +15,16 @@
   <input type="date" #start_date />
   <input type="date" #end_date />
   <input type="number" #cost />
+  <input
+    #email
+    [value]="(fireAuthService.user$ | async)?.email"
+    type="hidden"
+  />
   <button
     type="button"
     (click)="
       firebaseStore.addItineraryItem(
+        email.value,
         name.value,
         tag.value,
         start_date.value,

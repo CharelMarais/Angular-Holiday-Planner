@@ -9,6 +9,7 @@ import { inject } from '@angular/core';
 import { Observable } from 'rxjs';
 import { Injectable } from '@angular/core';
 import { ItineraryItem } from 'src/app/models/itinerary-item';
+import { FirebaseAuthService } from '../auth/firebase-auth.service';
 
 @Injectable({
   providedIn: 'root',
@@ -18,13 +19,16 @@ export class FirebaseStoreService {
   itinerary$: Observable<ItineraryItem[]> | undefined;
   itineraryCollection!: CollectionReference;
 
-  constructor() {
+  constructor(protected fireAuthService: FirebaseAuthService) {
     // get a reference to the itinerary collection
-    const userProfileCollection = collection(this.firestore, 'itinerary_item');
-    this.itineraryCollection = userProfileCollection;
+    const userItineraryItemCollection = collection(
+      this.firestore,
+      'itinerary_items_' + fireAuthService.auth.currentUser?.email
+    );
+    this.itineraryCollection = userItineraryItemCollection;
 
     // get documents (data) from the collection using collectionData
-    this.itinerary$ = collectionData(userProfileCollection) as Observable<
+    this.itinerary$ = collectionData(userItineraryItemCollection) as Observable<
       ItineraryItem[]
     >;
   }
