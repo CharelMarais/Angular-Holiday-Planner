@@ -1,6 +1,7 @@
 <p>dashboard works!</p>
 <div *ngIf="this.fireAuthService.user$ | async as user">
+  <a routerLink="add-item">+</a>
   <app-user-check></app-user-check>
-  <app-firestore-add-item></app-firestore-add-item>
+  <app-firestore-list-items/>
   <app-sign-out></app-sign-out>
 </div>

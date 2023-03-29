@@ -1,17 +1,68 @@
 <p>firestore-add-item works!</p>
-<section>
-  <h1>Itinerary Items</h1>
-  <ul>
-    <li *ngFor="let item of firebaseStore.itinerary$ | async">
-      {{ item.name }},{{ item.tag }},{{ item.startDate }},{{ item.endDate }},{{
-        item.cost
-      }}
-    </li>
-  </ul>
-</section>
+
 <form>
+  <div class="flex flex-row gap-2">
+    <div class="w-4">
+      <input
+        #tag
+        type="radio"
+        name="tag"
+        id="hotel"
+        class="hidden peer"
+        [defaultChecked]="true"
+      />
+      <label
+        for="hotel"
+        class="peer-checked:text-blue-green-main border-2 rounded-full flex p-1 w-10 h-10 justify-center items-center"
+      >
+        <svg
+          stroke="currentColor"
+          fill="currentColor"
+          stroke-width="0"
+          viewBox="0 0 24 24"
+          height="1em"
+          width="1em"
+          xmlns="http://www.w3.org/2000/svg"
+        >
+          <g>
+            <path fill="none" d="M0 0h24v24H0z"></path>
+            <path
+              d="M17 19h2v-8h-6v8h2v-6h2v6zM3 19V4a1 1 0 0 1 1-1h14a1 1 0 0 1 1 1v5h2v10h1v2H2v-2h1zm4-8v2h2v-2H7zm0 4v2h2v-2H7zm0-8v2h2V7H7z"
+            ></path>
+          </g>
+        </svg>
+      </label>
+    </div>
+
+    <div>
+      <input #tag type="radio" name="tag" id="food" class="hidden peer" />
+      <label for="food" class="peer-checked:text-blue-green-main">Food</label>
+    </div>
+    <div>
+      <input #tag type="radio" name="tag" id="relax" class="hidden peer" />
+      <label for="relax" class="peer-checked:text-blue-green-main">Relax</label>
+    </div>
+    <div>
+      <input #tag type="radio" name="tag" id="travel" class="hidden peer" />
+      <label for="travel" class="peer-checked:text-blue-green-main"
+        >Travel</label
+      >
+    </div>
+    <div>
+      <input
+        #tag
+        type="radio"
+        name="tag"
+        id="entertainment"
+        class="hidden peer"
+      />
+      <label for="entertainment" class="peer-checked:text-blue-green-main"
+        >Entertainment</label
+      >
+    </div>
+  </div>
+
   <input type="text" placeholder="Name" #name />
-  <input type="text" placeholder="Tag" #tag />
   <input type="date" #start_date />
   <input type="date" #end_date />
   <input type="number" #cost />

@@ -1,13 +1,23 @@
-<!doctype html>
-<html lang="en">
-<head>
-  <meta charset="utf-8">
-  <title>AngularHolidayPlanner</title>
-  <base href="/">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <link rel="icon" type="image/x-icon" href="favicon.ico">
-</head>
-<body>
-  <app-root></app-root>
-</body>
+<!DOCTYPE html>
+<html lang="en" class="bg-dark-background-main">
+  <head>
+    <meta charset="utf-8" />
+    <title>AngularHolidayPlanner</title>
+    <base href="/" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link rel="icon" type="image/x-icon" href="favicon.ico" />
+  </head>
+  <body class="font-primary-font text-font-main">
+    <div
+      class="absolute h-full w-full overflow-clip -z-40 bg-dark-background-main"
+    >
+      <div
+        class="relative top-[30%] left-[30%] w-1/2 h-1/2 drop-shadow-backdrop-img blur-3xl"
+      >
+        <div class="img h-full w-full bg-blue-green-main"></div>
+      </div>
+    </div>
+
+    <app-root class="h-full block"></app-root>
+  </body>
 </html>

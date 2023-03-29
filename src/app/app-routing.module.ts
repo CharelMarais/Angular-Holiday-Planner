@@ -9,11 +9,16 @@ import { SignUpComponent } from './components/sign-up/sign-up.component';
 
 const routes: Routes = [
   { path: 'dashboard', component: DashboardComponent },
-  { path: 'launchpage', component: LaunchPageComponent },
+  {
+    path: 'launchpage',
+    component: LaunchPageComponent,
+    children: [
+      { path: 'sign-in', component: SignInComponent },
+      { path: 'sign-up', component: SignUpComponent },
+    ],
+  },
+  { path: '', redirectTo: '/launchpage/sign-in/', pathMatch: 'full' }, // redirect to `first-component`
   { path: 'dashboard/add-item', component: FirestoreAddItemComponent },
-  { path: 'sign-in', component: SignInComponent },
-  { path: 'sign-up', component: SignUpComponent },
-  { path: '', redirectTo: '/launchpage', pathMatch: 'full' }, // redirect to `first-component`
   { path: '**', component: ErrorPageComponent },
 ];
 
