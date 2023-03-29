@@ -1,20 +1,25 @@
-<p>sign-in works!</p>
-<div>
+<div class="p-4">
   <form>
-    <input type="email" placeholder="Email" #email required />
-    <input type="password" placeholder="Password" #password required />
-    <button
-      type="button"
-      (click)="
-        fireAuthService.signIn(
-          fireAuthService.auth,
-          email.value,
-          password.value
-        )
-      "
-    >
+    Email:
+    <input
+      type="email"
+      placeholder="Email"
+      name="email"
+      [(ngModel)]="email"
+      required
+      class="bg-transparent border-2 rounded-lg border-dark-background-main"
+    />
+    Password:
+    <input
+      type="password"
+      placeholder="Password"
+      name="email"
+      [(ngModel)]="password"
+      required
+      class="bg-transparent border-2 rounded-lg border-dark-background-main"
+    />
+    <button type="button" class="mx-auto" (click)="login(email, password)">
       Login
     </button>
   </form>
-  <button (click)="navigateToSignUp()">New User</button>
 </div>

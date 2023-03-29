@@ -1,20 +1,21 @@
-<p>sign-up works!</p>
-<div>
-  <form>
-    <input type="email" placeholder="Email" #email required />
-    <input type="password" placeholder="Password" #password required />
-    <button
-      type="button"
-      (click)="
-        fireAuthService.signUp(
-          fireAuthService.auth,
-          email.value,
-          password.value
-        )
-      "
-    >
-      Sign Up
-    </button>
+<div class="p-4">
+  <form [formGroup]="signUpForm" (ngSubmit)="signUpSubmit()">
+    Email:
+    <input
+      type="email"
+      placeholder="Email"
+      formControlName="email"
+      #email
+      required
+    />
+    Password:
+    <input
+      type="password"
+      placeholder="Password"
+      formControlName="password"
+      #password
+      required
+    />
+    <button type="submit">Sign Up</button>
   </form>
-  <button (click)="navigateToSignIn()">Login</button>
 </div>
