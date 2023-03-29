@@ -22,8 +22,8 @@ export class SignUpComponent {
   signUpSubmit() {
     this.fireAuthService.signUp(
       this.fireAuthService.auth,
-      this.signUpForm.get('email') as unknown as string,
-      this.signUpForm.get('password') as unknown as string
+      this.signUpForm.get('email')?.value as string,
+      this.signUpForm.get('password')?.value as string
     );
   }
 }
