@@ -41,6 +41,7 @@ export class FirebaseAuthService {
 
   signOut() {
     this.auth.signOut();
+    this.router.navigate(['launchpage/sign-in']);
   }
 
   signUp(auth: Auth, email: string, password: string) {

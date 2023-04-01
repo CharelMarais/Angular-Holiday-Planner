@@ -1,21 +1,38 @@
 <div class="p-4">
-  <form [formGroup]="signUpForm" (ngSubmit)="signUpSubmit()">
-    Email:
-    <input
-      type="email"
-      placeholder="Email"
-      formControlName="email"
-      #email
-      required
-    />
-    Password:
-    <input
-      type="password"
-      placeholder="Password"
-      formControlName="password"
-      #password
-      required
-    />
-    <button type="submit">Sign Up</button>
+  <form
+    [formGroup]="signUpForm"
+    (ngSubmit)="signUpSubmit()"
+    class="flex flex-col gap-4"
+  >
+    <div class="flex place-content-between px-4">
+      <label for="email" class="flex items-center">Email: </label>
+      <input
+        type="email"
+        placeholder=" Email"
+        formControlName="email"
+        name="email"
+        id="email"
+        #email
+        class="bg-transparent border-2 rounded-lg border-dark-background-main"
+      />
+    </div>
+    <div class="flex place-content-between px-4">
+      <label for="password" class="flex items-center">Password: </label>
+      <input
+        type="password"
+        name="password"
+        id="password"
+        placeholder=" Password"
+        formControlName="password"
+        #password
+        class="bg-transparent border-2 rounded-lg border-dark-background-main"
+      />
+    </div>
+    <button
+      type="submit"
+      class="mx-auto bg-blue-green-secondary py-2 px-8 text-dark-background-main rounded-xl hover:shadow-xl"
+    >
+      Sign Up
+    </button>
   </form>
 </div>

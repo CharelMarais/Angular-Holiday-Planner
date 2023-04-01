@@ -24,6 +24,9 @@ import en from '@angular/common/locales/en';
 registerLocaleData(en);
 import { NZ_I18N, en_US, en_GB } from 'ng-zorro-antd/i18n';
 import { HttpClientModule } from '@angular/common/http';
+import { NavBarComponent } from './components/nav-bar/nav-bar.component';
+import { NzSelectModule } from 'ng-zorro-antd/select';
+import { NzInputModule } from 'ng-zorro-antd/input';
 
 @NgModule({
   declarations: [
@@ -37,6 +40,7 @@ import { HttpClientModule } from '@angular/common/http';
     ErrorPageComponent,
     LaunchPageComponent,
     FirestoreListItemsComponent,
+    NavBarComponent,
   ],
   imports: [
     BrowserModule,
@@ -46,6 +50,8 @@ import { HttpClientModule } from '@angular/common/http';
     NzDatePickerModule,
     ReactiveFormsModule,
     BrowserAnimationsModule,
+    NzSelectModule,
+    NzInputModule,
     provideFirebaseApp(() => initializeApp(environment.firebase)),
     provideAuth(() => getAuth()),
     provideFirestore(() => getFirestore()),

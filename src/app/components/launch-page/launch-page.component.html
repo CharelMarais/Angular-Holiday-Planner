@@ -1,16 +1,10 @@
-<!-- <div *ngIf="this.fireAuthService.user$ | async as user; else newUser">
-  <app-user-check></app-user-check>
-  <button (click)="navigateToDashboard()">View Dashboard</button>
-  <button (click)="fireAuthService.signOut()">Sign Out</button>
-</div> -->
-
-<div #newUser class="flex flex-col justify-center h-full">
-  <div class="font-chalkdust flex w-full flex-col items-center gap-2 pt-5">
-    <p class="text-3xl text-blue-green-main">Welcome</p>
-    <p class="text-l">it's time to start your journey</p>
-  </div>
-  <div
-    class="bg-dark-background-main rounded-3xl h-fit m-6 overflow-hidden bg-opacity-70"
+<div #newUser class="flex flex-col justify-center h-full items-center">
+  <header class="font-chalkdust flex w-full flex-col items-center gap-2">
+    <h1 class="text-3xl text-blue-green-main">Welcome</h1>
+    <h2 class="text-font-main">it's time to start your journey</h2>
+  </header>
+  <main
+    class="bg-dark-background-main rounded-3xl h-fit m-6 overflow-hidden bg-opacity-70 max-w-md"
   >
     <div class="flex h-9 font-extrabold">
       <a
@@ -27,5 +21,5 @@
       >
     </div>
     <router-outlet></router-outlet>
-  </div>
+  </main>
 </div>
