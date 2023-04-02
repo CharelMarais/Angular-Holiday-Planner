@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { FirebaseAuthService } from 'src/app/shared/auth/firebase-auth.service';
+import { FirebaseAuthService } from 'src/app/services/auth/firebase-auth.service';
 
 @Component({
   selector: 'app-sign-in',

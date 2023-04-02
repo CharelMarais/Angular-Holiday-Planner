@@ -1,7 +1,6 @@
 import { Component } from '@angular/core';
-import { FirebaseAuthService } from 'src/app/shared/auth/firebase-auth.service';
-import { FirebaseStoreService } from 'src/app/shared/store/firebase-store.service';
-import { NzPlacementType } from 'ng-zorro-antd/dropdown';
+import { FirebaseAuthService } from 'src/app/services/auth/firebase-auth.service';
+import { FirebaseStoreService } from 'src/app/services/store/firebase-store.service';
 
 @Component({
   selector: 'app-firestore-add-item',
@@ -12,9 +11,9 @@ export class FirestoreAddItemComponent {
   selectedTrip = '';
   tagValue = 'hotel';
   name = '';
-  startDateTime = Date;
-  endDateTime = Date;
-  cost = 0;
+  startDateTime = '';
+  endDateTime = '';
+  cost = '';
   location = '';
 
   constructor(
@@ -22,20 +21,13 @@ export class FirestoreAddItemComponent {
     protected fireAuthService: FirebaseAuthService
   ) {}
 
-  test(tag: any) {
-    console.log(this.tagValue);
-  }
-
-  log(): void {
-    console.log('click dropdown button');
+  addItineraryItem(
+    name: string,
+    tag: string,
+    startDate: string,
+    endDate: string,
+    cost: string
+  ) {
+    this.firebaseStore.addItineraryItem(name, tag, startDate, endDate, cost);
   }
 }
-
-// firebaseStore.addItineraryItem(
-//           email.value,
-//           name.value,
-//           tag.value,
-//           start_date.value,
-//           end_date.value,
-//           cost.value
-//         )

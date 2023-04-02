@@ -1,4 +1,4 @@
-import { NgModule } from '@angular/core';
+import { NgModule, isDevMode } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -27,6 +27,11 @@ import { HttpClientModule } from '@angular/common/http';
 import { NavBarComponent } from './components/nav-bar/nav-bar.component';
 import { NzSelectModule } from 'ng-zorro-antd/select';
 import { NzInputModule } from 'ng-zorro-antd/input';
+import { StoreModule } from '@ngrx/store';
+import { EffectsModule } from '@ngrx/effects';
+import { StoreDevtoolsModule } from '@ngrx/store-devtools';
+import * as fromFirestoreData from './store/reducers/firestore-data.reducer';
+import { FirestoreDataEffects } from './store/effects/firestore-data.effects';
 
 @NgModule({
   declarations: [
@@ -56,6 +61,14 @@ import { NzInputModule } from 'ng-zorro-antd/input';
     provideAuth(() => getAuth()),
     provideFirestore(() => getFirestore()),
     HttpClientModule,
+    StoreModule.forRoot({}, {}),
+    EffectsModule.forRoot([]),
+    StoreDevtoolsModule.instrument({ maxAge: 25, logOnly: !isDevMode() }),
+    StoreModule.forFeature(
+      fromFirestoreData.firestoreDataFeatureKey,
+      fromFirestoreData.reducer
+    ),
+    EffectsModule.forFeature([FirestoreDataEffects]),
   ],
   providers: [{ provide: NZ_I18N, useValue: en_US }],
   bootstrap: [AppComponent],

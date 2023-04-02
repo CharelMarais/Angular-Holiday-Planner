@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { FormBuilder } from '@angular/forms';
 import { Validators } from '@angular/forms';
-import { FirebaseAuthService } from 'src/app/shared/auth/firebase-auth.service';
+import { FirebaseAuthService } from 'src/app/services/auth/firebase-auth.service';
 
 @Component({
   selector: 'app-sign-up',

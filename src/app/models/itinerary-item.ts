@@ -1,7 +1,7 @@
 import { ITrip } from './trip-names';
 
 export interface ItineraryItem {
-  trip_name: ITrip;
+  trip_name?: string;
   name: string;
   tag: string;
   startDate: string;
