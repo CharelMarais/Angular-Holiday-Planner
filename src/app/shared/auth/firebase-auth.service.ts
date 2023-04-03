@@ -21,7 +21,7 @@ export class FirebaseAuthService {
     this.userSubscription = this.user$.subscribe((aUser: User | null) => {
       //handle user state changes here. Note, that user will be null if there is no currently logged in user.
       if (!aUser) {
-        this.router.navigate(['launchpage']);
+        this.router.navigate(['launchpage/sign-in']);
       }
     });
   }
@@ -41,6 +41,7 @@ export class FirebaseAuthService {
 
   signOut() {
     this.auth.signOut();
+    this.router.navigate(['launchpage/sign-in']);
   }
 
   signUp(auth: Auth, email: string, password: string) {

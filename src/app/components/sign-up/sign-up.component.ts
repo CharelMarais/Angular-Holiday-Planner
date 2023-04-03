@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
-import { Router } from '@angular/router';
+import { FormBuilder } from '@angular/forms';
+import { Validators } from '@angular/forms';
 import { FirebaseAuthService } from 'src/app/shared/auth/firebase-auth.service';
 
 @Component({
@@ -10,10 +11,19 @@ import { FirebaseAuthService } from 'src/app/shared/auth/firebase-auth.service';
 export class SignUpComponent {
   constructor(
     protected fireAuthService: FirebaseAuthService,
-    private router: Router
+    private fb: FormBuilder
   ) {}
 
-  navigateToSignIn() {
-    this.router.navigate(['sign-in']);
+  signUpForm = this.fb.group({
+    email: ['', Validators.required],
+    password: ['', Validators.required],
+  });
+
+  signUpSubmit() {
+    this.fireAuthService.signUp(
+      this.fireAuthService.auth,
+      this.signUpForm.get('email')?.value as string,
+      this.signUpForm.get('password')?.value as string
+    );
   }
 }

@@ -1,20 +1,35 @@
-<p>sign-in works!</p>
-<div>
-  <form>
-    <input type="email" placeholder="Email" #email required />
-    <input type="password" placeholder="Password" #password required />
+<div class="p-4">
+  <form class="flex flex-col gap-4">
+    <div class="flex place-content-between px-4">
+      <label for="email" class="flex items-center">Email: </label>
+      <input
+        type="email"
+        placeholder=" Email"
+        name="email"
+        id="email"
+        [(ngModel)]="email"
+        required
+        class="bg-transparent border-2 rounded-lg border-dark-background-main"
+      />
+    </div>
+    <div class="flex place-content-between px-4">
+      <label for="password" class="flex items-center">Password: </label>
+      <input
+        type="password"
+        id="password"
+        placeholder=" Password"
+        name="password"
+        [(ngModel)]="password"
+        required
+        class="bg-transparent border-2 rounded-lg border-dark-background-main"
+      />
+    </div>
     <button
       type="button"
-      (click)="
-        fireAuthService.signIn(
-          fireAuthService.auth,
-          email.value,
-          password.value
-        )
-      "
+      class="mx-auto bg-blue-green-secondary py-2 px-8 text-dark-background-main rounded-xl hover:shadow-xl"
+      (click)="login(email, password)"
     >
       Login
     </button>
   </form>
-  <button (click)="navigateToSignUp()">New User</button>
 </div>
