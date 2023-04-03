@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { Store } from '@ngrx/store';
+import { User } from 'firebase/auth';
 import { Observable } from 'rxjs';
 import { ItineraryItem } from 'src/app/models/itinerary-item';
 import { FirebaseAuthService } from 'src/app/services/auth/firebase-auth.service';
@@ -21,10 +22,5 @@ export class FirestoreListItemsComponent {
     protected store: Store<FsState>
   ) {
     this.itineryItemsStore$ = store.select(selectItinaryItem);
-    console.log(store.select(selectItinaryItem));
-  }
-
-  test() {
-    this.itineryItemsStore$.subscribe((res) => console.log(res));
   }
 }
