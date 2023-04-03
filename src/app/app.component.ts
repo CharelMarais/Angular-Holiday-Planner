@@ -13,7 +13,6 @@ export class AppComponent implements OnInit {
 
   ngOnInit(): void {
     this.store.dispatch(getFSFirestoreData());
-    console.log('test');
   }
 
   title = 'Angular-Holiday-Planner';
