@@ -160,16 +160,25 @@
       </div>
     </div>
 
-    <input type="text" placeholder="Name" #name />
-    <input type="date" #start_date />
-    <input type="date" #end_date />
-    <input type="number" #cost />
+    <input type="text" name="Name" placeholder="Name" [(ngModel)]="name" />
+    <input type="date" name="startDate" [(ngModel)]="startDateTime" />
+    <input type="date" name="endDate" [(ngModel)]="endDateTime" />
+    <input type="number" name="cost" [(ngModel)]="cost" />
     <input
       #email
       [value]="(fireAuthService.user$ | async)?.email"
       type="hidden"
     />
-    <button type="button" (click)="test(tag)">Add Item</button>
+    <button
+      type="button"
+      (click)="
+        addItineraryItem(name, tagValue, startDateTime, endDateTime, cost)
+      "
+    >
+      Add Item
+    </button>
   </form>
   <a routerLink="../">Dashboard</a>
+  <app-firestore-list-items/>
 </div>
+

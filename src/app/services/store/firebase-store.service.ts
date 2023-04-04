@@ -16,20 +16,18 @@ import { ITrip } from 'src/app/models/trip-names';
 })
 export class FirebaseStoreService {
   private firestore: Firestore = inject(Firestore); // inject Cloud Firestore
-  itinerary$: Observable<ItineraryItem[]> | undefined;
+  itinerary$: Observable<ItineraryItem[]>;
   itineraryCollection: CollectionReference;
 
   trip_names$: Observable<ITrip[]> | undefined;
   tripCollection: CollectionReference;
 
   constructor() {
-    // get a reference to the itinerary collection
     const userItineraryItemCollection = collection(
       this.firestore,
       'itinerary_items'
     );
     this.itineraryCollection = userItineraryItemCollection;
-    // get documents (data) from the collection using collectionData
     this.itinerary$ = collectionData(userItineraryItemCollection) as Observable<
       ItineraryItem[]
     >;
@@ -65,5 +63,19 @@ export class FirebaseStoreService {
       endDate,
       cost,
     });
+  }
+
+  //rxjs store
+
+  getItineraryItems() {
+    return collectionData(
+      collection(this.firestore, 'itinerary_items')
+    ) as Observable<ItineraryItem[]>;
+  }
+
+  getTripNames() {
+    return collectionData(
+      collection(this.firestore, 'trip_names')
+    ) as Observable<ITrip[]>;
   }
 }
