@@ -15,19 +15,22 @@ export class FirestoreAddItemComponent {
   endDateTime = '';
   cost = '';
   location = '';
+  userId = this.fireAuthService.auth.currentUser?.uid;
 
   constructor(
     protected firebaseStore: FirebaseStoreService,
     protected fireAuthService: FirebaseAuthService
   ) {}
 
-  addItineraryItem(
-    name: string,
-    tag: string,
-    startDate: string,
-    endDate: string,
-    cost: string
-  ) {
-    this.firebaseStore.addItineraryItem(name, tag, startDate, endDate, cost);
+  addItineraryItem() {
+    this.userId &&
+      this.firebaseStore.addItineraryItem(
+        this.name,
+        this.tagValue,
+        this.startDateTime,
+        this.endDateTime,
+        this.userId,
+        this.cost
+      );
   }
 }

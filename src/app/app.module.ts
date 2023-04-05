@@ -5,7 +5,7 @@ import { AppComponent } from './app.component';
 import { provideFirebaseApp, initializeApp } from '@angular/fire/app';
 import { getAuth, provideAuth } from '@angular/fire/auth';
 import { getFirestore, provideFirestore } from '@angular/fire/firestore';
-import { environment } from './environments/environment';
+import { environment } from '../environments/environment';
 import { SignUpComponent } from './components/sign-up/sign-up.component';
 import { UserCheckComponent } from './components/user-check/user-check.component';
 import { SignInComponent } from './components/sign-in/sign-in.component';
@@ -30,8 +30,12 @@ import { NzInputModule } from 'ng-zorro-antd/input';
 import { StoreModule } from '@ngrx/store';
 import { EffectsModule } from '@ngrx/effects';
 import { StoreDevtoolsModule } from '@ngrx/store-devtools';
-import * as fromFirestoreData from './store/reducers/firestore-data.reducer';
-import { FirestoreDataEffects } from './store/effects/firestore-data.effects';
+import * as fromTrips from './store/trips-store/reducers/trips.reducer';
+import { TripsEffects } from './store/trips-store/effects/trips.effects';
+import * as fromUser from './store/user-store/reducers/user.reducer';
+import { UserEffects } from './store/user-store/effects/user.effects';
+import * as fromItineraryItems from './store/itinerary-items-store/reducers/itinerary-items.reducer';
+import { ItineraryItemsEffects } from './store/itinerary-items-store/effects/itinerary-items.effects';
 
 @NgModule({
   declarations: [
@@ -64,11 +68,17 @@ import { FirestoreDataEffects } from './store/effects/firestore-data.effects';
     StoreModule.forRoot({}, {}),
     EffectsModule.forRoot([]),
     StoreDevtoolsModule.instrument({ maxAge: 25, logOnly: !isDevMode() }),
+    EffectsModule.forFeature([
+      TripsEffects,
+      UserEffects,
+      ItineraryItemsEffects,
+    ]),
+    StoreModule.forFeature(fromTrips.tripsFeatureKey, fromTrips.reducer),
+    StoreModule.forFeature(fromUser.userFeatureKey, fromUser.reducer),
     StoreModule.forFeature(
-      fromFirestoreData.firestoreDataFeatureKey,
-      fromFirestoreData.reducer
+      fromItineraryItems.itineraryItemsFeatureKey,
+      fromItineraryItems.reducer
     ),
-    EffectsModule.forFeature([FirestoreDataEffects]),
   ],
   providers: [{ provide: NZ_I18N, useValue: en_US }],
   bootstrap: [AppComponent],
