@@ -17,7 +17,9 @@ import { LaunchPageComponent } from './components/launch-page/launch-page.compon
 import { FirestoreListItemsComponent } from './components/firestore-list-items/firestore-list-items.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { NzRadioModule } from 'ng-zorro-antd/radio';
+import { NzIconModule } from 'ng-zorro-antd/icon';
 import { NzDatePickerModule } from 'ng-zorro-antd/date-picker';
+import { NzDropDownModule } from 'ng-zorro-antd/dropdown';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { registerLocaleData } from '@angular/common';
 import en from '@angular/common/locales/en';
@@ -36,6 +38,8 @@ import * as fromUser from './store/user-store/reducers/user.reducer';
 import { UserEffects } from './store/user-store/effects/user.effects';
 import * as fromItineraryItems from './store/itinerary-items-store/reducers/itinerary-items.reducer';
 import { ItineraryItemsEffects } from './store/itinerary-items-store/effects/itinerary-items.effects';
+import { ListTripsComponent } from './components/list-trips/list-trips.component';
+import { AddTripsComponent } from './components/add-trips/add-trips.component';
 
 @NgModule({
   declarations: [
@@ -50,15 +54,19 @@ import { ItineraryItemsEffects } from './store/itinerary-items-store/effects/iti
     LaunchPageComponent,
     FirestoreListItemsComponent,
     NavBarComponent,
+    ListTripsComponent,
+    AddTripsComponent,
   ],
   imports: [
     BrowserModule,
     FormsModule,
     AppRoutingModule,
     NzRadioModule,
+    NzIconModule,
     NzDatePickerModule,
     ReactiveFormsModule,
     BrowserAnimationsModule,
+    NzDropDownModule,
     NzSelectModule,
     NzInputModule,
     provideFirebaseApp(() => initializeApp(environment.firebase)),
