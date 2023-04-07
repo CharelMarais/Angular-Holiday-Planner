@@ -1,5 +1,5 @@
 import { createAction, props } from '@ngrx/store';
-import { ItineraryItem } from 'src/app/models/itinerary-item';
+import { IItineraryItem } from 'src/app/models/itinerary-item';
 
 export const getItineraryItems = createAction(
   '[ItineraryItems] ItineraryItems ItineraryItemss'
@@ -7,5 +7,5 @@ export const getItineraryItems = createAction(
 
 export const getItineraryItemsSuccess = createAction(
   '[ItineraryItems] get ItineraryItems Success',
-  props<{ itineraryItems: ItineraryItem[] }>()
+  props<{ itineraryItems: IItineraryItem[] }>()
 );

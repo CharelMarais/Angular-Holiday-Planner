@@ -3,11 +3,11 @@ import { FirebaseAuthService } from 'src/app/services/auth/firebase-auth.service
 import { FirebaseStoreService } from 'src/app/services/store/firebase-store.service';
 
 @Component({
-  selector: 'app-firestore-add-item',
-  templateUrl: './firestore-add-item.component.html',
-  styleUrls: ['./firestore-add-item.component.scss'],
+  selector: 'app-add-itinerary-item',
+  templateUrl: './add-itinerary-item.component.html',
+  styleUrls: ['./add-itinerary-item.component.scss'],
 })
-export class FirestoreAddItemComponent {
+export class AddItineraryItemComponent {
   selectedTrip = '';
   tagValue = 'hotel';
   name = '';

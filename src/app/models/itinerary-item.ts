@@ -1,6 +1,4 @@
-import { ITrip } from './trip-names';
-
-export interface ItineraryItem {
+export interface IItineraryItem {
   trip_name?: string;
   name: string;
   tag: string;

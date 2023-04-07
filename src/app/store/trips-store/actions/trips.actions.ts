@@ -1,5 +1,5 @@
 import { createAction, props } from '@ngrx/store';
-import { ITrip } from 'src/app/models/trip-names';
+import { ITrip } from 'src/app/models/trips';
 
 export const getTrips = createAction('[Trips] Get Trips');
 

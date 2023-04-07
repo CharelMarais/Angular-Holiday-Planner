@@ -1,1 +1,7 @@
-<p>list-trips works!</p>
+<section class="pt-2">
+  <ul>
+    <li *ngFor="let trip of tripsData$ | async">
+      <app-trip-listing [trip]="trip" [selectedTrip]="selectedTripData$ | async"/>
+    </li>
+  </ul>
+</section>

@@ -2,7 +2,13 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+@import "../node_modules/angular-calendar/css/angular-calendar.css";
 
 .img {
   clip-path: polygon(18% 38%, 78% 0, 93% 92%, 0 100%);
+}
+
+@font-face {
+  font-family: "Delicious-Handrawn";
+  src: url("./assets/DeliciousHandrawn-Regular.ttf");
 }

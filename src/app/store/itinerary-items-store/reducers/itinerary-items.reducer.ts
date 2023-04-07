@@ -1,11 +1,11 @@
 import { createFeature, createReducer, on } from '@ngrx/store';
-import { ItineraryItem } from 'src/app/models/itinerary-item';
+import { IItineraryItem } from 'src/app/models/itinerary-item';
 import * as ItineraryItemsActions from '../actions/itinerary-items.actions';
 
 export const itineraryItemsFeatureKey = 'itineraryItems';
 
 export interface ItineraryItemState {
-  itineraryItems: ItineraryItem[];
+  itineraryItems: IItineraryItem[];
   isLoading: boolean;
 }
 

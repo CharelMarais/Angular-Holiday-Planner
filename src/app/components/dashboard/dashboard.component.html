@@ -1,12 +1,18 @@
 <div class="flex flex-col">
-  <div class="flex place-content-between w-full px-8 pt-4">
+  <div
+    style="font-family: Delicious-Handrawn"
+    class="text-5xl text-blue-green-secondary absolute w-full text-center -z-10 top-3"
+  >
+    TB
+  </div>
+  <div class="flex place-content-between w-full px-8 py-4">
     <a
       nz-dropdown
       nzTrigger="click"
       [nzDropdownMenu]="signOut"
       class="text-2xl text-blue-green-main hover:text-blue-green-secondary hover:opacity-50"
     >
-      <span nz-icon nzType="poweroff" nzTheme="outline"></span>
+      <span nz-icon nzType="logout" nzTheme="outline"></span>
     </a>
     <nz-dropdown-menu
       #signOut="nzDropdownMenu"
@@ -31,22 +37,24 @@
     <nz-dropdown-menu #addTrip="nzDropdownMenu">
       <ul nz-menu class="bg-transparent rounded-xl">
         <li nz-menu-item>
-          <input type="text" />
+          <app-add-trips/>
         </li>
       </ul>
     </nz-dropdown-menu>
   </div>
   <div
-    class="bg-dark-background-main opacity-80 m-4 rounded-lg overflow-hidden"
+    class="bg-dark-background-main opacity-80 mx-4 rounded-lg overflow-hidden"
   >
     <div
       class="bg-dark-background-secondary text-center shadow-md shadow-blue-green-main"
     >
-      Upcomming Trips
+      Upcoming Trips
     </div>
-    <div class="h-52">test</div>
+    <div class="h-52"><app-list-trips/></div>
   </div>
   <div *ngIf="this.fireAuthService.user$ | async as user">
     <a routerLink="add-item">+</a>
-  </div>
+  </div >
+  <div class="bg-dark-background-main opacity-80 mx-4 rounded-lg overflow-hidden">
+  <app-calendar/></div>
 </div>
