@@ -1,5 +1,5 @@
 export interface IItineraryItem {
-  trip_name?: string;
+  tripName: string;
   name: string;
   tag: string;
   startDate: string;

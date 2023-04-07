@@ -46,11 +46,12 @@
     class="bg-dark-background-main opacity-80 mx-4 rounded-lg overflow-hidden"
   >
     <div
-      class="bg-dark-background-secondary text-center shadow-md shadow-blue-green-main"
+      class="bg-dark-background-secondary bg-opacity-60 text-center shadow-md shadow-blue-green-main"
     >
       Upcoming Trips
     </div>
-    <div class="h-52"><app-list-trips/></div>
+    <div class="h-52 overflow-scroll"><app-list-trips/>
+      <app-list-itinerary-items/></div>
   </div>
   <div *ngIf="this.fireAuthService.user$ | async as user">
     <a routerLink="add-item">+</a>

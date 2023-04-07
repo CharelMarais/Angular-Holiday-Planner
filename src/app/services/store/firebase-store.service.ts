@@ -56,6 +56,7 @@ export class FirebaseStoreService {
   }
 
   addItineraryItem(
+    tripName: string,
     name: string,
     tag: string,
     startDate: string,
@@ -68,6 +69,7 @@ export class FirebaseStoreService {
   ) {
     if (!(name || tag || startDate || endDate || cost)) return;
     addDoc(this.itineraryCollection, <IItineraryItem>{
+      tripName,
       name,
       tag,
       startDate,

@@ -1,10 +1,32 @@
-<section>
-  <ul>
-    <li *ngFor="let item of itineryItemsStore$ | async">
-      {{ item.name }},{{ item.tag }},{{ item.startDate }},{{ item.endDate }},{{
-        item.cost
-      }}
-      {{ firebaseAuth.auth.currentUser?.uid }}
-    </li>
-  </ul>
-</section>
+<ng-container *ngIf="(selectedTripData$ | async)?.tripName">
+  <ng-container *ngIf="tripItemMatch$ | async">
+    <div class="flex flex-col items-center">
+      <ul>
+        <li *ngFor="let item of itineryItemsStore$ | async">
+          <ng-container
+            *ngIf="item.tripName === (selectedTripData$ | async)?.tripName"
+          >
+            {{ item.name }},{{ item.tag }},{{ item.startDate }},
+            {{ item.endDate }}, {{ item.cost }}
+          </ng-container>
+        </li>
+      </ul>
+      <button
+        class="pointer text-dark-background-main px-2 bg-blue-green-main rounded-md hover:bg-opacity-40 hover:text-font-main"
+      >
+        Add Item
+      </button>
+    </div>
+  </ng-container>
+  <ng-container *ngIf="!(tripItemMatch$ | async)">
+    <div class="px-2 m-0 flex flex-col items-center">
+      <p class="opacity-60">No items added yet, lets start the process</p>
+      <a
+        routerLink="add-item"
+        class="pointer text-dark-background-main px-2 bg-blue-green-main rounded-md hover:bg-opacity-40 hover:text-font-main"
+      >
+        Add Item
+      </a>
+    </div>
+  </ng-container>
+</ng-container>

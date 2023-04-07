@@ -1,7 +1,14 @@
-<section class="pt-2">
+<ng-container *ngIf="(tripsData$ | async)?.length" >
+  <div class="pt-2">
   <ul>
     <li *ngFor="let trip of tripsData$ | async">
       <app-trip-listing [trip]="trip" [selectedTrip]="selectedTripData$ | async"/>
     </li>
-  </ul>
-</section>
+  </ul></div>
+</ng-container>
+<ng-container *ngIf="!(tripsData$ | async)?.length">
+  <div class="flex flex-col items-center">
+    <p class="opacity-60 pt-4">No trips added yet, lets start the process</p>
+    <p class="opacity-60">Just use the + in the top right corner</p>
+  </div>
+</ng-container>
