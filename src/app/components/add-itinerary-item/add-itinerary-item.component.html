@@ -221,12 +221,13 @@
             type="date"
             name="startDate"
             class="w-32 pl-2 rounded-sm h-full text-xs bg-blue-green-main bg-opacity-20"
-            [(ngModel)]="startDateTime"
+            [(ngModel)]="startDate"
           />
           <input
             type="time"
             name="startDate"
             class="w-4.3 ml-1 pl-1 rounded-sm h-full text-xs bg-blue-green-main bg-opacity-20"
+            [(ngModel)]="startTime"
           />
         </div>
       </div>
@@ -236,12 +237,13 @@
           <input
             type="date"
             name="endDate"
-            [(ngModel)]="endDateTime"
+            [(ngModel)]="endDate"
             class="w-32 pl-2 rounded-sm h-full text-xs bg-blue-green-main bg-opacity-20"
           />
           <input
             type="time"
             name="endDate"
+            [(ngModel)]="endTime"
             class="w-4.3 ml-1 pl-1 rounded-sm h-full bg-blue-green-main bg-opacity-20 text-xs"
           />
         </div>

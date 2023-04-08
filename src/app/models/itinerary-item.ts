@@ -3,7 +3,9 @@ export interface IItineraryItem {
   name: string;
   tag: string;
   startDate: string;
+  startTime: string;
   endDate: string;
+  endTime: string;
   cost: string;
   startLocation?: string;
   endLocation?: string;

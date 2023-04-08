@@ -7,6 +7,7 @@ module.exports = {
         "blue-green-main": "#43e8c3",
         "dark-background-main": "#111e25",
         "dark-background-secondary": "#253F47",
+        "dark-background-tertiary": "#143c3d",
         "font-main": "#ececfa",
         "blue-green-secondary": "#5cddc6",
       },

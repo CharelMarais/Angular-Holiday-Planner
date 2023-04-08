@@ -42,18 +42,19 @@
     </nz-dropdown-menu>
   </div>
   <div
-    class="bg-dark-background-main opacity-80 mx-4 rounded-lg overflow-hidden"
+    class="bg-dark-background-main opacity-80 mx-4 rounded-lg overflow-hidden pb-2"
   >
     <div
-      class="bg-dark-background-secondary bg-opacity-60 text-center shadow-md shadow-blue-green-main"
+      class="bg-dark-background-secondary bg-opacity-60 text-center shadow-md shadow-blue-green-main "
     >
       Upcoming Trips
     </div>
-    <div class="h-52 overflow-scroll"><app-list-trips/>
-      <app-list-itinerary-items/></div>
+    <div class="h-fit overflow-scroll flex flex-col">
+      <app-list-trips/>
+      <app-list-itinerary-items/>
+    </div>
   </div>
-  <div *ngIf="this.fireAuthService.user$ | async as user">
-  </div >
   <div class="bg-dark-background-main opacity-80 m-4 rounded-lg overflow-hidden">
-  <app-calendar/></div>
+    <app-calendar/>
+  </div>
 </div>

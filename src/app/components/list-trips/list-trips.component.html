@@ -1,6 +1,6 @@
-<ng-container *ngIf="(tripsData$ | async)?.length" >
+<ng-container *ngIf="(tripsData$ | async)?.length">
   <div class="pt-2">
-  <ul>
+  <ul class="m-0">
     <li *ngFor="let trip of tripsData$ | async">
       <app-trip-listing [trip]="trip" [selectedTrip]="selectedTripData$ | async"/>
     </li>
