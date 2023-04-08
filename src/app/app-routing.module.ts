@@ -6,9 +6,14 @@ import { FirestoreAddItemComponent } from './components/firestore-add-item/fires
 import { LaunchPageComponent } from './components/launch-page/launch-page.component';
 import { SignInComponent } from './components/sign-in/sign-in.component';
 import { SignUpComponent } from './components/sign-up/sign-up.component';
+import { AuthGuard } from './gaurds/auth.guard';
 
 const routes: Routes = [
-  { path: 'dashboard', component: DashboardComponent },
+  {
+    path: 'dashboard',
+    component: DashboardComponent,
+    canActivate: [AuthGuard],
+  },
   {
     path: 'launchpage',
     component: LaunchPageComponent,
@@ -18,7 +23,11 @@ const routes: Routes = [
     ],
   },
   { path: '', redirectTo: '/launchpage/sign-in/', pathMatch: 'full' }, // redirect to `first-component`
-  { path: 'dashboard/add-item', component: FirestoreAddItemComponent },
+  {
+    path: 'dashboard/add-item',
+    component: FirestoreAddItemComponent,
+    canActivate: [AuthGuard],
+  },
   { path: '**', component: ErrorPageComponent },
 ];
 

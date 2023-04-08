@@ -5,8 +5,8 @@ import { Observable } from 'rxjs';
 import { ItineraryItem } from 'src/app/models/itinerary-item';
 import { FirebaseAuthService } from 'src/app/services/auth/firebase-auth.service';
 import { FirebaseStoreService } from 'src/app/services/store/firebase-store.service';
-import { FsState } from 'src/app/store/reducers/firestore-data.reducer';
-import { selectItinaryItem } from 'src/app/store/selectors/firestore-data.selectors';
+import { ItineraryItemState } from 'src/app/store/itinerary-items-store/reducers/itinerary-items.reducer';
+import { selectItinaryItem } from 'src/app/store/itinerary-items-store/selectors/itinerary-items.selectors';
 
 @Component({
   selector: 'app-firestore-list-items',
@@ -19,7 +19,7 @@ export class FirestoreListItemsComponent {
   constructor(
     protected firebaseAuth: FirebaseAuthService,
     protected firebaseStore: FirebaseStoreService,
-    protected store: Store<FsState>
+    protected store: Store<ItineraryItemState>
   ) {
     this.itineryItemsStore$ = store.select(selectItinaryItem);
   }

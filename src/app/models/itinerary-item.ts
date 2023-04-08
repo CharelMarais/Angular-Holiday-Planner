@@ -10,4 +10,5 @@ export interface ItineraryItem {
   startLocation?: string;
   endLocation?: string;
   notes?: string;
+  userId: string | undefined;
 }

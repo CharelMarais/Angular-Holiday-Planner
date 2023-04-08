@@ -4,12 +4,16 @@ import {
   addDoc,
   CollectionReference,
   Firestore,
+  query,
+  where,
 } from '@angular/fire/firestore';
 import { inject } from '@angular/core';
 import { Observable } from 'rxjs';
 import { Injectable } from '@angular/core';
 import { ItineraryItem } from 'src/app/models/itinerary-item';
 import { ITrip } from 'src/app/models/trip-names';
+import { FirebaseAuthService } from '../auth/firebase-auth.service';
+import { getAuth } from '@angular/fire/auth';
 
 @Injectable({
   providedIn: 'root',
@@ -18,15 +22,17 @@ export class FirebaseStoreService {
   private firestore: Firestore = inject(Firestore); // inject Cloud Firestore
   itinerary$: Observable<ItineraryItem[]>;
   itineraryCollection: CollectionReference;
-
   trip_names$: Observable<ITrip[]> | undefined;
+  localUser: string | null = localStorage.getItem('user');
+
   tripCollection: CollectionReference;
 
-  constructor() {
+  constructor(protected firebaseAuth: FirebaseAuthService) {
     const userItineraryItemCollection = collection(
       this.firestore,
       'itinerary_items'
     );
+    this.firebaseAuth.auth.onAuthStateChanged;
     this.itineraryCollection = userItineraryItemCollection;
     this.itinerary$ = collectionData(userItineraryItemCollection) as Observable<
       ItineraryItem[]
@@ -50,6 +56,7 @@ export class FirebaseStoreService {
     tag: string,
     startDate: string,
     endDate: string,
+    userId: string,
     cost: string,
     startLocation?: string,
     endLocation?: string,
@@ -61,6 +68,7 @@ export class FirebaseStoreService {
       tag,
       startDate,
       endDate,
+      userId,
       cost,
     });
   }
@@ -68,14 +76,18 @@ export class FirebaseStoreService {
   //rxjs store
 
   getItineraryItems() {
-    return collectionData(
-      collection(this.firestore, 'itinerary_items')
-    ) as Observable<ItineraryItem[]>;
+    const colQuery = query(
+      this.itineraryCollection,
+      where('userId', '==', getAuth().currentUser?.uid)
+    );
+    return collectionData(colQuery) as Observable<ItineraryItem[]>;
   }
 
   getTripNames() {
-    return collectionData(
-      collection(this.firestore, 'trip_names')
-    ) as Observable<ITrip[]>;
+    const colQuery = query(
+      this.tripCollection,
+      where('userId', '==', getAuth().currentUser?.uid)
+    );
+    return collectionData(colQuery) as Observable<ITrip[]>;
   }
 }
