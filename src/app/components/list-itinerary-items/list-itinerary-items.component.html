@@ -12,7 +12,7 @@
         </li>
       </ul>
       <a
-        routerLink="add-item"
+        [routerLink]="['add-item', (selectedTripData$ | async)?.tripName]"
         class="pointer text-dark-background-main px-2 bg-blue-green-main rounded-md hover:bg-opacity-40 hover:text-font-main"
       >
         Add Item
@@ -23,7 +23,7 @@
     <div class="px-2 m-0 flex flex-col items-center">
       <p class="opacity-60">No items added yet, lets start the process</p>
       <a
-        routerLink="add-item"
+        [routerLink]="['add-item', (selectedTripData$ | async)?.tripName]"
         class="pointer text-dark-background-main px-2 bg-blue-green-main rounded-md hover:bg-opacity-40 hover:text-font-main"
       >
         Add Item

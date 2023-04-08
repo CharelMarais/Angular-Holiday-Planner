@@ -24,7 +24,7 @@ const routes: Routes = [
   },
   { path: '', redirectTo: '/launchpage/sign-in', pathMatch: 'full' }, // redirect to `first-component`
   {
-    path: 'dashboard/add-item',
+    path: 'dashboard/add-item/:tripName',
     component: AddItineraryItemComponent,
     canActivate: [AuthGuard],
   },

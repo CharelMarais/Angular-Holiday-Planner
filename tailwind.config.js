@@ -18,6 +18,10 @@ module.exports = {
         chalkdust: "Chalkduster",
         varino: "varino",
       },
+      width: {
+        12.55: "12.55rem",
+        4.3: "4.3rem",
+      },
     },
   },
   plugins: [],

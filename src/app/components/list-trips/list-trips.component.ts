@@ -4,8 +4,8 @@ import { Observable } from 'rxjs';
 import { ITrip } from 'src/app/models/trips';
 import { TripsState } from 'src/app/store/trips-store/reducers/trips.reducer';
 import {
-  selectSelectedTripName,
-  selectTripNames,
+  selectSelectedTrip,
+  selectTrips,
 } from 'src/app/store/trips-store/selectors/trips.selectors';
 
 @Component({
@@ -19,7 +19,7 @@ export class ListTripsComponent {
   selectedTripData$: Observable<ITrip>;
 
   constructor(protected tripStore: Store<TripsState>) {
-    this.tripsData$ = tripStore.select(selectTripNames);
-    this.selectedTripData$ = tripStore.select(selectSelectedTripName);
+    this.tripsData$ = tripStore.select(selectTrips);
+    this.selectedTripData$ = tripStore.select(selectSelectedTrip);
   }
 }
