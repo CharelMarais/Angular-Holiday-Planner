@@ -11,11 +11,12 @@
           </ng-container>
         </li>
       </ul>
-      <button
+      <a
+        routerLink="add-item"
         class="pointer text-dark-background-main px-2 bg-blue-green-main rounded-md hover:bg-opacity-40 hover:text-font-main"
       >
         Add Item
-      </button>
+      </a>
     </div>
   </ng-container>
   <ng-container *ngIf="!(tripItemMatch$ | async)">

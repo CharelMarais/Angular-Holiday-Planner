@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { Store } from '@ngrx/store';
-import { combineLatest, map, Observable } from 'rxjs';
+import { combineLatest, combineLatestWith, every, map, Observable } from 'rxjs';
 import { IItineraryItem } from 'src/app/models/itinerary-item';
 import { ITrip } from 'src/app/models/trips';
 import { FirebaseAuthService } from 'src/app/services/auth/firebase-auth.service';
@@ -26,13 +26,15 @@ export class ListItineraryItemsComponent {
   ) {
     this.itineryItemsStore$ = itineraryStore.select(selectItinaryItem);
     this.selectedTripData$ = tripStore.select(selectSelectedTripName);
-    this.tripItemMatch$ = combineLatest([
-      this.itineryItemsStore$,
-      this.selectedTripData$,
-    ]).pipe(
-      map(([items, trips]) =>
-        items.every((item) => item.tripName === trips.tripName)
-      )
+    this.tripItemMatch$ = this.selectedTripData$.pipe(
+      combineLatestWith(this.itineryItemsStore$),
+      map(([trip, items]) => {
+        if (items.find((item) => item.tripName === trip.tripName)) {
+          return true;
+        } else {
+          return false;
+        }
+      })
     );
   }
 }
