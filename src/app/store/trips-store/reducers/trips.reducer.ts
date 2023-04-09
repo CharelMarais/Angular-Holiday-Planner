@@ -19,7 +19,11 @@ export const initialState: TripsState = {
 export const reducer = createReducer(
   initialState,
   on(TripsActions.getTrips, (state) => ({ ...state, isLoading: true })),
-  on(TripsActions.getTripsSuccess, (state, { trips }) => ({ ...state, trips })),
+  on(TripsActions.getTripsSuccess, (state, { trips }) => ({
+    ...state,
+    trips,
+    isLoading: false,
+  })),
   on(TripsActions.setSelectedTrip, (state, { selectedTrip }) => ({
     ...state,
     selectedTrip,
