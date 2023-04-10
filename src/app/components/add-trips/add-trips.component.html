@@ -1,0 +1,16 @@
+<div
+  class="bg-dark-background-main p-2 rounded-lg shadow-md shadow-blue-green-main"
+>
+  <input
+    type="text"
+    [(ngModel)]="tripName"
+    placeholder="New Trip"
+    class="w-28 rounded-l-md pl-2"
+  />
+  <button
+    (click)="addTrip()"
+    class="px-2 bg-blue-green-main rounded-r-md hover:bg-opacity-40 hover:text-font-main"
+  >
+    Add Trip
+  </button>
+</div>

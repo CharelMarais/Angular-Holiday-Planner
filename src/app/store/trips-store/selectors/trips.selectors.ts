@@ -5,12 +5,12 @@ export const selectTripsState = createFeatureSelector<fromTrips.TripsState>(
   fromTrips.tripsFeatureKey
 );
 
-export const selectTripNames = createSelector(
+export const selectTrips = createSelector(
   selectTripsState,
   (state) => state.trips
 );
 
-export const selectSelectedTripName = createSelector(
+export const selectSelectedTrip = createSelector(
   selectTripsState,
   (state) => state.selectedTrip
 );

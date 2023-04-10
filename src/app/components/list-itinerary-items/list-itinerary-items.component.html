@@ -1,0 +1,37 @@
+<ng-container *ngIf="(selectedTripData$ | async)?.tripName?.length">
+  <ng-container *ngIf="tripItemMatch$ | async">
+    <div
+      class="flex flex-col items-center border-t-2 s rounded-b-md border-t-blue-green-main mx-2 bg-blue-green-main bg-opacity-10"
+    >
+      <ul class="mx-1 mb-2">
+        <li *ngFor="let item of itineryItemsStore$ | async">
+          <ng-container
+            *ngIf="item.tripName === (selectedTripData$ | async)?.tripName"
+          >
+            <div class="bg-dark-background-main bg-opacity-50 my-1">
+              {{ item.name }},{{ item.tag }},{{ item.startDate }},
+              {{ item.endDate }}, {{ item.cost }}
+            </div>
+          </ng-container>
+        </li>
+      </ul>
+      <a
+        [routerLink]="['add-item', (selectedTripData$ | async)?.tripName]"
+        class="pointer text-dark-background-main px-2 mb-2 bg-blue-green-main rounded-md hover:bg-opacity-40 hover:text-font-main"
+      >
+        Add Item
+      </a>
+    </div>
+  </ng-container>
+  <ng-container *ngIf="!(tripItemMatch$ | async)">
+    <div class="px-2 m-0 flex flex-col items-center">
+      <p class="opacity-60">No items added yet, lets start the process</p>
+      <a
+        [routerLink]="['add-item', (selectedTripData$ | async)?.tripName]"
+        class="pointer text-dark-background-main px-2 bg-blue-green-main rounded-md hover:bg-opacity-40 hover:text-font-main"
+      >
+        Add Item
+      </a>
+    </div>
+  </ng-container>
+</ng-container>

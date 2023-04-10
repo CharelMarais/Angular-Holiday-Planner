@@ -1,18 +1,18 @@
 import { createFeature, createReducer, on } from '@ngrx/store';
-import { ITrip } from 'src/app/models/trip-names';
+import { ITrip } from 'src/app/models/trips';
 import * as TripsActions from '../actions/trips.actions';
 
 export const tripsFeatureKey = 'trips';
 
 export interface TripsState {
   trips: ITrip[];
-  selectedTrip: ITrip | string;
+  selectedTrip: ITrip;
   isLoading: boolean;
 }
 
 export const initialState: TripsState = {
   trips: [],
-  selectedTrip: '',
+  selectedTrip: { tripName: '', userId: '' },
   isLoading: false,
 };
 

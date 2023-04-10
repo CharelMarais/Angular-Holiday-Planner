@@ -6,12 +6,16 @@ import {
   Firestore,
   query,
   where,
+  deleteDoc,
+  getDocs,
+  updateDoc,
+  doc,
 } from '@angular/fire/firestore';
 import { inject } from '@angular/core';
 import { Observable } from 'rxjs';
 import { Injectable } from '@angular/core';
-import { ItineraryItem } from 'src/app/models/itinerary-item';
-import { ITrip } from 'src/app/models/trip-names';
+import { IItineraryItem } from 'src/app/models/itinerary-item';
+import { ITrip } from 'src/app/models/trips';
 import { FirebaseAuthService } from '../auth/firebase-auth.service';
 import { getAuth } from '@angular/fire/auth';
 
@@ -20,7 +24,7 @@ import { getAuth } from '@angular/fire/auth';
 })
 export class FirebaseStoreService {
   private firestore: Firestore = inject(Firestore); // inject Cloud Firestore
-  itinerary$: Observable<ItineraryItem[]>;
+  itinerary$: Observable<IItineraryItem[]>;
   itineraryCollection: CollectionReference;
   trip_names$: Observable<ITrip[]> | undefined;
   localUser: string | null = localStorage.getItem('user');
@@ -35,7 +39,7 @@ export class FirebaseStoreService {
     this.firebaseAuth.auth.onAuthStateChanged;
     this.itineraryCollection = userItineraryItemCollection;
     this.itinerary$ = collectionData(userItineraryItemCollection) as Observable<
-      ItineraryItem[]
+      IItineraryItem[]
     >;
 
     const userTripCollection = collection(this.firestore, 'trip_names');
@@ -45,13 +49,14 @@ export class FirebaseStoreService {
     >;
   }
 
-  addTrip(name: string) {
-    if (name) {
-      addDoc(this.tripCollection, <ITrip>{ name });
+  addTrip(tripName: string, userId: string) {
+    if (tripName) {
+      addDoc(this.tripCollection, <ITrip>{ tripName, userId });
     }
   }
 
   addItineraryItem(
+    tripName: string,
     name: string,
     tag: string,
     startDate: string,
@@ -63,7 +68,8 @@ export class FirebaseStoreService {
     notes?: string
   ) {
     if (!(name || tag || startDate || endDate || cost)) return;
-    addDoc(this.itineraryCollection, <ItineraryItem>{
+    addDoc(this.itineraryCollection, <IItineraryItem>{
+      tripName,
       name,
       tag,
       startDate,
@@ -80,7 +86,7 @@ export class FirebaseStoreService {
       this.itineraryCollection,
       where('userId', '==', getAuth().currentUser?.uid)
     );
-    return collectionData(colQuery) as Observable<ItineraryItem[]>;
+    return collectionData(colQuery) as Observable<IItineraryItem[]>;
   }
 
   getTripNames() {
@@ -89,5 +95,35 @@ export class FirebaseStoreService {
       where('userId', '==', getAuth().currentUser?.uid)
     );
     return collectionData(colQuery) as Observable<ITrip[]>;
+  }
+
+  async deleteTripByTripName(tripName: string) {
+    const tripsQuery = query(
+      this.tripCollection,
+      where('tripName', '==', tripName),
+      where('userId', '==', getAuth().currentUser?.uid)
+    );
+
+    const tripDocs = await getDocs(tripsQuery);
+
+    tripDocs.forEach((tripDoc) => {
+      console.log(tripDoc);
+      deleteDoc(tripDoc.ref);
+    });
+  }
+
+  async updateTripByTripName(tripName: string, updatedTripName: string) {
+    const tripsQuery = query(
+      this.tripCollection,
+      where('tripName', '==', tripName),
+      where('userId', '==', getAuth().currentUser?.uid)
+    );
+    const tripDocs = await getDocs(tripsQuery);
+
+    tripDocs.forEach((tripDoc) => {
+      updateDoc(doc(this.tripCollection, tripDoc.id), {
+        ['tripName']: updatedTripName,
+      });
+    });
   }
 }
