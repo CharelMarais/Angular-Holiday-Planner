@@ -103,7 +103,10 @@ import { CurrencyApiEffects } from './store/currency/effects/currency-api.effect
       fromItineraryItems.itineraryItemsFeatureKey,
       fromItineraryItems.reducer
     ),
-    StoreModule.forFeature(fromCurrencyApi.currencyApiFeatureKey, fromCurrencyApi.reducer),
+    StoreModule.forFeature(
+      fromCurrencyApi.currencyApiFeatureKey,
+      fromCurrencyApi.reducer
+    ),
   ],
   providers: [{ provide: NZ_I18N, useValue: en_US }],
   bootstrap: [AppComponent],

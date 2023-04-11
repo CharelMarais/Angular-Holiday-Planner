@@ -11,7 +11,7 @@ export class CurrencyService {
 
   getCurrencyApiData() {
     const currencyData$ = this.http.get<ICurrencyObject>(
-      'api-currency-data/currency.json'
+      'assets/currency.json'
     );
     return currencyData$.pipe(switchMap(async (item) => item.data));
   }

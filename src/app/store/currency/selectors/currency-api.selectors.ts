@@ -2,7 +2,7 @@ import { createFeatureSelector, createSelector } from '@ngrx/store';
 import * as fromCurrencyApi from '../reducers/currency-api.reducer';
 
 export const selectCurrencyApiState =
-  createFeatureSelector<fromCurrencyApi.currencyState>(
+  createFeatureSelector<fromCurrencyApi.CurrencyState>(
     fromCurrencyApi.currencyApiFeatureKey
   );
 

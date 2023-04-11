@@ -14,7 +14,7 @@ export class ItineraryItemsEffects {
         this.actions$.pipe(
           ofType(ItineraryItemsActions.getItineraryItems),
           switchMap(() =>
-            this.firebaseStore.getItineraryItems().pipe(
+            this.firebaseStore.getItineraryItemsStore().pipe(
               first(),
               map((res) =>
                 ItineraryItemsActions.getItineraryItemsSuccess({

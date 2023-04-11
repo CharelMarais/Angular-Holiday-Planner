@@ -15,7 +15,7 @@ export class CurrencyApiEffects {
           first(),
           map((res) =>
             CurrencyApiActions.getCurrencyApiSuccess({
-              currencyData: res,
+              currencyData: Object.values(res),
             })
           ),
           catchError((error) => {

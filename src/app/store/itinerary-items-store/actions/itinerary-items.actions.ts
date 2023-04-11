@@ -2,7 +2,7 @@ import { createAction, props } from '@ngrx/store';
 import { IItineraryItem } from 'src/app/models/itinerary-item';
 
 export const getItineraryItems = createAction(
-  '[ItineraryItems] ItineraryItems ItineraryItemss'
+  '[ItineraryItems] get ItineraryItems'
 );
 
 export const getItineraryItemsSuccess = createAction(

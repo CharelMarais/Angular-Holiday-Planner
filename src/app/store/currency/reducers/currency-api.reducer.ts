@@ -1,17 +1,17 @@
 import { state } from '@angular/animations';
 import { createFeature, createReducer, on } from '@ngrx/store';
-import { ICurrencyData } from 'src/app/models/currency-api';
+import { IConversionData } from 'src/app/models/currency-api';
 import * as CurrencyApiActions from '../actions/currency-api.actions';
 
 export const currencyApiFeatureKey = 'currencyApi';
 
-export interface currencyState {
-  currencyData: ICurrencyData | string;
+export interface CurrencyState {
+  currencyData: IConversionData[];
   isLoading: boolean;
 }
 
-export const initialState: currencyState = {
-  currencyData: '',
+export const initialState: CurrencyState = {
+  currencyData: [{ code: '', value: 0 }],
   isLoading: false,
 };
 
