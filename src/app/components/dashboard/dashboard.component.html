@@ -1,15 +1,20 @@
-<div class="flex flex-col">
+<div class="flex flex-col bg-dark-background-tertiary h-svh">
   <div
-    class="font-chalkdust text-5xl text-blue-green-secondary absolute w-full text-center -z-10 top-3"
+    class="fixed flex place-content-between w-full px-8 py-2 z-10 bg-dark-background-tertiary"
   >
-    TB
-  </div>
-  <div class="flex place-content-between w-full px-8 py-4">
+    <div class="w-12"></div>
+    <h1
+      style="font-family: 'Orbitron'"
+      class="text-5xl text-blue-green-secondary w-full text-center z-20 m-0"
+    >
+      TB
+    </h1>
+
     <a
       nz-dropdown
       nzTrigger="click"
       [nzDropdownMenu]="signOut"
-      class="text-2xl text-blue-green-main hover:text-blue-green-secondary hover:opacity-50"
+      class="text-2xl pt-1 text-blue-green-main hover:text-blue-green-secondary hover:opacity-50"
     >
       <span nz-icon nzType="logout" nzTheme="outline"></span>
     </a>
@@ -23,38 +28,49 @@
         </li>
       </ul>
     </nz-dropdown-menu>
-
-    <a
-      nz-dropdown
-      nzTrigger="click"
-      [nzDropdownMenu]="addTrip"
-      [nzClickHide]="false"
-      class="text-2xl text-blue-green-main hover:text-blue-green-secondary hover:opacity-50"
+  </div>
+  <div class="bg-dark-background-tertiary py-2">
+    <div
+      class="fixed mt-14 bg-dark-background-secondary text-center shadow-sm shadow-blue-green-main w-full py-2 flex items-center justify-center"
     >
-      <span nz-icon nzType="plus" nzTheme="outline"></span>
-    </a>
-    <nz-dropdown-menu #addTrip="nzDropdownMenu">
-      <ul nz-menu class="bg-transparent rounded-xl">
-        <li nz-menu-item>
-          <app-add-trips/>
-        </li>
-      </ul>
-    </nz-dropdown-menu>
+      <h2
+        style="font-family: 'Orbitron'"
+        class="m-0 text-font-main uppercase text-xl"
+      >
+        Upcoming Trips
+      </h2>
+    </div>
+    <div class="h-fit flex flex-col mb-16 mt-24 overflow-y-auto">
+      <app-list-trips></app-list-trips>
+    </div>
   </div>
   <div
-    class="bg-dark-background-main opacity-80 mx-4 rounded-lg overflow-hidden pb-2"
-  >
-    <div
-      class="bg-dark-background-secondary bg-opacity-60 text-center shadow-md shadow-blue-green-main "
+    class="w-full fixed bottom-0 z-10 flex justify-center bg-dark-background-secondary h-10 drop-shadow-xl shadow-main-upwards"
+  ></div>
+  <div class="fixed z-10 items-center flex flex-col w-full">
+    <div class="flex justify-center">
+      <div
+        class="bg-dark-background-tertiary rounded-full w-16 h-16 z-20 fixed bottom-3"
+      ></div>
+    </div>
+    <button
+      (click)="addTripSwitch()"
+      class="bg-blue-green-main rounded-full w-12 h-12 z-30 fixed flex justify-center items-center text-dark-background-main text-4xl bottom-5"
     >
-      Upcoming Trips
-    </div>
-    <div class="h-fit overflow-scroll flex flex-col">
-      <app-list-trips/>
-      <app-list-itinerary-items/>
-    </div>
+      <ng-container *ngIf="addingTrip; else minimize">
+        <span nz-icon nzType="down" nzTheme="outline" class="pt-1"></span>
+      </ng-container>
+      <ng-template #minimize>
+        <span nz-icon nzType="plus" nzTheme="outline"></span>
+      </ng-template>
+    </button>
   </div>
-  <div class="bg-dark-background-main opacity-80 m-4 rounded-lg overflow-hidden">
-    <app-calendar/>
+  <div class="bg-dark-background-tertiary">
+    <div
+      [class.-bottom-32]="!addingTrip"
+      class="fixed bg-dark-background-main bottom-10 w-full h-32 z-0 border-2 border-opacity-20 p-2 rounded-md border-font-main"
+    >
+      <app-add-trips></app-add-trips>
+    </div>
   </div>
 </div>

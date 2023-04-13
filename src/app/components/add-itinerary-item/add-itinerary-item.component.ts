@@ -20,10 +20,10 @@ export class AddItineraryItemComponent implements OnDestroy {
   tripName = '';
   tagValue = 'hotel';
   name = '';
-  startDate = '';
-  startTime = '';
-  endDate = '';
-  endTime = '';
+  startDate = new Date();
+  startTime = new Date();
+  endDate = new Date();
+  endTime = new Date();
   cost = 0;
   location = '';
   userId = this.fireAuthService.auth.currentUser?.uid;
@@ -57,8 +57,8 @@ export class AddItineraryItemComponent implements OnDestroy {
         this.tripName,
         this.name,
         this.tagValue,
-        this.startDate + ' ' + this.startTime,
-        this.endDate + ' ' + this.endTime,
+        this.startDate,
+        this.endDate,
         this.userId,
         this.cost
       );

@@ -1,88 +1,50 @@
 <div
-  [class.hidden]="selectedTrip?.tripName && selectedTrip !== trip"
-  class="bg-blue-green-main bg-opacity-20 my-1 mx-2"
-  [class.mb-0]="selectedTrip?.tripName"
+  name="trip-listing-container"
+  class="bg-blue-green-main bg-opacity-10 my-2 mx-4 flex flex-col rounded-md items-center"
 >
-  <ng-container *ngIf="!editing">
-    <div class="flex flex-row">
-      <div class="w-1/12 m-0">
-        <ng-container class="m-0" *ngIf="!selectedTrip?.tripName">
-          <button (click)="setSelectedTrip(trip)">
-            <span
-              nz-icon
-              class="text-xl ml-1"
-              nzType="caret-down"
-              nzTheme="outline"
-            ></span>
-          </button>
-        </ng-container>
-        <ng-container class="m-0" *ngIf="selectedTrip?.tripName">
-          <button (click)="setSelectedTrip(trip)">
-            <span
-              nz-icon
-              class="text-xl ml-1"
-              nzType="caret-up"
-              nzTheme="outline"
-            ></span>
-          </button>
-        </ng-container>
-      </div>
-      <p class="w-9/12 m-0 text-center my-1">
-        {{ trip.tripName }}
+  <div name="trip-heading" style="font-family: 'Orbitron'" class="py-2 text-lg">
+    {{ trip.tripName }}
+  </div>
+  <div
+    name="seperator"
+    class="w-10/12 border-t-2 border-font-main border-dashed border-opacity-30"
+  ></div>
+  <div name="details" class="flex w-full flex-wrap p-2 px-7">
+    <div name="cost" class="w-1/2 flex flex-col items-center">
+      <p
+        style="font-family: 'Orbitron'"
+        class="m-0 text-blue-green-main text-xs font-bold"
+      >
+        Total Cost:
       </p>
-      <div class="w-2/12 m-0">
-        <button (click)="editSwitch()" class="w-1/2">
-          <span
-            nz-icon
-            nzType="edit"
-            nzTheme="outline"
-            class="text-xl w-1/2"
-          ></span>
-        </button>
-        <button (click)="deleteTrip(trip.tripName)" class="w-1/2">
-          <span
-            nz-icon
-            nzType="delete"
-            nzTheme="outline"
-            class="text-xl"
-          ></span>
-        </button>
-      </div>
+      <p class="mb-2">R {{ totalCost }}</p>
     </div>
-  </ng-container>
-
-  <ng-container *ngIf="editing">
-    <form [formGroup]="updateForm" (ngSubmit)="updateTrip()">
-      <div class="flex flex-row">
-        <input
-          type="text"
-          name="updateTrip"
-          id="updateTrip"
-          #updateTripField
-          value="test"
-          formControlName="updateTripField"
-          class="text-dark-background-main w-10/12 mx-2 my-1 pl-2 text-center"
-          [placeholder]="trip.tripName"
-        />
-        <div class="w-2/12 m-0">
-          <button [disabled]="!updateForm.valid" type="submit" class="w-1/2">
-            <span
-              nz-icon
-              nzType="send"
-              nzTheme="outline"
-              class="text-xl"
-            ></span>
-          </button>
-          <button (click)="editSwitch()" class="w-1/2">
-            <span
-              nz-icon
-              nzType="close-circle"
-              nzTheme="outline"
-              class="text-xl"
-            ></span>
-          </button>
-        </div>
-      </div>
-    </form>
-  </ng-container>
+    <div name="Duration" class="w-1/2 flex flex-col items-center">
+      <p
+        style="font-family: 'Orbitron'"
+        class="m-0 text-blue-green-main text-xs font-bold"
+      >
+        Planned Items:
+      </p>
+      <p class="mb-2">{{ itemsCount }}</p>
+    </div>
+    <div name="Start" class="w-1/2 flex flex-col items-center">
+      <p
+        style="font-family: 'Orbitron'"
+        class="m-0 text-blue-green-main text-xs font-bold"
+      >
+        Start Date:
+      </p>
+      <p class="mb-2">{{ startDate }}</p>
+    </div>
+    <div name="End" class="w-1/2 flex flex-col items-center">
+      <p
+        style="font-family: 'Orbitron'"
+        class="m-0 text-blue-green-main text-xs font-bold"
+      >
+        Duration:
+      </p>
+      <p class="mb-2">{{ duration }}</p>
+    </div>
+  </div>
 </div>

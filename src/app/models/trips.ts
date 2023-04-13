@@ -1,4 +1,14 @@
+import { IItineraryItem } from './itinerary-item';
+
 export interface ITrip {
-  tripName: string;
   userId: string;
+  tripName: string;
+}
+
+export interface ITripData {
+  trip: ITrip;
+  totalCost?: number;
+  startDate?: Date;
+  endDate?: Date;
+  totalItems?: number;
 }

@@ -8,7 +8,6 @@ import { getItineraryItems } from 'src/app/store/itinerary-items-store/actions/i
 import { ItineraryItemState } from 'src/app/store/itinerary-items-store/reducers/itinerary-items.reducer';
 import { getTrips } from 'src/app/store/trips-store/actions/trips.actions';
 import { TripsState } from 'src/app/store/trips-store/reducers/trips.reducer';
-import { UserState } from 'src/app/store/user-store/reducers/user.reducer';
 
 @Component({
   selector: 'app-dashboard',
@@ -17,6 +16,8 @@ import { UserState } from 'src/app/store/user-store/reducers/user.reducer';
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class DashboardComponent {
+  addingTrip: boolean = false;
+
   constructor(
     private itineraryItemStore: Store<ItineraryItemState>,
     private tripStore: Store<TripsState>,
@@ -28,5 +29,9 @@ export class DashboardComponent {
       this.itineraryItemStore.dispatch(getItineraryItems());
       this.currencyStore.dispatch(getCurrencyApi());
     }
+  }
+
+  addTripSwitch() {
+    this.addingTrip = !this.addingTrip;
   }
 }

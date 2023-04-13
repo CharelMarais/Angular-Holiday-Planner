@@ -1,14 +1,25 @@
-<ng-container *ngIf="(tripsData$ | async)?.length">
+<ng-container *ngIf="(tripsData$ | async)?.length; else noTripFound">
   <div class="pt-2">
-  <ul class="m-0">
-    <li *ngFor="let trip of tripsData$ | async">
-      <app-trip-listing [trip]="trip" [selectedTrip]="selectedTripData$ | async"/>
-    </li>
-  </ul></div>
-</ng-container>
-<ng-container *ngIf="!(tripsData$ | async)?.length">
-  <div class="flex flex-col items-center">
-    <p class="opacity-60 pt-4">No trips added yet, lets start the process</p>
-    <p class="opacity-60">Just use the + in the top right corner</p>
+    <ul class="m-0">
+      <li *ngFor="let tripWithItinerary of tripsWithItinerary$ | async">
+        <button
+          (click)="setSelectedTrip(tripWithItinerary.trip)"
+          class="w-full"
+        >
+          <app-trip-listing
+            [trip]="tripWithItinerary.trip"
+            [totalCost]="tripWithItinerary.totalCost"
+            [itemsCount]="tripWithItinerary.totalItems"
+          >
+          </app-trip-listing>
+        </button>
+      </li>
+    </ul>
   </div>
 </ng-container>
+<ng-template #noTripFound>
+  <div class="flex flex-col items-center">
+    <p class="opacity-60 pt-4">No trips added yet, lets start the process</p>
+    <p class="opacity-60">Just use the + to get started</p>
+  </div>
+</ng-template>
