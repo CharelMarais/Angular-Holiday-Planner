@@ -6,7 +6,7 @@ export interface IItineraryItem {
   startTime: string;
   endDate: string;
   endTime: string;
-  cost: string;
+  cost: number;
   startLocation?: string;
   endLocation?: string;
   notes?: string;

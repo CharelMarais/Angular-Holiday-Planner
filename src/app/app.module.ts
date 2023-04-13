@@ -48,6 +48,8 @@ import * as fromUser from './store/user-store/reducers/user.reducer';
 import { UserEffects } from './store/user-store/effects/user.effects';
 import * as fromItineraryItems from './store/itinerary-items-store/reducers/itinerary-items.reducer';
 import { ItineraryItemsEffects } from './store/itinerary-items-store/effects/itinerary-items.effects';
+import * as fromCurrencyApi from './store/currency/reducers/currency-api.reducer';
+import { CurrencyApiEffects } from './store/currency/effects/currency-api.effects';
 
 // Calender
 
@@ -93,12 +95,17 @@ import { ItineraryItemsEffects } from './store/itinerary-items-store/effects/iti
       TripsEffects,
       UserEffects,
       ItineraryItemsEffects,
+      CurrencyApiEffects,
     ]),
     StoreModule.forFeature(fromTrips.tripsFeatureKey, fromTrips.reducer),
     StoreModule.forFeature(fromUser.userFeatureKey, fromUser.reducer),
     StoreModule.forFeature(
       fromItineraryItems.itineraryItemsFeatureKey,
       fromItineraryItems.reducer
+    ),
+    StoreModule.forFeature(
+      fromCurrencyApi.currencyApiFeatureKey,
+      fromCurrencyApi.reducer
     ),
   ],
   providers: [{ provide: NZ_I18N, useValue: en_US }],

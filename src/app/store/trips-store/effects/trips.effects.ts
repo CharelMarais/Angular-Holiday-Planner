@@ -11,7 +11,7 @@ export class TripsEffects {
     return this.actions$.pipe(
       ofType(TripsActions.getTrips),
       switchMap(() =>
-        this.firebaseStore.getTripNames().pipe(
+        this.firebaseStore.getTrips().pipe(
           first(),
           map((res) => TripsActions.getTripsSuccess({ trips: res })),
           catchError((error) => {
