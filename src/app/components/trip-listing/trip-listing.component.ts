@@ -1,10 +1,6 @@
 import { Component, Input } from '@angular/core';
-import { FormBuilder, Validators } from '@angular/forms';
-import { Store } from '@ngrx/store';
 import { ITrip } from 'src/app/models/trips';
 import { FirebaseStoreService } from 'src/app/services/store/firebase-store.service';
-import { setSelectedTrip } from 'src/app/store/trips-store/actions/trips.actions';
-import { TripsState } from 'src/app/store/trips-store/reducers/trips.reducer';
 
 @Component({
   selector: 'app-trip-listing',
@@ -12,51 +8,40 @@ import { TripsState } from 'src/app/store/trips-store/reducers/trips.reducer';
   styleUrls: ['./trip-listing.component.scss'],
 })
 export class TripListingComponent {
+  @Input() totalCost: number | undefined;
   @Input() trip: ITrip = { tripName: '', userId: '' };
-  @Input() selectedTrip: ITrip | null = { tripName: '', userId: '' };
-  editing: boolean = false;
-  selected: boolean = false;
+  @Input() itemsCount: number | undefined;
+  @Input() startDate?: Date;
+  @Input() endDate?: Date;
+  duration = (this.endDate = this.startDate);
 
-  editSwitch() {
-    this.editing = !this.editing;
-  }
+  // To be moved to another file in a sperate branch
 
-  deleteTrip(tripName: string) {
-    this.firebaseStore.deleteTripByTripName(tripName);
-    const selectedTrip: ITrip = { tripName: '', userId: '' };
-    this.tripStore.dispatch(setSelectedTrip({ selectedTrip }));
-  }
+  // editSwitch() {
+  //   this.editing = !this.editing;
+  // }
 
-  updateForm = this.fb.group({
-    updateTripField: ['', Validators.minLength(5)],
-  });
+  // deleteTrip(tripName: string) {
+  //   this.firebaseStore.deleteTripByTripName(tripName);
+  //   const selectedTrip: ITrip = { tripName: '', userId: '' };
+  //   this.tripStore.dispatch(setSelectedTrip({ selectedTrip }));
+  // }
 
-  updateTrip() {
-    if (this.updateForm.get('updateTripField')?.valid) {
-      this.firebaseStore.updateTripByTripName(
-        this.trip.tripName,
-        this.updateForm.get('updateTripField')?.value as string
-      );
-      this.editSwitch();
-    } else {
-      console.log('dont be a dumbass');
-    }
-  }
+  // updateForm = this.fb.group({
+  //   updateTripField: ['', Validators.minLength(5)],
+  // });
 
-  setSelectedTrip(trip: ITrip) {
-    this.selected = !this.selected;
-    if (this.selected) {
-      const selectedTrip: ITrip = trip;
-      this.tripStore.dispatch(setSelectedTrip({ selectedTrip }));
-    } else {
-      const selectedTrip: ITrip = { tripName: '', userId: '' };
-      this.tripStore.dispatch(setSelectedTrip({ selectedTrip }));
-    }
-  }
+  // updateTrip() {
+  //   if (this.updateForm.get('updateTripField')?.valid) {
+  //     this.firebaseStore.updateTripByTripName(
+  //       this.trip.tripName,
+  //       this.updateForm.get('updateTripField')?.value as string
+  //     );
+  //     this.editSwitch();
+  //   } else {
+  //     console.log('dont be a dumbass');
+  //   }
+  // }
 
-  constructor(
-    protected firebaseStore: FirebaseStoreService,
-    private fb: FormBuilder,
-    private tripStore: Store<TripsState>
-  ) {}
+  constructor(protected firebaseStore: FirebaseStoreService) {}
 }

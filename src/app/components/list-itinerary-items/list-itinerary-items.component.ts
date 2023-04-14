@@ -5,7 +5,7 @@ import { IItineraryItem } from 'src/app/models/itinerary-item';
 import { ITrip } from 'src/app/models/trips';
 import { FirebaseAuthService } from 'src/app/services/auth/firebase-auth.service';
 import { ItineraryItemState } from 'src/app/store/itinerary-items-store/reducers/itinerary-items.reducer';
-import { selectItinaryItem } from 'src/app/store/itinerary-items-store/selectors/itinerary-items.selectors';
+import { selectItinaryItems } from 'src/app/store/itinerary-items-store/selectors/itinerary-items.selectors';
 import { TripsState } from 'src/app/store/trips-store/reducers/trips.reducer';
 import { selectSelectedTrip } from 'src/app/store/trips-store/selectors/trips.selectors';
 
@@ -24,7 +24,7 @@ export class ListItineraryItemsComponent {
     protected itineraryStore: Store<ItineraryItemState>,
     protected tripStore: Store<TripsState>
   ) {
-    this.itineryItemsStore$ = itineraryStore.select(selectItinaryItem);
+    this.itineryItemsStore$ = itineraryStore.select(selectItinaryItems);
     this.selectedTripData$ = tripStore.select(selectSelectedTrip);
     this.tripItemMatch$ = this.selectedTripData$.pipe(
       combineLatestWith(this.itineryItemsStore$),

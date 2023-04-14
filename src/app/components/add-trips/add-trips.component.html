@@ -1,16 +1,20 @@
-<div
-  class="bg-dark-background-main p-2 rounded-lg shadow-md shadow-blue-green-main"
->
-  <input
-    type="text"
-    [(ngModel)]="tripName"
-    placeholder="New Trip"
-    class="w-28 rounded-l-md pl-2"
-  />
-  <button
-    (click)="addTrip()"
-    class="px-2 bg-blue-green-main rounded-r-md hover:bg-opacity-40 hover:text-font-main"
-  >
-    Add Trip
-  </button>
+<div class="flex items-center flex-col">
+  <p style="font-family: 'Orbitron'" class="font-bold text-sm">
+    lets start your next journey
+  </p>
+  <div class="flex justify-center">
+    <input
+      type="text"
+      [(ngModel)]="tripName"
+      placeholder="New Trip"
+      class="w-6/12 rounded-l-md pl-2 text-dark-background-tertiary p-2"
+    />
+    <button
+      (click)="addTrip()"
+      style="font-family: 'Orbitron'"
+      class="px-2 font-bold bg-blue-green-main rounded-r-md hover:bg-opacity-40 hover:text-font-main text-dark-background-tertiary"
+    >
+      Add Trip
+    </button>
+  </div>
 </div>

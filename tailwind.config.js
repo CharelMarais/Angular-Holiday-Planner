@@ -5,9 +5,9 @@ module.exports = {
     extend: {
       colors: {
         "blue-green-main": "#43e8c3",
-        "dark-background-main": "#111e25",
+        "dark-background-main": "#14423f",
         "dark-background-secondary": "#253F47",
-        "dark-background-tertiary": "#143c3d",
+        "dark-background-tertiary": "#101E24",
         "font-main": "#ececfa",
         "blue-green-secondary": "#5cddc6",
       },
@@ -17,11 +17,16 @@ module.exports = {
       fontFamily: {
         "primary-font": ["Geneva", "Arial"],
         chalkdust: "Chalkduster",
-        varino: "varino",
       },
       width: {
         12.55: "12.55rem",
         4.3: "4.3rem",
+      },
+      height: {
+        svh: "100svh",
+      },
+      boxShadow: {
+        "main-upwards": "5px 0 10px 5px #43e8c3",
       },
     },
   },

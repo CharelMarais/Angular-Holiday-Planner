@@ -6,7 +6,7 @@ export const selectItineraryItemsState =
     fromItineraryItems.itineraryItemsFeatureKey
   );
 
-export const selectItinaryItem = createSelector(
+export const selectItinaryItems = createSelector(
   selectItineraryItemsState,
   (state) => state.itineraryItems
 );

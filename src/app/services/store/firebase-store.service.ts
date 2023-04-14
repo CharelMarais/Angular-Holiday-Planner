@@ -65,8 +65,8 @@ export class FirebaseStoreService {
     tripName: string,
     name: string,
     tag: string,
-    startDate: string,
-    endDate: string,
+    startDate: Date,
+    endDate: Date,
     userId: string,
     cost: number,
     startLocation?: string,
@@ -87,8 +87,9 @@ export class FirebaseStoreService {
 
   addTrip(tripName: string, userId: string) {
     if (tripName) {
-      addDoc(this.tripCollection, <ITrip>{ tripName, userId });
-      this.tripStore.dispatch(getTrips());
+      addDoc(this.tripCollection, <ITrip>{ tripName, userId }).then(() =>
+        this.tripStore.dispatch(getTrips())
+      );
     }
   }
 
