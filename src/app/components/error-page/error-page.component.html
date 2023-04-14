@@ -1,1 +1,56 @@
-<p>error-page works!</p>
+<div
+  [class.bg-black]="playClicked"
+  [class.bg-opacity-100]="playClicked"
+  class="fixed bg-dark-background-tertiary bg-opacity-70 w-full h-full flex justify-center items-center"
+>
+  <div
+    [class.hidden]="playClicked"
+    [class.bg-black]="playClicked"
+    [class.bg-opacity-1]="playClicked"
+    style="font-family: 'Orbitron'"
+    class="border-font-main flex flex-col items-center border-2 border-opacity-25 rounded-md p-4 bg-dark-background-secondary"
+  >
+    <p class="m-0">Are you sure?</p>
+    <p>Is the correct page?</p>
+    <div class="flex text-blue-green-main text-lg w-full justify-between px-6">
+      <div>
+        <button id="play" (click)="playClickSwitch()" class="w-1/2">Yes</button>
+      </div>
+      <div>
+        <button (click)="goBack()" class="w-1/2">No</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="slide" data-time="7">
+  <div class="screen screen-1">
+    <div class="title">FONY</div>
+    <div>
+      <div class="logo"></div>
+    </div>
+    <div class="subtitle">
+      COMPUTER <br />
+      <span>ENTERTAINMENT</span>
+    </div>
+  </div>
+</div>
+
+<div class="slide">
+  <div class="screen screen-2">
+    <div class="logo mx-auto">
+      <img
+        width="220"
+        src="https://res.cloudinary.com/dlb3jof8w/image/upload/v1581414060/codepen/ps-clipart-logo-3.png"
+        alt=""
+      />
+    </div>
+    <div class="title">Error 404<span> tm</span></div>
+    <div class="subtitle">
+      Licensed by <br />
+      The Page You Are Looking For Does Not Exist <br />
+      <br />
+      <a routerLink="/../../dashboard" class="text-white">Go Back</a>
+    </div>
+  </div>
+</div>
