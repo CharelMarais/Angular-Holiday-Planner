@@ -26,7 +26,7 @@ module.exports = {
         svh: "100svh",
       },
       boxShadow: {
-        "main-upwards": "5px 0 10px 5px #43e8c3",
+        "main-upwards": "5px 0 10px 5px rgba(67, 232, 195, 0.3)",
       },
     },
   },

@@ -1,4 +1,5 @@
 import { ChangeDetectionStrategy, Component } from '@angular/core';
+import { Router } from '@angular/router';
 import { Store } from '@ngrx/store';
 import { Observable, map, combineLatest, mergeMap, forkJoin } from 'rxjs';
 import { IItineraryItem } from 'src/app/models/itinerary-item';
@@ -22,7 +23,8 @@ export class ListTripsComponent {
 
   constructor(
     protected tripStore: Store<TripsState>,
-    protected itineraryStore: Store<ItineraryItemState>
+    protected itineraryStore: Store<ItineraryItemState>,
+    private router: Router
   ) {
     this.tripsData$ = tripStore.select(selectTrips);
     this.itineraryData$ = itineraryStore.select(selectItinaryItems);
@@ -73,5 +75,6 @@ export class ListTripsComponent {
   setSelectedTrip(trip: ITrip) {
     const selectedTrip: ITrip = trip;
     this.tripStore.dispatch(setSelectedTrip({ selectedTrip }));
+    this.router.navigate([`trip/${trip.tripName}`]);
   }
 }

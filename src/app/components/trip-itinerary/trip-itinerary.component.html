@@ -2,7 +2,13 @@
   <div
     class="fixed flex place-content-between w-full px-8 py-2 z-10 bg-dark-background-tertiary"
   >
-    <div class="w-12"></div>
+    <div
+      class="text-2xl pt-1 text-blue-green-main hover:text-blue-green-secondary hover:opacity-50"
+    >
+      <button>
+        <span nz-icon nzType="left" nzTheme="outline"></span>
+      </button>
+    </div>
     <h1
       style="font-family: 'Orbitron'"
       class="text-5xl text-blue-green-secondary w-full text-center z-20 m-0"
@@ -29,21 +35,6 @@
       </ul>
     </nz-dropdown-menu>
   </div>
-  <div class="bg-dark-background-tertiary py-2">
-    <div
-      class="fixed mt-14 bg-dark-background-secondary text-center shadow-sm shadow-blue-green-main w-full py-2 flex items-center justify-center"
-    >
-      <h2
-        style="font-family: 'Orbitron'"
-        class="m-0 text-font-main uppercase text-xl"
-      >
-        Upcoming Trips
-      </h2>
-    </div>
-    <div class="h-fit flex flex-col mb-16 mt-24 overflow-y-auto">
-      <app-list-trips></app-list-trips>
-    </div>
-  </div>
   <div
     class="w-full fixed bottom-0 z-10 flex justify-center bg-dark-background-secondary h-10 drop-shadow-xl shadow-main-upwards"
   ></div>
@@ -54,23 +45,14 @@
       ></div>
     </div>
     <button
-      (click)="addTripSwitch()"
       class="bg-blue-green-main rounded-full w-12 h-12 z-30 fixed flex justify-center items-center text-dark-background-main text-4xl bottom-5"
     >
-      <span
-        nz-icon
-        nzType="plus"
-        nzTheme="outline"
-        [class.rotate-45]="addingTrip"
-      ></span>
+      <ng-container>
+        <span nz-icon nzType="down" nzTheme="outline" class="pt-1"></span>
+      </ng-container>
+      <ng-template #minimize>
+        <span nz-icon nzType="plus" nzTheme="outline"></span>
+      </ng-template>
     </button>
-  </div>
-  <div class="bg-dark-background-tertiary">
-    <div
-      class="fixed bg-dark-background-main -bottom-32 w-full h-32 z-0 border-2 border-opacity-20 p-2 rounded-md border-font-main"
-      [class.bottom-10]="addingTrip"
-    >
-      <app-add-trips></app-add-trips>
-    </div>
   </div>
 </div>

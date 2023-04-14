@@ -10,8 +10,6 @@ import {
 
 import { Router } from '@angular/router';
 
-import { getAuth } from 'firebase/auth';
-
 import { Observable, Subscription } from 'rxjs';
 
 @Injectable({
@@ -22,17 +20,7 @@ export class FirebaseAuthService {
 
   user$ = user(this.auth);
 
-  userSubscription: Subscription;
-
-  constructor(private router: Router) {
-    this.userSubscription = this.user$.subscribe((aUser: User | null) => {
-      //handle user state changes here. Note, that user will be null if there is no currently logged in user.
-
-      if (!aUser) {
-        this.router.navigate(['launchpage/sign-in']);
-      }
-    });
-  }
+  constructor(private router: Router) {}
 
   signIn(auth: Auth, email: string, password: string) {
     signInWithEmailAndPassword(auth, email, password)
