@@ -1,6 +1,9 @@
-import { AfterContentInit, Component, Input } from '@angular/core';
+import { AfterContentInit, Component, Input, OnInit } from '@angular/core';
 import { IItineraryItem } from 'src/app/models/itinerary-item';
-import { DatePipe } from '@angular/common';
+import differenceInMinutes from 'date-fns/differenceInMinutes';
+import differenceInHours from 'date-fns/differenceInHours';
+import differenceInDays from 'date-fns/differenceInDays';
+
 import fromUnixTime from 'date-fns/fromUnixTime';
 import format from 'date-fns/format';
 
@@ -9,7 +12,7 @@ import format from 'date-fns/format';
   templateUrl: './item-listing.component.html',
   styleUrls: ['./item-listing.component.scss'],
 })
-export class ItemListingComponent implements AfterContentInit {
+export class ItemListingComponent implements OnInit {
   @Input() itineraryItem: IItineraryItem = {
     tripName: '',
     name: '',
@@ -24,15 +27,39 @@ export class ItemListingComponent implements AfterContentInit {
 
   formattedStartDate: string = '';
   formattedEndDate: string = '';
+  durationMinutes: number = 0;
+  durationHours: number = 0;
+  durationDays: number = 0;
+  duration: string = '';
 
-  ngAfterContentInit(): void {
+  ngOnInit(): void {
     this.formattedStartDate = format(
       fromUnixTime(this.itineraryItem.startDate),
-      'dd/LLL/yyyy'
+      'dd MMM yy hh:mm aa'
     );
     this.formattedEndDate = format(
       fromUnixTime(this.itineraryItem.endDate),
-      'dd/LLL/yyyy'
+      'dd MMM yy hh:mm aa'
     );
+
+    this.durationMinutes = differenceInMinutes(
+      fromUnixTime(this.itineraryItem.endDate),
+      fromUnixTime(this.itineraryItem.startDate)
+    );
+    this.durationHours = differenceInHours(
+      fromUnixTime(this.itineraryItem.endDate),
+      fromUnixTime(this.itineraryItem.startDate)
+    );
+    this.durationDays = differenceInDays(
+      fromUnixTime(this.itineraryItem.endDate),
+      fromUnixTime(this.itineraryItem.startDate)
+    );
+
+    this.duration =
+      this.durationMinutes < 60
+        ? this.durationMinutes + ' Minutes'
+        : this.durationHours < 24
+        ? this.durationHours + ' Hours'
+        : this.durationDays + ' Days';
   }
 }

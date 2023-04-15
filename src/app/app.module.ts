@@ -52,6 +52,7 @@ import * as fromCurrencyApi from './store/currency/reducers/currency-api.reducer
 import { CurrencyApiEffects } from './store/currency/effects/currency-api.effects';
 import { TripItineraryComponent } from './components/trip-itinerary/trip-itinerary.component';
 import { ItemListingComponent } from './components/item-listing/item-listing.component';
+import { TagIconDisplayComponent } from './components/tag-icon-display/tag-icon-display.component';
 
 // Calender
 
@@ -73,6 +74,7 @@ import { ItemListingComponent } from './components/item-listing/item-listing.com
     TripListingComponent,
     TripItineraryComponent,
     ItemListingComponent,
+    TagIconDisplayComponent,
   ],
   imports: [
     BrowserModule,
