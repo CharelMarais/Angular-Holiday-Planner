@@ -5,7 +5,7 @@
     <div
       class="text-2xl pt-1 text-blue-green-main hover:text-blue-green-secondary hover:opacity-50"
     >
-      <button>
+      <button (click)="goBack()">
         <span nz-icon nzType="left" nzTheme="outline"></span>
       </button>
     </div>
@@ -35,9 +35,25 @@
       </ul>
     </nz-dropdown-menu>
   </div>
+  <div class="bg-dark-background-tertiary py-2">
+    <div
+      class="fixed mt-14 bg-dark-background-secondary text-center shadow-sm shadow-blue-green-main w-full py-2 flex items-center justify-center"
+    >
+      <h2
+        style="font-family: 'Orbitron'"
+        class="m-0 text-font-main uppercase text-xl"
+      >
+        {{ (selectedTripData$ | async)?.tripName }}
+      </h2>
+    </div>
+    <div class="h-fit flex flex-col mb-16 mt-24 overflow-y-auto">
+      <app-list-itinerary-items></app-list-itinerary-items>
+    </div>
+  </div>
   <div
     class="w-full fixed bottom-0 z-10 flex justify-center bg-dark-background-secondary h-10 drop-shadow-xl shadow-main-upwards"
   ></div>
+
   <div class="fixed z-10 items-center flex flex-col w-full">
     <div class="flex justify-center">
       <div
@@ -45,14 +61,24 @@
       ></div>
     </div>
     <button
+      (click)="addItineraryItemSwitch()"
       class="bg-blue-green-main rounded-full w-12 h-12 z-30 fixed flex justify-center items-center text-dark-background-main text-4xl bottom-5"
     >
-      <ng-container>
-        <span nz-icon nzType="down" nzTheme="outline" class="pt-1"></span>
-      </ng-container>
-      <ng-template #minimize>
-        <span nz-icon nzType="plus" nzTheme="outline"></span>
-      </ng-template>
+      <span
+        nz-icon
+        nzType="plus"
+        nzTheme="outline"
+        [class.rotate-45]="addingItineraryItem"
+      ></span>
     </button>
+  </div>
+  <div class="bg-dark-background-tertiary">
+    <div
+      [class.bottom-8]="addingItineraryItem"
+      [class.-bottom-100]="!addingItineraryItem"
+      class="fixed bg-dark-background-main w-full h-fit z-0 border-2 border-opacity-20 p-2 rounded-md border-font-main"
+    >
+      <app-add-itinerary-item></app-add-itinerary-item>
+    </div>
   </div>
 </div>

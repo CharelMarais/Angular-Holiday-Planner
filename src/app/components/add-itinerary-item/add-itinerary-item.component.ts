@@ -9,6 +9,7 @@ import { CurrencyState } from 'src/app/store/currency/reducers/currency-api.redu
 import { selectCurrencyApi } from 'src/app/store/currency/selectors/currency-api.selectors';
 import { TripsState } from 'src/app/store/trips-store/reducers/trips.reducer';
 import { selectSelectedTrip } from 'src/app/store/trips-store/selectors/trips.selectors';
+import getUnixTime from 'date-fns/getUnixTime';
 
 @Component({
   selector: 'app-add-itinerary-item',
@@ -20,10 +21,10 @@ export class AddItineraryItemComponent implements OnDestroy {
   tripName = '';
   tagValue = 'hotel';
   name = '';
-  startDate = new Date();
-  startTime = new Date();
-  endDate = new Date();
-  endTime = new Date();
+  startDate = '';
+  startTime = '';
+  endDate = '';
+  endTime = '';
   cost = 0;
   location = '';
   userId = this.fireAuthService.auth.currentUser?.uid;
@@ -36,33 +37,23 @@ export class AddItineraryItemComponent implements OnDestroy {
     private router: Router
   ) {
     this.selectedTripData$ = tripStore.select(selectSelectedTrip);
-    this.selectedTripData$.subscribe((trip) => {
-      if (trip.tripName.length) {
-        this.tripName = trip.tripName;
-      } else {
-        this.router.navigate(['dashboard']);
-      }
-    });
+    this.selectedTripData$.subscribe((trip) => (this.tripName = trip.tripName));
 
-    currencyStore.select(selectCurrencyApi).subscribe((items) => {
-      if (items.length > 1) {
-        console.log(items); // Will implement from here
-      }
-    });
+    currencyStore.select(selectCurrencyApi).subscribe((items) => {});
   }
 
   addItineraryItem() {
     this.userId &&
+      this.tripName &&
       this.firebaseStore.addItineraryItem(
         this.tripName,
         this.name,
         this.tagValue,
-        this.startDate,
-        this.endDate,
+        getUnixTime(new Date(this.startDate + ' ' + this.startTime)),
+        getUnixTime(new Date(this.endDate + ' ' + this.endTime)),
         this.userId,
         this.cost
       );
-    this.router.navigate(['dashboard']);
   }
 
   ngOnDestroy(): void {}

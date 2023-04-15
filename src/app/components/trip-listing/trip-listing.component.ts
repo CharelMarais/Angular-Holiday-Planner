@@ -1,19 +1,23 @@
-import { Component, Input } from '@angular/core';
+import { AfterContentChecked, Component, Input, OnInit } from '@angular/core';
 import { ITrip } from 'src/app/models/trips';
 import { FirebaseStoreService } from 'src/app/services/store/firebase-store.service';
+import differenceInDays from 'date-fns/differenceInDays';
+import fromUnixTime from 'date-fns/fromUnixTime';
+import format from 'date-fns/format';
 
 @Component({
   selector: 'app-trip-listing',
   templateUrl: './trip-listing.component.html',
   styleUrls: ['./trip-listing.component.scss'],
 })
-export class TripListingComponent {
+export class TripListingComponent implements OnInit {
   @Input() totalCost: number | undefined;
   @Input() trip: ITrip = { tripName: '', userId: '' };
-  @Input() itemsCount: number | undefined;
-  @Input() startDate?: Date;
-  @Input() endDate?: Date;
-  duration = (this.endDate = this.startDate);
+  @Input() itemsCount?: number;
+  @Input() startDate?: number;
+  @Input() endDate?: number;
+  duration: number = 0;
+  formatedStartDate: string = '';
 
   // To be moved to another file in a sperate branch
 
@@ -44,4 +48,15 @@ export class TripListingComponent {
   // }
 
   constructor(protected firebaseStore: FirebaseStoreService) {}
+  ngOnInit(): void {
+    this.duration = differenceInDays(
+      fromUnixTime(this.endDate ?? 0),
+      fromUnixTime(this.startDate ?? 0)
+    );
+
+    this.formatedStartDate = format(
+      fromUnixTime(this.startDate ?? 0),
+      'dd MMM yy'
+    );
+  }
 }

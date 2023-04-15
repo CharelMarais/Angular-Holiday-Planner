@@ -46,18 +46,12 @@ export class ListTripsComponent {
                 0
               ),
               startDate: filteredItinerary.reduce(
-                (earliestDate, itineraryItem) => {
-                  const startDate = new Date(itineraryItem.startDate);
-                  return startDate < earliestDate ? startDate : earliestDate;
-                },
-                new Date(Number.MAX_SAFE_INTEGER)
+                (min, itineraryItem) => Math.min(min, itineraryItem.startDate),
+                32501076447
               ),
               endDate: filteredItinerary.reduce(
-                (earliestDate, itineraryItem) => {
-                  const startDate = new Date(itineraryItem.startDate);
-                  return startDate > earliestDate ? startDate : earliestDate;
-                },
-                new Date(Number.MAX_SAFE_INTEGER)
+                (max, itineraryItem) => Math.max(max, itineraryItem.endDate),
+                0
               ),
               totalItems: filteredItinerary.length,
             };

@@ -51,6 +51,7 @@ import { ItineraryItemsEffects } from './store/itinerary-items-store/effects/iti
 import * as fromCurrencyApi from './store/currency/reducers/currency-api.reducer';
 import { CurrencyApiEffects } from './store/currency/effects/currency-api.effects';
 import { TripItineraryComponent } from './components/trip-itinerary/trip-itinerary.component';
+import { ItemListingComponent } from './components/item-listing/item-listing.component';
 
 // Calender
 
@@ -71,6 +72,7 @@ import { TripItineraryComponent } from './components/trip-itinerary/trip-itinera
     CalendarComponent,
     TripListingComponent,
     TripItineraryComponent,
+    ItemListingComponent,
   ],
   imports: [
     BrowserModule,
