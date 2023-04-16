@@ -1,6 +1,7 @@
 import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
 import { Store } from '@ngrx/store';
 import { getAuth } from 'firebase/auth';
+import { flatMap } from 'rxjs';
 import { FirebaseAuthService } from 'src/app/services/auth/firebase-auth.service';
 import { getCurrencyApi } from 'src/app/store/currency/actions/currency-api.actions';
 import { CurrencyState } from 'src/app/store/currency/reducers/currency-api.reducer';
@@ -17,6 +18,7 @@ import { TripsState } from 'src/app/store/trips-store/reducers/trips.reducer';
 })
 export class DashboardComponent {
   addingTrip: boolean = false;
+  signingOut: boolean = false;
 
   constructor(
     private itineraryItemStore: Store<ItineraryItemState>,
@@ -33,5 +35,9 @@ export class DashboardComponent {
 
   addTripSwitch() {
     this.addingTrip = !this.addingTrip;
+  }
+
+  signingOutSwitch() {
+    this.signingOut = !this.signingOut;
   }
 }

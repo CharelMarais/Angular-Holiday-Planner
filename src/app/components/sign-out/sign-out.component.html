@@ -1,10 +1,23 @@
-<div
-  class="bg-dark-background-main p-2 rounded-lg shadow-md shadow-blue-green-main"
->
-  <button
-    (click)="fireAuthService.signOut()"
-    class="pointer px-2 bg-blue-green-main rounded-md hover:bg-opacity-40 hover:text-font-main"
+<ng-container *ngIf="signingOut">
+  <div
+    class="absolute z-40 bg-dark-background-tertiary bg-opacity-70 w-full h-full flex justify-center items-center"
   >
-    Sign Out
-  </button>
-</div>
+    <div
+      style="font-family: 'Orbitron'"
+      class="border-font-main flex flex-col items-center border-2 border-opacity-25 rounded-md p-4 bg-dark-background-secondary"
+    >
+      <p class="m-0">Are you sure</p>
+      <p>you want to sign-out?</p>
+      <div
+        class="flex text-blue-green-main text-lg w-full justify-between px-6"
+      >
+        <div>
+          <button (click)="fireAuthService.signOut()" class="w-1/2">Yes</button>
+        </div>
+        <div>
+          <button (click)="cancelSignOut()" class="w-1/2">No</button>
+        </div>
+      </div>
+    </div>
+  </div></ng-container
+>

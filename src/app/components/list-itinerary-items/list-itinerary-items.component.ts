@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { Store } from '@ngrx/store';
-import { combineLatest, combineLatestWith, every, map, Observable } from 'rxjs';
+import { combineLatestWith, map, Observable } from 'rxjs';
 import { IItineraryItem } from 'src/app/models/itinerary-item';
 import { ITrip } from 'src/app/models/trips';
 import { FirebaseAuthService } from 'src/app/services/auth/firebase-auth.service';
@@ -17,7 +17,7 @@ import { selectSelectedTrip } from 'src/app/store/trips-store/selectors/trips.se
 export class ListItineraryItemsComponent {
   itineryItemsStore$: Observable<IItineraryItem[]>;
   selectedTripData$: Observable<ITrip>;
-  tripItemMatch$: Observable<boolean>;
+  tripItemMatch$: Observable<IItineraryItem[]>;
 
   constructor(
     protected firebaseAuth: FirebaseAuthService,
@@ -29,11 +29,10 @@ export class ListItineraryItemsComponent {
     this.tripItemMatch$ = this.selectedTripData$.pipe(
       combineLatestWith(this.itineryItemsStore$),
       map(([trip, items]) => {
-        if (items.find((item) => item.tripName === trip.tripName)) {
-          return true;
-        } else {
-          return false;
-        }
+        const matchingItems = items.filter(
+          (item) => item.tripName === trip.tripName
+        );
+        return matchingItems;
       })
     );
   }
