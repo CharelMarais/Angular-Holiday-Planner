@@ -53,6 +53,7 @@ import { CurrencyApiEffects } from './store/currency/effects/currency-api.effect
 import { TripItineraryComponent } from './components/trip-itinerary/trip-itinerary.component';
 import { ItemListingComponent } from './components/item-listing/item-listing.component';
 import { TagIconDisplayComponent } from './components/tag-icon-display/tag-icon-display.component';
+import { ServiceWorkerModule } from '@angular/service-worker';
 
 // Calender
 
@@ -113,6 +114,12 @@ import { TagIconDisplayComponent } from './components/tag-icon-display/tag-icon-
       fromCurrencyApi.currencyApiFeatureKey,
       fromCurrencyApi.reducer
     ),
+    ServiceWorkerModule.register('ngsw-worker.js', {
+      enabled: !isDevMode(),
+      // Register the ServiceWorker as soon as the application is stable
+      // or after 30 seconds (whichever comes first).
+      registrationStrategy: 'registerWhenStable:30000'
+    }),
   ],
   providers: [{ provide: NZ_I18N, useValue: en_US }],
   bootstrap: [AppComponent],
