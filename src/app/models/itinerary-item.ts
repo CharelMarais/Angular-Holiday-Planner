@@ -2,10 +2,10 @@ export interface IItineraryItem {
   tripName: string;
   name: string;
   tag: string;
-  startDate: Date;
-  startTime: string;
-  endDate: Date;
-  endTime: string;
+  startDate: number;
+  startTime: number;
+  endDate: number;
+  endTime: number;
   cost: number;
   startLocation?: string;
   endLocation?: string;

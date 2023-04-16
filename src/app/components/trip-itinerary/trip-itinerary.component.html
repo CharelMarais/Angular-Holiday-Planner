@@ -2,7 +2,13 @@
   <div
     class="fixed flex place-content-between w-full px-8 py-2 z-10 bg-dark-background-tertiary"
   >
-    <div class="w-7"></div>
+    <div
+      class="text-2xl pt-1 text-blue-green-main hover:text-blue-green-secondary hover:opacity-50"
+    >
+      <button (click)="goBack()">
+        <span nz-icon nzType="left" nzTheme="outline"></span>
+      </button>
+    </div>
     <h1
       style="font-family: 'Orbitron'"
       class="text-5xl text-blue-green-secondary w-full text-center z-20 m-0"
@@ -37,16 +43,17 @@
         style="font-family: 'Orbitron'"
         class="m-0 text-font-main uppercase text-xl"
       >
-        Upcoming Trips
+        {{ (selectedTripData$ | async)?.tripName }}
       </h2>
     </div>
     <div class="h-fit flex flex-col mb-16 mt-24 overflow-y-auto">
-      <app-list-trips></app-list-trips>
+      <app-list-itinerary-items></app-list-itinerary-items>
     </div>
   </div>
   <div
     class="w-full fixed bottom-0 z-10 flex justify-center bg-dark-background-secondary h-10 drop-shadow-xl shadow-main-upwards"
   ></div>
+
   <div class="fixed z-10 items-center flex flex-col w-full">
     <div class="flex justify-center">
       <div
@@ -54,23 +61,24 @@
       ></div>
     </div>
     <button
-      (click)="addTripSwitch()"
+      (click)="addItineraryItemSwitch()"
       class="bg-blue-green-main rounded-full w-12 h-12 z-30 fixed flex justify-center items-center text-dark-background-main text-4xl bottom-5"
     >
       <span
         nz-icon
         nzType="plus"
         nzTheme="outline"
-        [class.rotate-45]="addingTrip"
+        [class.rotate-45]="addingItineraryItem"
       ></span>
     </button>
   </div>
   <div class="bg-dark-background-tertiary">
     <div
-      class="fixed bg-dark-background-main -bottom-32 w-full h-32 z-0 border-2 border-opacity-20 p-2 rounded-md border-font-main"
-      [class.bottom-10]="addingTrip"
+      [class.bottom-8]="addingItineraryItem"
+      [class.-bottom-100]="!addingItineraryItem"
+      class="fixed bg-dark-background-main w-full h-fit z-0 border-2 border-opacity-20 p-2 rounded-md border-font-main"
     >
-      <app-add-trips></app-add-trips>
+      <app-add-itinerary-item></app-add-itinerary-item>
     </div>
   </div>
 </div>

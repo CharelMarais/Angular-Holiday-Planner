@@ -1,37 +1,22 @@
 <ng-container *ngIf="(selectedTripData$ | async)?.tripName?.length">
   <ng-container *ngIf="tripItemMatch$ | async">
-    <div
-      class="flex flex-col items-center border-t-2 s rounded-b-md border-t-blue-green-main mx-2 bg-blue-green-main bg-opacity-10"
-    >
-      <ul class="mx-1 mb-2">
+    <div class="pt-3 flex flex-col items-center">
+      <ul class="w-full">
         <li *ngFor="let item of itineryItemsStore$ | async">
           <ng-container
+            class="m-0"
             *ngIf="item.tripName === (selectedTripData$ | async)?.tripName"
           >
-            <div class="bg-dark-background-main bg-opacity-50 my-1">
-              {{ item.name }},{{ item.tag }},{{ item.startDate }},
-              {{ item.endDate }}, {{ item.cost }}
-            </div>
+            <app-item-listing [itineraryItem]="item"></app-item-listing>
           </ng-container>
         </li>
       </ul>
-      <a
-        [routerLink]="['add-item', (selectedTripData$ | async)?.tripName]"
-        class="pointer text-dark-background-main px-2 mb-2 bg-blue-green-main rounded-md hover:bg-opacity-40 hover:text-font-main"
-      >
-        Add Item
-      </a>
     </div>
   </ng-container>
   <ng-container *ngIf="!(tripItemMatch$ | async)">
-    <div class="px-2 m-0 flex flex-col items-center">
+    <div class="px-2 m-0 flex flex-col items-center mt-6">
       <p class="opacity-60">No items added yet, lets start the process</p>
-      <a
-        [routerLink]="['add-item', (selectedTripData$ | async)?.tripName]"
-        class="pointer text-dark-background-main px-2 bg-blue-green-main rounded-md hover:bg-opacity-40 hover:text-font-main"
-      >
-        Add Item
-      </a>
+      <p class="opacity-60">Just use the + to add your first itinerary item</p>
     </div>
   </ng-container>
 </ng-container>

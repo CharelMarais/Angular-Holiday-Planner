@@ -7,44 +7,24 @@
   </div>
   <div
     name="seperator"
-    class="w-10/12 border-t-2 border-font-main border-dashed border-opacity-30"
+    class="w-10/12 border-t-2 border-font-main border-dashed border-opacity-30 mb-1"
   ></div>
   <div name="details" class="flex w-full flex-wrap p-2 px-7">
     <div name="cost" class="w-1/2 flex flex-col items-center">
-      <p
-        style="font-family: 'Orbitron'"
-        class="m-0 text-blue-green-main text-xs font-bold"
-      >
-        Total Cost:
-      </p>
+      <p class="m-0 text-blue-green-main text-xs font-bold">Total Cost:</p>
       <p class="mb-2">R {{ totalCost }}</p>
     </div>
     <div name="Duration" class="w-1/2 flex flex-col items-center">
-      <p
-        style="font-family: 'Orbitron'"
-        class="m-0 text-blue-green-main text-xs font-bold"
-      >
-        Planned Items:
-      </p>
+      <p class="m-0 text-blue-green-main text-xs font-bold">Planned Items:</p>
       <p class="mb-2">{{ itemsCount }}</p>
     </div>
     <div name="Start" class="w-1/2 flex flex-col items-center">
-      <p
-        style="font-family: 'Orbitron'"
-        class="m-0 text-blue-green-main text-xs font-bold"
-      >
-        Start Date:
-      </p>
-      <p class="mb-2">{{ startDate }}</p>
+      <p class="m-0 text-blue-green-main text-xs font-bold">Start Date:</p>
+      <p class="mb-2">{{ formatedStartDate }}</p>
     </div>
     <div name="End" class="w-1/2 flex flex-col items-center">
-      <p
-        style="font-family: 'Orbitron'"
-        class="m-0 text-blue-green-main text-xs font-bold"
-      >
-        Duration:
-      </p>
-      <p class="mb-2">{{ duration }}</p>
+      <p class="m-0 text-blue-green-main text-xs font-bold">Duration:</p>
+      <p class="mb-2">{{ duration }} Days</p>
     </div>
   </div>
 </div>

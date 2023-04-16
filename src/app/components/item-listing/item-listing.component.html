@@ -1,0 +1,36 @@
+<div
+  name="item-listing-container"
+  class="bg-blue-green-main bg-opacity-10 my-2 mx-4 flex flex-col rounded-md items-center"
+>
+  <div
+    name="trip-heading"
+    style="font-family: 'Orbitron'"
+    class="py-2 text-lg flex gap-3"
+  >
+    <app-tag-icon-display [tag]="itineraryItem.tag"></app-tag-icon-display>
+    <p class="m-0">{{ itineraryItem.name }}</p>
+    <app-tag-icon-display [tag]="itineraryItem.tag"></app-tag-icon-display>
+  </div>
+  <div
+    name="seperator"
+    class="w-10/12 border-t-2 border-font-main border-dashed border-opacity-30 mb-1"
+  ></div>
+  <div name="details" class="flex w-full flex-wrap p-2 px-7 text-xs">
+    <div name="cost" class="w-1/2 flex flex-col items-center">
+      <p class="m-0 text-blue-green-main font-bold">Cost:</p>
+      <p class="mb-2">R {{ itineraryItem.cost }}</p>
+    </div>
+    <div name="Duration" class="w-1/2 flex flex-col items-center">
+      <p class="m-0 text-blue-green-main font-bold">Duration:</p>
+      <p class="mb-2">{{ duration }}</p>
+    </div>
+    <div name="Start" class="w-1/2 flex flex-col items-center">
+      <p class="m-0 text-blue-green-main font-bold">Start Date:</p>
+      <p class="mb-2">{{ formattedStartDate }}</p>
+    </div>
+    <div name="End" class="w-1/2 flex flex-col items-center">
+      <p class="m-0 text-blue-green-main font-bold">End Date:</p>
+      <p class="mb-2">{{ formattedEndDate }}</p>
+    </div>
+  </div>
+</div>

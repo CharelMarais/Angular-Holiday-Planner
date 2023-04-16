@@ -65,8 +65,8 @@ export class FirebaseStoreService {
     tripName: string,
     name: string,
     tag: string,
-    startDate: Date,
-    endDate: Date,
+    startDate: number,
+    endDate: number,
     userId: string,
     cost: number,
     startLocation?: string,
@@ -82,6 +82,8 @@ export class FirebaseStoreService {
       endDate,
       userId,
       cost,
+    }).then(() => {
+      this.itineraryItemStore.dispatch(getItineraryItems());
     });
   }
 

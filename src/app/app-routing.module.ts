@@ -7,6 +7,7 @@ import { LaunchPageComponent } from './components/launch-page/launch-page.compon
 import { SignInComponent } from './components/sign-in/sign-in.component';
 import { SignUpComponent } from './components/sign-up/sign-up.component';
 import { AuthGuard } from './gaurds/auth.guard';
+import { TripItineraryComponent } from './components/trip-itinerary/trip-itinerary.component';
 
 const routes: Routes = [
   {
@@ -26,6 +27,11 @@ const routes: Routes = [
   {
     path: 'dashboard/add-item/:tripName',
     component: AddItineraryItemComponent,
+    canActivate: [AuthGuard],
+  },
+  {
+    path: 'trip/:tripName',
+    component: TripItineraryComponent,
     canActivate: [AuthGuard],
   },
   { path: '**', component: ErrorPageComponent },

@@ -16,17 +16,15 @@ module.exports = {
       },
       fontFamily: {
         "primary-font": ["Geneva", "Arial"],
-        chalkdust: "Chalkduster",
-      },
-      width: {
-        12.55: "12.55rem",
-        4.3: "4.3rem",
       },
       height: {
         svh: "100svh",
       },
       boxShadow: {
-        "main-upwards": "5px 0 10px 5px #43e8c3",
+        "main-upwards": "5px 0 10px 5px rgba(67, 232, 195, 0.3)",
+      },
+      inset: {
+        100: "100%",
       },
     },
   },

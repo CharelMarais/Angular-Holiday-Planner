@@ -8,7 +8,7 @@ export interface ITrip {
 export interface ITripData {
   trip: ITrip;
   totalCost?: number;
-  startDate?: Date;
-  endDate?: Date;
+  startDate?: number;
+  endDate?: number;
   totalItems?: number;
 }
