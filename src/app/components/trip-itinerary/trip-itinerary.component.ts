@@ -15,6 +15,7 @@ import { selectSelectedTrip } from 'src/app/store/trips-store/selectors/trips.se
 export class TripItineraryComponent implements OnInit {
   selectedTripData$: Observable<ITrip>;
   addingItineraryItem: boolean = false;
+  signingOut: boolean = false;
 
   constructor(
     private router: Router,
@@ -45,5 +46,9 @@ export class TripItineraryComponent implements OnInit {
 
   addItineraryItemSwitch() {
     this.addingItineraryItem = !this.addingItineraryItem;
+  }
+
+  signingOutSwitch() {
+    this.signingOut = !this.signingOut;
   }
 }

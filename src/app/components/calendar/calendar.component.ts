@@ -2,7 +2,9 @@
 // https://medium.com/allenhwkim/angular-build-a-calendar-in-50-lines-f813f0a04c3b
 // 'Here is the working demo. Please feel free to steal the code.' - Allen Kim
 
-import { Component, Output, EventEmitter } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
+import { IItineraryItem } from 'src/app/models/itinerary-item';
+import fromUnixTime from 'date-fns/fromUnixTime';
 const DAY_MS = 60 * 60 * 24 * 1000;
 
 @Component({
@@ -10,14 +12,33 @@ const DAY_MS = 60 * 60 * 24 * 1000;
   templateUrl: './calendar.component.html',
   styleUrls: ['./calendar.component.scss'],
 })
-export class CalendarComponent {
+export class CalendarComponent implements OnInit {
   dates: Array<Date>;
   days = ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'];
   date = new Date();
-  @Output() selected = new EventEmitter();
+  @Input() itinerary?: IItineraryItem[] | null;
+  startDate: number = 32501076447;
+  endDate: number = 0;
 
   constructor() {
     this.dates = this.getCalendarDays(this.date);
+  }
+
+  ngOnInit(): void {
+    for (const itineraryItem of this.itinerary || []) {
+      if (itineraryItem.startDate < this.startDate) {
+        this.startDate = itineraryItem.startDate;
+      }
+      if (itineraryItem.endDate > this.endDate) {
+        this.endDate = itineraryItem.endDate;
+      }
+    }
+  }
+
+  tripActiveOnDay(date: Date) {
+    return (
+      date >= fromUnixTime(this.startDate) && date <= fromUnixTime(this.endDate)
+    );
   }
 
   setMonth(inc: number) {

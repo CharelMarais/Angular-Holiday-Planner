@@ -1,14 +1,10 @@
 <ng-container *ngIf="(selectedTripData$ | async)?.tripName?.length">
   <ng-container *ngIf="tripItemMatch$ | async">
     <div class="pt-3 flex flex-col items-center">
+      <app-calendar [itinerary]="tripItemMatch$ | async"></app-calendar>
       <ul class="w-full">
-        <li *ngFor="let item of itineryItemsStore$ | async">
-          <ng-container
-            class="m-0"
-            *ngIf="item.tripName === (selectedTripData$ | async)?.tripName"
-          >
-            <app-item-listing [itineraryItem]="item"></app-item-listing>
-          </ng-container>
+        <li *ngFor="let item of tripItemMatch$ | async">
+          <app-item-listing [itineraryItem]="item"></app-item-listing>
         </li>
       </ul>
     </div>
