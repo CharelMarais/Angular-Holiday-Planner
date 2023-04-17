@@ -23,8 +23,7 @@ export class ListTripsComponent {
 
   constructor(
     protected tripStore: Store<TripsState>,
-    protected itineraryStore: Store<ItineraryItemState>,
-    private router: Router
+    protected itineraryStore: Store<ItineraryItemState>
   ) {
     this.tripsData$ = tripStore.select(selectTrips);
     this.itineraryData$ = itineraryStore.select(selectItinaryItems);
@@ -64,11 +63,5 @@ export class ListTripsComponent {
   testObservable() {
     if (this.tripsWithItinerary$)
       this.tripsWithItinerary$.subscribe((test) => console.log(test));
-  }
-
-  setSelectedTrip(trip: ITrip) {
-    const selectedTrip: ITrip = trip;
-    this.tripStore.dispatch(setSelectedTrip({ selectedTrip }));
-    this.router.navigate([`trip/${trip.tripName}`]);
   }
 }

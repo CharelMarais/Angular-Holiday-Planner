@@ -1,4 +1,10 @@
-import { Component, OnDestroy } from '@angular/core';
+import {
+  Component,
+  EventEmitter,
+  Input,
+  OnDestroy,
+  Output,
+} from '@angular/core';
 import { Router } from '@angular/router';
 import { Store } from '@ngrx/store';
 import { Observable } from 'rxjs';
@@ -10,6 +16,7 @@ import { selectCurrencyApi } from 'src/app/store/currency/selectors/currency-api
 import { TripsState } from 'src/app/store/trips-store/reducers/trips.reducer';
 import { selectSelectedTrip } from 'src/app/store/trips-store/selectors/trips.selectors';
 import getUnixTime from 'date-fns/getUnixTime';
+import { IConversionData } from 'src/app/models/currency-api';
 
 @Component({
   selector: 'app-add-itinerary-item',
@@ -17,6 +24,9 @@ import getUnixTime from 'date-fns/getUnixTime';
   styleUrls: ['./add-itinerary-item.component.scss'],
 })
 export class AddItineraryItemComponent implements OnDestroy {
+  @Input() addingItineraryItem!: boolean;
+  @Output() addingItineraryItemChange = new EventEmitter<boolean>();
+
   selectedTripData$: Observable<ITrip>;
   tripName = '';
   tagValue = 'hotel';
@@ -27,7 +37,9 @@ export class AddItineraryItemComponent implements OnDestroy {
   endTime = '';
   cost = 0;
   location = '';
+  selectedCurrency = 1;
   userId = this.fireAuthService.auth.currentUser?.uid;
+  currencyStore$: Observable<IConversionData[]>;
 
   constructor(
     protected firebaseStore: FirebaseStoreService,
@@ -39,7 +51,11 @@ export class AddItineraryItemComponent implements OnDestroy {
     this.selectedTripData$ = tripStore.select(selectSelectedTrip);
     this.selectedTripData$.subscribe((trip) => (this.tripName = trip.tripName));
 
-    currencyStore.select(selectCurrencyApi).subscribe((items) => {});
+    this.currencyStore$ = currencyStore.select(selectCurrencyApi);
+  }
+
+  closeAddItem() {
+    this.addingItineraryItemChange.emit(!this.addingItineraryItem);
   }
 
   addItineraryItem() {
@@ -52,8 +68,9 @@ export class AddItineraryItemComponent implements OnDestroy {
         getUnixTime(new Date(this.startDate + ' ' + this.startTime)),
         getUnixTime(new Date(this.endDate + ' ' + this.endTime)),
         this.userId,
-        this.cost
+        parseFloat((this.cost * (1 / this.selectedCurrency)).toFixed(2))
       );
+    this.closeAddItem();
   }
 
   ngOnDestroy(): void {}

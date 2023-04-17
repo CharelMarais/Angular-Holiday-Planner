@@ -66,7 +66,9 @@
       [class.-bottom-100]="!addingItineraryItem"
       class="fixed bg-dark-background-main w-full h-fit z-0 border-2 border-opacity-20 p-2 rounded-md border-font-main"
     >
-      <app-add-itinerary-item></app-add-itinerary-item>
+      <app-add-itinerary-item
+        [(addingItineraryItem)]="addingItineraryItem"
+      ></app-add-itinerary-item>
     </div>
   </div>
 </div>

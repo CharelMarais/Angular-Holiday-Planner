@@ -6,6 +6,7 @@ import differenceInDays from 'date-fns/differenceInDays';
 
 import fromUnixTime from 'date-fns/fromUnixTime';
 import format from 'date-fns/format';
+import { FirebaseStoreService } from 'src/app/services/store/firebase-store.service';
 
 @Component({
   selector: 'app-item-listing',
@@ -13,6 +14,8 @@ import format from 'date-fns/format';
   styleUrls: ['./item-listing.component.scss'],
 })
 export class ItemListingComponent implements OnInit {
+  constructor(protected firebaseStore: FirebaseStoreService) {}
+
   @Input() itineraryItem: IItineraryItem = {
     tripName: '',
     name: '',
@@ -31,6 +34,40 @@ export class ItemListingComponent implements OnInit {
   durationHours: number = 0;
   durationDays: number = 0;
   duration: string = '';
+
+  activeEditing: boolean = false;
+  updatingTrip: boolean = false;
+  updatedItemName: string = '';
+  deleteItemCheck: boolean = false;
+
+  deleteItemCheckSwitch() {
+    this.deleteItemCheck = !this.deleteItemCheck;
+  }
+
+  editSwitch() {
+    this.activeEditing = !this.activeEditing;
+  }
+
+  updateSwitch() {
+    this.updatingTrip = !this.updatingTrip;
+  }
+
+  updateItem() {
+    this.firebaseStore.updateItemByName(
+      this.itineraryItem.tripName,
+      this.itineraryItem.name,
+      this.updatedItemName
+    );
+    this.updateSwitch();
+  }
+
+  deleteItem() {
+    this.firebaseStore.deleteItemByName(
+      this.itineraryItem.tripName,
+      this.itineraryItem.name
+    );
+    this.deleteItemCheckSwitch();
+  }
 
   ngOnInit(): void {
     this.formattedStartDate = format(

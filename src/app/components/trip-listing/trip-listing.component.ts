@@ -4,6 +4,10 @@ import { FirebaseStoreService } from 'src/app/services/store/firebase-store.serv
 import differenceInDays from 'date-fns/differenceInDays';
 import fromUnixTime from 'date-fns/fromUnixTime';
 import format from 'date-fns/format';
+import { TripsState } from 'src/app/store/trips-store/reducers/trips.reducer';
+import { Router } from '@angular/router';
+import { Store } from '@ngrx/store';
+import { setSelectedTrip } from 'src/app/store/trips-store/actions/trips.actions';
 
 @Component({
   selector: 'app-trip-listing',
@@ -18,36 +22,37 @@ export class TripListingComponent implements OnInit {
   @Input() endDate?: number;
   duration: number = 0;
   formatedStartDate: string = '';
+  editing: Boolean = false;
+  updatedTripName: string = '';
+  deleteItemCheck: boolean = false;
 
-  // To be moved to another file in a sperate branch
+  editSwitch() {
+    this.editing = !this.editing;
+  }
 
-  // editSwitch() {
-  //   this.editing = !this.editing;
-  // }
+  deleteTrip(tripName: string) {
+    this.firebaseStore.deleteTripByTripName(tripName);
+    this.deleteItemCheckSwitch();
+  }
 
-  // deleteTrip(tripName: string) {
-  //   this.firebaseStore.deleteTripByTripName(tripName);
-  //   const selectedTrip: ITrip = { tripName: '', userId: '' };
-  //   this.tripStore.dispatch(setSelectedTrip({ selectedTrip }));
-  // }
+  deleteItemCheckSwitch() {
+    this.deleteItemCheck = !this.deleteItemCheck;
+  }
 
-  // updateForm = this.fb.group({
-  //   updateTripField: ['', Validators.minLength(5)],
-  // });
+  updateTrip() {
+    this.firebaseStore.updateTripByTripName(
+      this.trip.tripName,
+      this.updatedTripName
+    );
+    this.editSwitch();
+  }
 
-  // updateTrip() {
-  //   if (this.updateForm.get('updateTripField')?.valid) {
-  //     this.firebaseStore.updateTripByTripName(
-  //       this.trip.tripName,
-  //       this.updateForm.get('updateTripField')?.value as string
-  //     );
-  //     this.editSwitch();
-  //   } else {
-  //     console.log('dont be a dumbass');
-  //   }
-  // }
+  constructor(
+    protected firebaseStore: FirebaseStoreService,
+    protected tripStore: Store<TripsState>,
 
-  constructor(protected firebaseStore: FirebaseStoreService) {}
+    private router: Router
+  ) {}
   ngOnInit(): void {
     this.duration = differenceInDays(
       fromUnixTime(this.endDate ?? 0),
@@ -58,5 +63,11 @@ export class TripListingComponent implements OnInit {
       fromUnixTime(this.startDate ?? 0),
       'dd MMM yy'
     );
+  }
+
+  setSelectedTrip(trip: ITrip) {
+    const selectedTrip: ITrip = trip;
+    this.tripStore.dispatch(setSelectedTrip({ selectedTrip }));
+    this.router.navigate([`trip/${trip.tripName}`]);
   }
 }

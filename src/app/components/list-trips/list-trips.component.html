@@ -2,19 +2,14 @@
   <div class="pt-2">
     <ul class="m-0">
       <li *ngFor="let tripWithItinerary of tripsWithItinerary$ | async">
-        <button
-          (click)="setSelectedTrip(tripWithItinerary.trip)"
-          class="w-full"
+        <app-trip-listing
+          [trip]="tripWithItinerary.trip"
+          [totalCost]="tripWithItinerary.totalCost"
+          [itemsCount]="tripWithItinerary.totalItems"
+          [startDate]="tripWithItinerary.startDate"
+          [endDate]="tripWithItinerary.endDate"
         >
-          <app-trip-listing
-            [trip]="tripWithItinerary.trip"
-            [totalCost]="tripWithItinerary.totalCost"
-            [itemsCount]="tripWithItinerary.totalItems"
-            [startDate]="tripWithItinerary.startDate"
-            [endDate]="tripWithItinerary.endDate"
-          >
-          </app-trip-listing>
-        </button>
+        </app-trip-listing>
       </li>
     </ul>
   </div>
