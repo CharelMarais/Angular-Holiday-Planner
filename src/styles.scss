@@ -6,9 +6,28 @@
 
 .img {
   clip-path: polygon(18% 38%, 78% 0, 93% 92%, 0 100%);
+  animation: alter 10s infinite;
 }
 
 @font-face {
   font-family: "Orbitron";
   src: url("./assets/Orbitron-VariableFont_wght.ttf");
+}
+
+@keyframes alter {
+  0% {
+    clip-path: polygon(18% 38%, 78% 0, 93% 92%, 0 100%);
+  }
+  25% {
+    clip-path: polygon(4% 40%, 71% 23%, 74% 83%, 5% 89%);
+  }
+  50% {
+    clip-path: polygon(0 27%, 100% 24%, 100% 90%, 0 89%);
+  }
+  75% {
+    clip-path: polygon(4% 40%, 71% 23%, 74% 83%, 5% 89%);
+  }
+  100% {
+    clip-path: polygon(18% 38%, 78% 0, 93% 92%, 0 100%);
+  }
 }
