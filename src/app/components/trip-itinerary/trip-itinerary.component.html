@@ -17,6 +17,7 @@
       TB
     </h1>
     <button
+      aria-label="sign-out"
       (click)="signingOutSwitch()"
       class="flex items-center text-2xl pt-1 text-blue-green-main hover:text-blue-green-secondary hover:opacity-50"
     >
@@ -49,6 +50,7 @@
       ></div>
     </div>
     <button
+      aria-label="add-item"
       (click)="addItineraryItemSwitch()"
       class="bg-blue-green-main rounded-full w-12 h-12 z-30 fixed flex justify-center items-center text-dark-background-main text-4xl bottom-5"
     >
@@ -57,6 +59,7 @@
         nzType="plus"
         nzTheme="outline"
         [class.rotate-45]="addingItineraryItem"
+        class="duration-500"
       ></span>
     </button>
   </div>
@@ -64,7 +67,7 @@
     <div
       [class.bottom-8]="addingItineraryItem"
       [class.-bottom-100]="!addingItineraryItem"
-      class="fixed bg-dark-background-main w-full h-fit z-0 border-2 border-opacity-20 p-2 rounded-md border-font-main"
+      class="fixed duration-500 bg-dark-background-main w-full h-fit z-0 border-2 border-opacity-20 p-2 rounded-md border-font-main"
     >
       <app-add-itinerary-item
         [(addingItineraryItem)]="addingItineraryItem"

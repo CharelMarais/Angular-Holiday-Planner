@@ -29,6 +29,8 @@ export class FirebaseAuthService {
 
         this.router.navigate(['dashboard']);
 
+        console.log(this.auth.currentUser);
+
         localStorage.setItem('user', JSON.stringify(response.user));
       })
 

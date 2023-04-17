@@ -68,6 +68,6 @@ export class TripListingComponent implements OnInit {
   setSelectedTrip(trip: ITrip) {
     const selectedTrip: ITrip = trip;
     this.tripStore.dispatch(setSelectedTrip({ selectedTrip }));
-    this.router.navigate([`trip/${trip.tripName}`]);
+    this.router.navigate([`dashboard/trip/${trip.tripName}`]);
   }
 }
