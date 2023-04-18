@@ -1,6 +1,13 @@
-import { ChangeDetectionStrategy, Component } from '@angular/core';
+import { ChangeDetectionStrategy, Component, OnDestroy } from '@angular/core';
 import { Store } from '@ngrx/store';
-import { Observable, map, combineLatest, mergeMap } from 'rxjs';
+import {
+  Observable,
+  map,
+  combineLatest,
+  mergeMap,
+  Subject,
+  takeUntil,
+} from 'rxjs';
 import { IItineraryItem } from 'src/app/models/itinerary-item';
 import { ITrip, ITripData } from 'src/app/models/trips';
 import { ItineraryItemState } from 'src/app/store/itinerary-items-store/reducers/itinerary-items.reducer';
@@ -14,7 +21,8 @@ import { selectTrips } from 'src/app/store/trips-store/selectors/trips.selectors
   styleUrls: ['./list-trips.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class ListTripsComponent {
+export class ListTripsComponent implements OnDestroy {
+  destroy$ = new Subject();
   tripsData$: Observable<ITrip[]>;
   itineraryData$: Observable<IItineraryItem[]>;
   tripsWithItinerary$: Observable<ITripData[]>;
@@ -60,6 +68,13 @@ export class ListTripsComponent {
 
   testObservable() {
     if (this.tripsWithItinerary$)
-      this.tripsWithItinerary$.subscribe((test) => console.log(test));
+      this.tripsWithItinerary$
+        .pipe(takeUntil(this.destroy$))
+        .subscribe((test) => console.log(test));
+  }
+
+  ngOnDestroy(): void {
+    this.destroy$.next(null);
+    this.destroy$.complete();
   }
 }

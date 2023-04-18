@@ -7,7 +7,7 @@ import {
 } from '@angular/core';
 import { Router } from '@angular/router';
 import { Store } from '@ngrx/store';
-import { Observable } from 'rxjs';
+import { Observable, Subject, takeUntil } from 'rxjs';
 import { ITrip } from 'src/app/models/trips';
 import { FirebaseAuthService } from 'src/app/services/auth/firebase-auth.service';
 import { FirebaseStoreService } from 'src/app/services/store/firebase-store.service';
@@ -27,6 +27,7 @@ export class AddItineraryItemComponent implements OnDestroy {
   @Input() isAddingItem: boolean = false;
   @Output() isAddingItemChange = new EventEmitter<boolean>();
 
+  destroy$ = new Subject();
   selectedTripData$: Observable<ITrip>;
   tripName = '';
   tagValue = 'hotel';
@@ -45,11 +46,12 @@ export class AddItineraryItemComponent implements OnDestroy {
     protected firebaseStore: FirebaseStoreService,
     protected fireAuthService: FirebaseAuthService,
     protected tripStore: Store<TripsState>,
-    protected currencyStore: Store<CurrencyState>,
-    private router: Router
+    protected currencyStore: Store<CurrencyState>
   ) {
     this.selectedTripData$ = tripStore.select(selectSelectedTrip);
-    this.selectedTripData$.subscribe((trip) => (this.tripName = trip.tripName));
+    this.selectedTripData$
+      .pipe(takeUntil(this.destroy$))
+      .subscribe((trip) => (this.tripName = trip.tripName));
 
     this.currencyStore$ = currencyStore.select(selectCurrencyApi);
   }
@@ -73,5 +75,8 @@ export class AddItineraryItemComponent implements OnDestroy {
     this.closeAddItem();
   }
 
-  ngOnDestroy(): void {}
+  ngOnDestroy(): void {
+    this.destroy$.next(null);
+    this.destroy$.complete();
+  }
 }

@@ -28,13 +28,13 @@ export class ItemListingComponent implements OnInit {
     userId: undefined,
   };
 
-  formattedStartDate: string = '';
-  formattedEndDate: string = '';
-  durationMinutes: number = 0;
-  durationHours: number = 0;
-  durationDays: number = 0;
-  duration: string = '';
-  updatedItemName: string = '';
+  formattedStartDate = '';
+  formattedEndDate = '';
+  durationMinutes = 0;
+  durationHours = 0;
+  durationDays = 0;
+  duration = '';
+  updatedItemName = '';
 
   isEditing: boolean = false;
   isUpdating: boolean = false;
