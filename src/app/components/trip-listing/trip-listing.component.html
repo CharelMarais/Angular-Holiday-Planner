@@ -1,13 +1,79 @@
+<ng-container *ngIf="isDeletingTrip">
+  <div
+    class="absolute top-0 z-40 bg-dark-background-tertiary/70 w-full h-full flex justify-center items-center"
+  >
+    <div
+      style="font-family: 'Orbitron'"
+      class="border-font-main flex flex-col items-center border-2 border-opacity-25 rounded-md p-4 bg-dark-background-secondary"
+    >
+      <p class="m-0">
+        Are you sure <br />
+        you want to delete
+      </p>
+      <p>{{ trip.tripName }} ?</p>
+      <div
+        class="flex text-blue-green-main text-lg w-full justify-between px-6"
+      >
+        <div>
+          <button (click)="deleteTrip(trip.tripName)" class="w-1/2">Yes</button>
+        </div>
+        <div>
+          <button (click)="toggleDeletingTrip()" class="w-1/2">No</button>
+        </div>
+      </div>
+    </div>
+  </div></ng-container
+>
 <div
   name="trip-listing-container"
-  class="bg-blue-green-main bg-opacity-10 my-2 mx-4 flex flex-col rounded-md items-center"
+  class="bg-blue-green-main/10 my-4 mx-4 flex flex-col rounded-md items-center"
 >
   <div
     name="trip-heading"
-    style="font-family: 'Orbitron'"
-    class="py-2 text-lg text-center"
+    class="text-lg flex justify-between w-full max-w-full my-3"
   >
-    {{ trip.tripName }}
+    <button
+      (click)="toggleEditing()"
+      class="my-auto ml-4 bg-dark-background-secondary/80 rounded-full flex min-w-[2.25rem] w-9 h-9 justify-center items-center text-xl"
+    >
+      <ng-container *ngIf="!isEditing">
+        <span nz-icon nzType="edit" nzTheme="outline"></span>
+      </ng-container>
+      <ng-container *ngIf="isEditing">
+        <span nz-icon nzType="close" nzTheme="outline"></span>
+      </ng-container>
+    </button>
+    <div
+      [class.hidden]="!isEditing"
+      class="px-2 flex justify-center items-center"
+    >
+      <input
+        type="text"
+        [placeholder]="trip.tripName"
+        [(ngModel)]="updatedTripName"
+        class="text-sm w-32 h-full pl-2 rounded-l-md text-dark-background-tertiary"
+      />
+
+      <button
+        (click)="updateTrip()"
+        class="rounded-r-md text-sm h-full px-2 hover:bg-opacity-40 hover:text-font-main bg-blue-green-main/60 text-dark-background-tertiary"
+      >
+        Update
+      </button>
+    </div>
+    <p
+      style="font-family: 'Orbitron'"
+      [class.hidden]="isEditing"
+      class="text-center my-auto"
+    >
+      {{ trip.tripName }}
+    </p>
+    <button
+      (click)="toggleDeletingTrip()"
+      class="my-auto mr-4 bg-dark-background-secondary/80 rounded-full flex min-w-[2.25rem] w-9 h-9 justify-center items-center text-xl"
+    >
+      <span nz-icon nzType="delete" nzTheme="outline"></span>
+    </button>
   </div>
   <div
     name="seperator"
@@ -24,11 +90,23 @@
     </div>
     <div name="Start" class="w-1/2 flex flex-col items-center">
       <p class="m-0 text-blue-green-main text-xs font-bold">Start Date:</p>
-      <p class="mb-2">{{ formatedStartDate }}</p>
+      <p class="mb-2">{{ itemsCount ? formatedStartDate : "N/A" }}</p>
     </div>
     <div name="End" class="w-1/2 flex flex-col items-center">
       <p class="m-0 text-blue-green-main text-xs font-bold">Duration:</p>
-      <p class="mb-2">{{ duration }} Days</p>
+      <p class="mb-2">{{ itemsCount ? duration + "Day(s)" : "N/A" }}</p>
     </div>
+  </div>
+  <div
+    name="seperator"
+    class="w-10/12 border-t-2 border-font-main border-dashed border-opacity-30 mb-1"
+  ></div>
+  <div>
+    <button
+      (click)="setSelectedTrip(trip)"
+      class="p-2 mb-3 mt-2 bg-blue-green-main/70 rounded-md hover:bg-opacity-40 hover:text-font-main text-dark-background-tertiary"
+    >
+      View Itinerary
+    </button>
   </div>
 </div>

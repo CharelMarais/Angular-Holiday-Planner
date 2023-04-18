@@ -22,7 +22,6 @@ export class LaunchPageComponent implements OnInit {
   navigateToSignUp() {
     this.router.navigate(['sign-up']);
   }
-
   navigateToSignIn() {
     this.router.navigate(['sign-in']);
   }

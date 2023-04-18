@@ -6,8 +6,6 @@ import { FirebaseAuthService } from 'src/app/services/auth/firebase-auth.service
   templateUrl: './user-check.component.html',
   styleUrls: ['./user-check.component.scss'],
 })
-export class UserCheckComponent implements OnDestroy {
+export class UserCheckComponent {
   constructor(protected fireAuthService: FirebaseAuthService) {}
-
-  ngOnDestroy() {}
 }

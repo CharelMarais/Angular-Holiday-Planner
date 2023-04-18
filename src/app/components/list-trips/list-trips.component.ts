@@ -1,12 +1,10 @@
-import { ChangeDetectionStrategy, Component } from '@angular/core';
-import { Router } from '@angular/router';
+import { ChangeDetectionStrategy, Component, OnDestroy } from '@angular/core';
 import { Store } from '@ngrx/store';
-import { Observable, map, combineLatest, mergeMap, forkJoin } from 'rxjs';
+import { Observable, combineLatest, mergeMap, Subject, takeUntil } from 'rxjs';
 import { IItineraryItem } from 'src/app/models/itinerary-item';
 import { ITrip, ITripData } from 'src/app/models/trips';
 import { ItineraryItemState } from 'src/app/store/itinerary-items-store/reducers/itinerary-items.reducer';
 import { selectItinaryItems } from 'src/app/store/itinerary-items-store/selectors/itinerary-items.selectors';
-import { setSelectedTrip } from 'src/app/store/trips-store/actions/trips.actions';
 import { TripsState } from 'src/app/store/trips-store/reducers/trips.reducer';
 import { selectTrips } from 'src/app/store/trips-store/selectors/trips.selectors';
 
@@ -16,15 +14,15 @@ import { selectTrips } from 'src/app/store/trips-store/selectors/trips.selectors
   styleUrls: ['./list-trips.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class ListTripsComponent {
+export class ListTripsComponent implements OnDestroy {
+  destroy$ = new Subject();
   tripsData$: Observable<ITrip[]>;
   itineraryData$: Observable<IItineraryItem[]>;
   tripsWithItinerary$: Observable<ITripData[]>;
 
   constructor(
     protected tripStore: Store<TripsState>,
-    protected itineraryStore: Store<ItineraryItemState>,
-    private router: Router
+    protected itineraryStore: Store<ItineraryItemState>
   ) {
     this.tripsData$ = tripStore.select(selectTrips);
     this.itineraryData$ = itineraryStore.select(selectItinaryItems);
@@ -61,14 +59,19 @@ export class ListTripsComponent {
     );
   }
 
-  testObservable() {
-    if (this.tripsWithItinerary$)
-      this.tripsWithItinerary$.subscribe((test) => console.log(test));
+  trackById(index: number, item: ITripData) {
+    return item.trip.tripName + item.trip.userId;
   }
 
-  setSelectedTrip(trip: ITrip) {
-    const selectedTrip: ITrip = trip;
-    this.tripStore.dispatch(setSelectedTrip({ selectedTrip }));
-    this.router.navigate([`trip/${trip.tripName}`]);
+  testObservable() {
+    if (this.tripsWithItinerary$)
+      this.tripsWithItinerary$
+        .pipe(takeUntil(this.destroy$))
+        .subscribe((test) => console.log(test));
+  }
+
+  ngOnDestroy(): void {
+    this.destroy$.next(null);
+    this.destroy$.complete();
   }
 }

@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { FirebaseAuthService } from 'src/app/services/auth/firebase-auth.service';
 import { FirebaseStoreService } from 'src/app/services/store/firebase-store.service';
 
@@ -8,6 +8,8 @@ import { FirebaseStoreService } from 'src/app/services/store/firebase-store.serv
   styleUrls: ['./add-trips.component.scss'],
 })
 export class AddTripsComponent {
+  @Input() isAddingTrip = false;
+  @Output() isAddingTripChange = new EventEmitter<boolean>();
   tripName = '';
   userId = this.fireAuthService.auth.currentUser?.uid;
 
@@ -16,8 +18,13 @@ export class AddTripsComponent {
     protected fireAuthService: FirebaseAuthService
   ) {}
 
+  closeAddTrip() {
+    this.isAddingTripChange.emit(!this.isAddingTrip);
+  }
+
   addTrip() {
     this.userId && this.firebaseStore.addTrip(this.tripName, this.userId);
     this.tripName = '';
+    this.closeAddTrip();
   }
 }

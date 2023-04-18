@@ -3,6 +3,7 @@
 
 import { AfterViewInit, Component } from '@angular/core';
 import { Location } from '@angular/common';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-error-page',
@@ -15,7 +16,7 @@ export class ErrorPageComponent implements AfterViewInit {
     'https://res.cloudinary.com/dlb3jof8w/video/upload/v1581412825/codepen/playstation_intro.mp3'
   );
   currentSlide = -1;
-  playClicked: boolean = false;
+  playClicked = false;
 
   constructor(private location: Location) {}
 

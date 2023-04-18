@@ -11,7 +11,6 @@ export class UserEffects {
     return this.actions$.pipe(
       ofType(UserActions.getLogedInUser),
       switchMap(() =>
-        /** An EMPTY observable only emits completion. Replace with your own observable API request */
         this.fireAuthService.getUserData().pipe(
           map((res) => UserActions.getLoggedInUserSuccess({ user: res })),
           catchError((error) => {

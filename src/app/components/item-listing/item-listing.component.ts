@@ -6,6 +6,7 @@ import differenceInDays from 'date-fns/differenceInDays';
 
 import fromUnixTime from 'date-fns/fromUnixTime';
 import format from 'date-fns/format';
+import { FirebaseStoreService } from 'src/app/services/store/firebase-store.service';
 
 @Component({
   selector: 'app-item-listing',
@@ -13,6 +14,8 @@ import format from 'date-fns/format';
   styleUrls: ['./item-listing.component.scss'],
 })
 export class ItemListingComponent implements OnInit {
+  constructor(protected firebaseStore: FirebaseStoreService) {}
+
   @Input() itineraryItem: IItineraryItem = {
     tripName: '',
     name: '',
@@ -25,12 +28,46 @@ export class ItemListingComponent implements OnInit {
     userId: undefined,
   };
 
-  formattedStartDate: string = '';
-  formattedEndDate: string = '';
-  durationMinutes: number = 0;
-  durationHours: number = 0;
-  durationDays: number = 0;
-  duration: string = '';
+  formattedStartDate = '';
+  formattedEndDate = '';
+  durationMinutes = 0;
+  durationHours = 0;
+  durationDays = 0;
+  duration = '';
+  updatedItemName = '';
+
+  isEditing = false;
+  isUpdating = false;
+  isDeleting = false;
+
+  toggleDeletingItem() {
+    this.isDeleting = !this.isDeleting;
+  }
+
+  toggleEditing() {
+    this.isEditing = !this.isEditing;
+  }
+
+  toggleUpdating() {
+    this.isUpdating = !this.isUpdating;
+  }
+
+  updateItem() {
+    this.firebaseStore.updateItemByName(
+      this.itineraryItem.tripName,
+      this.itineraryItem.name,
+      this.updatedItemName
+    );
+    this.toggleUpdating();
+  }
+
+  deleteItem() {
+    this.firebaseStore.deleteItemByName(
+      this.itineraryItem.tripName,
+      this.itineraryItem.name
+    );
+    this.toggleDeletingItem();
+  }
 
   ngOnInit(): void {
     this.formattedStartDate = format(

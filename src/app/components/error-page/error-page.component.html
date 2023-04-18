@@ -1,7 +1,7 @@
 <div
   [class.bg-black]="playClicked"
   [class.bg-opacity-100]="playClicked"
-  class="fixed bg-dark-background-tertiary bg-opacity-70 w-full h-full flex justify-center items-center"
+  class="fixed bg-dark-background-tertiary/70 w-full h-full flex justify-center items-center"
 >
   <div
     [class.hidden]="playClicked"
@@ -10,8 +10,7 @@
     style="font-family: 'Orbitron'"
     class="border-font-main flex flex-col items-center border-2 border-opacity-25 rounded-md p-4 bg-dark-background-secondary"
   >
-    <p class="m-0">Are you sure?</p>
-    <p>Is the correct page?</p>
+    <p class="m-0">Are you sure?<br />Is the correct page?</p>
     <div class="flex text-blue-green-main text-lg w-full justify-between px-6">
       <div>
         <button id="play" (click)="playClickSwitch()" class="w-1/2">Yes</button>
@@ -50,7 +49,7 @@
       Licensed by <br />
       The Page You Are Looking For Does Not Exist <br />
       <br />
-      <a routerLink="/../../dashboard" class="text-white">Go Back</a>
+      <button class="text-white" (click)="goBack()">Go Back</button>
     </div>
   </div>
 </div>
