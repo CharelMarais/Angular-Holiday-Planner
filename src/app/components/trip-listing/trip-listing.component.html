@@ -1,6 +1,6 @@
 <ng-container *ngIf="deleteItemCheck">
   <div
-    class="absolute top-0 z-40 bg-dark-background-tertiary bg-opacity-70 w-full h-full flex justify-center items-center"
+    class="absolute top-0 z-40 bg-dark-background-tertiary/70 w-full h-full flex justify-center items-center"
   >
     <div
       style="font-family: 'Orbitron'"
@@ -24,7 +24,7 @@
 >
 <div
   name="trip-listing-container"
-  class="bg-blue-green-main bg-opacity-10 my-4 mx-4 flex flex-col rounded-md items-center"
+  class="bg-blue-green-main/10 my-4 mx-4 flex flex-col rounded-md items-center"
 >
   <div
     name="trip-heading"
@@ -32,7 +32,7 @@
   >
     <button
       (click)="editSwitch()"
-      class="my-auto ml-4 bg-dark-background-secondary bg-opacity-80 rounded-full flex min-w-[2.25rem] w-9 h-9 justify-center items-center text-xl"
+      class="my-auto ml-4 bg-dark-background-secondary/80 rounded-full flex min-w-[2.25rem] w-9 h-9 justify-center items-center text-xl"
     >
       <ng-container *ngIf="!editing">
         <span nz-icon nzType="edit" nzTheme="outline"></span>
@@ -54,7 +54,7 @@
 
       <button
         (click)="updateTrip()"
-        class="rounded-r-md text-sm h-full px-2 hover:bg-opacity-40 hover:text-font-main bg-blue-green-main bg-opacity-60 text-dark-background-tertiary"
+        class="rounded-r-md text-sm h-full px-2 hover:bg-opacity-40 hover:text-font-main bg-blue-green-main/60 text-dark-background-tertiary"
       >
         Update
       </button>
@@ -68,7 +68,7 @@
     </p>
     <button
       (click)="deleteItemCheckSwitch()"
-      class="my-auto mr-4 bg-dark-background-secondary bg-opacity-80 rounded-full flex min-w-[2.25rem] w-9 h-9 justify-center items-center text-xl"
+      class="my-auto mr-4 bg-dark-background-secondary/80 rounded-full flex min-w-[2.25rem] w-9 h-9 justify-center items-center text-xl"
     >
       <span nz-icon nzType="delete" nzTheme="outline"></span>
     </button>
@@ -102,7 +102,7 @@
   <div>
     <button
       (click)="setSelectedTrip(trip)"
-      class="p-2 mb-3 mt-2 bg-blue-green-main bg-opacity-70 rounded-md hover:bg-opacity-40 hover:text-font-main text-dark-background-tertiary"
+      class="p-2 mb-3 mt-2 bg-blue-green-main/70 rounded-md hover:bg-opacity-40 hover:text-font-main text-dark-background-tertiary"
     >
       View Itinerary
     </button>

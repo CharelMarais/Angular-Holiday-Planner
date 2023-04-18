@@ -24,10 +24,10 @@
         *ngFor="let date of dates"
         [ngClass]="{ 'opacity-60': !isSameMonth(date) }"
         [ngClass]="{
-          'text-dark-background-tertiary bg-blue-green-main bg-opacity-60':
+          'text-dark-background-tertiary bg-blue-green-main/60':
             tripActiveOnDay(date)
         }"
-        class="inline-block border-[1px] border-blue-green-main border-opacity-80 hover:bg-blue-green-main hover:bg-opacity-40"
+        class="inline-block border-[1px] border-blue-green-main/80 hover:bg-blue-green-main/40"
       >
         {{ date | date : "d" }}
       </li>

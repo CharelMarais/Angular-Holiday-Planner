@@ -1,6 +1,6 @@
 <ng-container *ngIf="deleteItemCheck">
   <div
-    class="absolute top-0 z-40 bg-dark-background-tertiary bg-opacity-70 w-full h-full flex justify-center items-center"
+    class="absolute top-0 z-40 bg-dark-background-tertiary/70 w-full h-full flex justify-center items-center"
   >
     <div
       style="font-family: 'Orbitron'"
@@ -25,13 +25,13 @@
 
 <div
   name="item-listing-container"
-  class="bg-blue-green-main bg-opacity-10 my-4 mx-4 flex flex-col rounded-md items-center cursor-pointer"
+  class="bg-blue-green-main/10 my-4 mx-4 flex flex-col rounded-md items-center cursor-pointer"
 >
   <div name="trip-heading" class="py-2 text-lg flex justify-between w-full">
     <button
       (click)="updateSwitch()"
       [class.hidden]="!activeEditing"
-      class="my-auto ml-4 bg-dark-background-secondary bg-opacity-80 rounded-full flex w-9 h-9 justify-center items-center text-xl"
+      class="my-auto ml-4 bg-dark-background-secondary/80 rounded-full flex w-9 h-9 justify-center items-center text-xl"
     >
       <span nz-icon nzType="edit" nzTheme="outline"></span>
     </button>
@@ -61,7 +61,7 @@
 
       <button
         (click)="updateItem()"
-        class="rounded-r-md text-sm h-full px-2 hover:bg-opacity-40 hover:text-font-main bg-blue-green-main bg-opacity-60 text-dark-background-tertiary"
+        class="rounded-r-md text-sm h-full px-2 hover:bg-opacity-40 hover:text-font-main bg-blue-green-main/60 text-dark-background-tertiary"
       >
         Update
       </button>
@@ -70,7 +70,7 @@
     <button
       [class.hidden]="!activeEditing"
       (click)="deleteItemCheckSwitch()"
-      class="my-auto mr-4 bg-dark-background-secondary bg-opacity-80 rounded-full flex w-9 h-9 justify-center items-center text-xl"
+      class="my-auto mr-4 bg-dark-background-secondary/80 rounded-full flex w-9 h-9 justify-center items-center text-xl"
     >
       <span nz-icon nzType="delete" nzTheme="outline"></span>
     </button>
@@ -109,7 +109,7 @@
   <div>
     <button
       (click)="editSwitch()"
-      class="w-32 p-2 mb-3 mt-2 bg-blue-green-main bg-opacity-70 rounded-md hover:bg-opacity-40 hover:text-font-main text-dark-background-tertiary"
+      class="w-32 p-2 mb-3 mt-2 bg-blue-green-main/70 rounded-md hover:bg-opacity-40 hover:text-font-main text-dark-background-tertiary"
     >
       <p [class.hidden]="activeEditing" class="m-0">Alter Item</p>
       <p [class.hidden]="!activeEditing" class="m-0">Done</p>
