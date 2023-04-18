@@ -8,7 +8,7 @@ import { FirebaseStoreService } from 'src/app/services/store/firebase-store.serv
   styleUrls: ['./add-trips.component.scss'],
 })
 export class AddTripsComponent {
-  @Input() isAddingTrip: boolean = false;
+  @Input() isAddingTrip = false;
   @Output() isAddingTripChange = new EventEmitter<boolean>();
   tripName = '';
   userId = this.fireAuthService.auth.currentUser?.uid;

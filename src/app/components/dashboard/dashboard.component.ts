@@ -16,8 +16,8 @@ import { TripsState } from 'src/app/store/trips-store/reducers/trips.reducer';
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class DashboardComponent {
-  isAddingTrip: boolean = false;
-  isSigningOut: boolean = false;
+  isAddingTrip = false;
+  isSigningOut = false;
 
   constructor(
     private itineraryItemStore: Store<ItineraryItemState>,

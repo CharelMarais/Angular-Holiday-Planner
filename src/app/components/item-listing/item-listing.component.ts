@@ -36,9 +36,9 @@ export class ItemListingComponent implements OnInit {
   duration = '';
   updatedItemName = '';
 
-  isEditing: boolean = false;
-  isUpdating: boolean = false;
-  isDeleting: boolean = false;
+  isEditing = false;
+  isUpdating = false;
+  isDeleting = false;
 
   toggleDeletingItem() {
     this.isDeleting = !this.isDeleting;

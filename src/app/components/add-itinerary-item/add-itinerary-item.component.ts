@@ -24,7 +24,7 @@ import { FormBuilder, Validators } from '@angular/forms';
   styleUrls: ['./add-itinerary-item.component.scss'],
 })
 export class AddItineraryItemComponent implements OnDestroy {
-  @Input() isAddingItem: boolean = false;
+  @Input() isAddingItem = false;
   @Output() isAddingItemChange = new EventEmitter<boolean>();
 
   destroy$ = new Subject();
@@ -52,12 +52,12 @@ export class AddItineraryItemComponent implements OnDestroy {
     private fb: FormBuilder
   ) {
     this.selectedTripData$ = tripStore.select(selectSelectedTrip);
-    this.selectedTripData$
-      .pipe(takeUntil(this.destroy$))
-      .subscribe(
-        (trip) =>
-          ((this.addItemForm.get('tripName')!.value as string) = trip.tripName)
-      );
+    this.selectedTripData$.pipe(takeUntil(this.destroy$)).subscribe((trip) => {
+      const tripName = this.addItemForm.get('tripName');
+      if (tripName) {
+        (tripName.value as string) = trip.tripName;
+      }
+    });
 
     this.currencyStore$ = currencyStore.select(selectCurrencyApi);
   }

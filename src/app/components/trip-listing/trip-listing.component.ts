@@ -25,8 +25,8 @@ export class TripListingComponent implements OnInit {
   formatedStartDate: string = '';
   updatedTripName: string = '';
 
-  isEditing: boolean = false;
-  isDeletingTrip: boolean = false;
+  isEditing = false;
+  isDeletingTrip = false;
 
   toggleEditing() {
     this.isEditing = !this.isEditing;
