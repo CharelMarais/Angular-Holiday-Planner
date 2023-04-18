@@ -1,13 +1,6 @@
 import { ChangeDetectionStrategy, Component, OnDestroy } from '@angular/core';
 import { Store } from '@ngrx/store';
-import {
-  Observable,
-  map,
-  combineLatest,
-  mergeMap,
-  Subject,
-  takeUntil,
-} from 'rxjs';
+import { Observable, combineLatest, mergeMap, Subject, takeUntil } from 'rxjs';
 import { IItineraryItem } from 'src/app/models/itinerary-item';
 import { ITrip, ITripData } from 'src/app/models/trips';
 import { ItineraryItemState } from 'src/app/store/itinerary-items-store/reducers/itinerary-items.reducer';
@@ -64,6 +57,10 @@ export class ListTripsComponent implements OnDestroy {
         ];
       })
     );
+  }
+
+  trackById(index: number, item: ITripData) {
+    return item.trip.tripName + item.trip.userId;
   }
 
   testObservable() {

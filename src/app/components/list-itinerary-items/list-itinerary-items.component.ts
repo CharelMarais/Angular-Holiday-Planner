@@ -36,4 +36,8 @@ export class ListItineraryItemsComponent {
       })
     );
   }
+
+  trackById(index: number, item: IItineraryItem) {
+    return item.tripName + item.name + item.userId;
+  }
 }
