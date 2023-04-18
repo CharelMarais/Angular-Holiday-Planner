@@ -31,16 +31,15 @@ export class AddItineraryItemComponent implements OnDestroy {
   selectedTripData$: Observable<ITrip>;
 
   addItemForm = this.fb.group({
-    tripName: [''],
-    tag: ['hotel'],
-    name: [''],
-    startDate: [''],
-    startTime: [''],
-    endDate: [''],
-    endTime: [''],
-    cost: [0],
-    location: [''],
-    selectedCurrency: [1],
+    tripName: ['', Validators.required],
+    tag: ['hotel', Validators.required],
+    name: ['', Validators.required],
+    startDate: ['', Validators.required],
+    startTime: ['', Validators.required],
+    endDate: ['', Validators.required],
+    endTime: ['', Validators.required],
+    cost: [0, Validators.requiredTrue],
+    selectedCurrency: [1, Validators.required],
   });
   userId = this.fireAuthService.auth.currentUser?.uid;
   currencyStore$: Observable<IConversionData[]>;
