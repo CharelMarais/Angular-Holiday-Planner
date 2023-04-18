@@ -232,7 +232,10 @@
             formControlName="selectedCurrency"
           >
             <nz-option
-              *ngFor="let currency of currencyStore$ | async"
+              *ngFor="
+                let currency of currencyStore$ | async;
+                trackBy: trackByCode
+              "
               [nzLabel]="currency.code"
               [nzValue]="currency.value"
             ></nz-option>

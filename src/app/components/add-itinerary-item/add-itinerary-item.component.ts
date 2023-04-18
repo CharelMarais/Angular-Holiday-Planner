@@ -98,6 +98,10 @@ export class AddItineraryItemComponent implements OnDestroy {
     this.closeAddItem();
   }
 
+  trackByCode(index: number, item: IConversionData) {
+    return item.code;
+  }
+
   ngOnDestroy(): void {
     this.destroy$.next(null);
     this.destroy$.complete();
