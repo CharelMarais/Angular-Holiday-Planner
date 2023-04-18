@@ -1,4 +1,4 @@
-<ng-container *ngIf="deleteItemCheck">
+<ng-container *ngIf="isDeletingTrip">
   <div
     class="absolute top-0 z-40 bg-dark-background-tertiary/70 w-full h-full flex justify-center items-center"
   >
@@ -6,8 +6,10 @@
       style="font-family: 'Orbitron'"
       class="border-font-main flex flex-col items-center border-2 border-opacity-25 rounded-md p-4 bg-dark-background-secondary"
     >
-      <p class="m-0">Are you sure</p>
-      <p>you want to delete</p>
+      <p class="m-0">
+        Are you sure <br />
+        you want to delete
+      </p>
       <p>{{ trip.tripName }} ?</p>
       <div
         class="flex text-blue-green-main text-lg w-full justify-between px-6"
@@ -16,7 +18,7 @@
           <button (click)="deleteTrip(trip.tripName)" class="w-1/2">Yes</button>
         </div>
         <div>
-          <button (click)="deleteItemCheckSwitch()" class="w-1/2">No</button>
+          <button (click)="toggleDeletingTrip()" class="w-1/2">No</button>
         </div>
       </div>
     </div>
@@ -31,18 +33,18 @@
     class="text-lg flex justify-between w-full max-w-full my-3"
   >
     <button
-      (click)="editSwitch()"
+      (click)="toggleEditing()"
       class="my-auto ml-4 bg-dark-background-secondary/80 rounded-full flex min-w-[2.25rem] w-9 h-9 justify-center items-center text-xl"
     >
-      <ng-container *ngIf="!editing">
+      <ng-container *ngIf="!isEditing">
         <span nz-icon nzType="edit" nzTheme="outline"></span>
       </ng-container>
-      <ng-container *ngIf="editing">
+      <ng-container *ngIf="isEditing">
         <span nz-icon nzType="close" nzTheme="outline"></span>
       </ng-container>
     </button>
     <div
-      [class.hidden]="!editing"
+      [class.hidden]="!isEditing"
       class="px-2 flex justify-center items-center"
     >
       <input
@@ -61,13 +63,13 @@
     </div>
     <p
       style="font-family: 'Orbitron'"
-      [class.hidden]="editing"
+      [class.hidden]="isEditing"
       class="text-center my-auto"
     >
       {{ trip.tripName }}
     </p>
     <button
-      (click)="deleteItemCheckSwitch()"
+      (click)="toggleDeletingTrip()"
       class="my-auto mr-4 bg-dark-background-secondary/80 rounded-full flex min-w-[2.25rem] w-9 h-9 justify-center items-center text-xl"
     >
       <span nz-icon nzType="delete" nzTheme="outline"></span>

@@ -20,23 +20,25 @@ export class TripListingComponent implements OnInit {
   @Input() itemsCount?: number;
   @Input() startDate?: number;
   @Input() endDate?: number;
+
   duration: number = 0;
   formatedStartDate: string = '';
-  editing: Boolean = false;
   updatedTripName: string = '';
-  deleteItemCheck: boolean = false;
 
-  editSwitch() {
-    this.editing = !this.editing;
+  isEditing: boolean = false;
+  isDeletingTrip: boolean = false;
+
+  toggleEditing() {
+    this.isEditing = this.isEditing;
+  }
+
+  toggleDeletingTrip() {
+    this.isDeletingTrip = this.isDeletingTrip;
   }
 
   deleteTrip(tripName: string) {
     this.firebaseStore.deleteTripByTripName(tripName);
-    this.deleteItemCheckSwitch();
-  }
-
-  deleteItemCheckSwitch() {
-    this.deleteItemCheck = !this.deleteItemCheck;
+    this.toggleDeletingTrip();
   }
 
   updateTrip() {
@@ -44,7 +46,7 @@ export class TripListingComponent implements OnInit {
       this.trip.tripName,
       this.updatedTripName
     );
-    this.editSwitch();
+    this.toggleEditing();
   }
 
   constructor(

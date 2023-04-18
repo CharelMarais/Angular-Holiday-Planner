@@ -126,7 +126,7 @@ export class FirebaseStoreService {
     this.tripStore.dispatch(getTrips());
   }
 
-  //Itinerary Items
+  // Itinerary Items
 
   addItineraryItem(
     tripName: string,

@@ -1,4 +1,4 @@
-<ng-container *ngIf="signingOut">
+<ng-container *ngIf="isSigningOut">
   <div
     class="absolute z-40 bg-dark-background-tertiary/70 w-full h-full flex justify-center items-center"
   >
@@ -6,8 +6,10 @@
       style="font-family: 'Orbitron'"
       class="border-font-main flex flex-col items-center border-2 border-opacity-25 rounded-md p-4 bg-dark-background-secondary"
     >
-      <p class="m-0">Are you sure</p>
-      <p>you want to sign-out?</p>
+      <p class="m-0">
+        Are you sure <br />
+        you want to sign-out?
+      </p>
       <div
         class="flex text-blue-green-main text-lg w-full justify-between px-6"
       >
@@ -15,7 +17,7 @@
           <button (click)="fireAuthService.signOut()" class="w-1/2">Yes</button>
         </div>
         <div>
-          <button (click)="cancelSignOut()" class="w-1/2">No</button>
+          <button (click)="toggleSingingOut()" class="w-1/2">No</button>
         </div>
       </div>
     </div>

@@ -1,4 +1,4 @@
-<ng-container *ngIf="deleteItemCheck">
+<ng-container *ngIf="isDeleting">
   <div
     class="absolute top-0 z-40 bg-dark-background-tertiary/70 w-full h-full flex justify-center items-center"
   >
@@ -6,8 +6,10 @@
       style="font-family: 'Orbitron'"
       class="border-font-main flex flex-col items-center border-2 border-opacity-25 rounded-md p-4 bg-dark-background-secondary"
     >
-      <p class="m-0">Are you sure</p>
-      <p>you want to delete</p>
+      <p class="m-0">
+        Are you sure <br />
+        you want to delete
+      </p>
       <p>{{ itineraryItem.name }} ?</p>
       <div
         class="flex text-blue-green-main text-lg w-full justify-between px-6"
@@ -16,12 +18,12 @@
           <button (click)="deleteItem()" class="w-1/2">Yes</button>
         </div>
         <div>
-          <button (click)="deleteItemCheckSwitch()" class="w-1/2">No</button>
+          <button (click)="toggleDeletingItem()" class="w-1/2">No</button>
         </div>
       </div>
     </div>
-  </div></ng-container
->
+  </div>
+</ng-container>
 
 <div
   name="item-listing-container"
@@ -29,27 +31,27 @@
 >
   <div name="trip-heading" class="py-2 text-lg flex justify-between w-full">
     <button
-      (click)="updateSwitch()"
-      [class.hidden]="!activeEditing"
+      (click)="toggleUpdating()"
+      [class.hidden]="!isEditing"
       class="my-auto ml-4 bg-dark-background-secondary/80 rounded-full flex w-9 h-9 justify-center items-center text-xl"
     >
       <span nz-icon nzType="edit" nzTheme="outline"></span>
     </button>
     <app-tag-icon-display
-      [class.hidden]="activeEditing"
+      [class.hidden]="isEditing"
       class="my-auto ml-4"
       [tag]="itineraryItem.tag"
-    ></app-tag-icon-display>
-
+    >
+    </app-tag-icon-display>
     <p
-      [class.hidden]="updatingTrip"
+      [class.hidden]="isUpdating"
       class="m-0 text-center my-auto"
       style="font-family: 'Orbitron'"
     >
       {{ itineraryItem.name }}
     </p>
     <div
-      [class.hidden]="!updatingTrip"
+      [class.hidden]="!isUpdating"
       class="px-2 flex justify-center items-center"
     >
       <input
@@ -68,14 +70,14 @@
     </div>
 
     <button
-      [class.hidden]="!activeEditing"
-      (click)="deleteItemCheckSwitch()"
+      [class.hidden]="!isEditing"
+      (click)="toggleDeletingItem()"
       class="my-auto mr-4 bg-dark-background-secondary/80 rounded-full flex w-9 h-9 justify-center items-center text-xl"
     >
       <span nz-icon nzType="delete" nzTheme="outline"></span>
     </button>
     <app-tag-icon-display
-      [class.hidden]="activeEditing"
+      [class.hidden]="isEditing"
       class="my-auto mr-4"
       [tag]="itineraryItem.tag"
     ></app-tag-icon-display>
@@ -108,11 +110,10 @@
   ></div>
   <div>
     <button
-      (click)="editSwitch()"
+      (click)="toggleEditing()"
       class="w-32 p-2 mb-3 mt-2 bg-blue-green-main/70 rounded-md hover:bg-opacity-40 hover:text-font-main text-dark-background-tertiary"
     >
-      <p [class.hidden]="activeEditing" class="m-0">Alter Item</p>
-      <p [class.hidden]="!activeEditing" class="m-0">Done</p>
+      <p class="m-0">{{ activeEditing ? "Alter Item" : "Done" }}</p>
     </button>
   </div>
 </div>

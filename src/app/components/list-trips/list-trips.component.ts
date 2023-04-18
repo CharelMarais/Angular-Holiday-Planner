@@ -1,12 +1,10 @@
 import { ChangeDetectionStrategy, Component } from '@angular/core';
-import { Router } from '@angular/router';
 import { Store } from '@ngrx/store';
-import { Observable, map, combineLatest, mergeMap, forkJoin } from 'rxjs';
+import { Observable, map, combineLatest, mergeMap } from 'rxjs';
 import { IItineraryItem } from 'src/app/models/itinerary-item';
 import { ITrip, ITripData } from 'src/app/models/trips';
 import { ItineraryItemState } from 'src/app/store/itinerary-items-store/reducers/itinerary-items.reducer';
 import { selectItinaryItems } from 'src/app/store/itinerary-items-store/selectors/itinerary-items.selectors';
-import { setSelectedTrip } from 'src/app/store/trips-store/actions/trips.actions';
 import { TripsState } from 'src/app/store/trips-store/reducers/trips.reducer';
 import { selectTrips } from 'src/app/store/trips-store/selectors/trips.selectors';
 

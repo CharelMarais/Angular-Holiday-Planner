@@ -24,8 +24,8 @@ import { IConversionData } from 'src/app/models/currency-api';
   styleUrls: ['./add-itinerary-item.component.scss'],
 })
 export class AddItineraryItemComponent implements OnDestroy {
-  @Input() addingItineraryItem!: boolean;
-  @Output() addingItineraryItemChange = new EventEmitter<boolean>();
+  @Input() isAddingItem: boolean = false;
+  @Output() isAddingItemChange = new EventEmitter<boolean>();
 
   selectedTripData$: Observable<ITrip>;
   tripName = '';
@@ -55,7 +55,7 @@ export class AddItineraryItemComponent implements OnDestroy {
   }
 
   closeAddItem() {
-    this.addingItineraryItemChange.emit(!this.addingItineraryItem);
+    this.isAddingItemChange.emit(this.isAddingItem);
   }
 
   addItineraryItem() {
