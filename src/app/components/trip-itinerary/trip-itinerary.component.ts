@@ -45,10 +45,10 @@ export class TripItineraryComponent implements OnInit {
   }
 
   toggleAddingItem() {
-    this.isAddingItem = this.isAddingItem;
+    this.isAddingItem = !this.isAddingItem;
   }
 
   toggleSigningOut() {
-    this.isSigningOut = this.isSigningOut;
+    this.isSigningOut = !this.isSigningOut;
   }
 }

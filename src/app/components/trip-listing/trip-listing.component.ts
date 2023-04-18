@@ -29,11 +29,11 @@ export class TripListingComponent implements OnInit {
   isDeletingTrip: boolean = false;
 
   toggleEditing() {
-    this.isEditing = this.isEditing;
+    this.isEditing = !this.isEditing;
   }
 
   toggleDeletingTrip() {
-    this.isDeletingTrip = this.isDeletingTrip;
+    this.isDeletingTrip = !this.isDeletingTrip;
   }
 
   deleteTrip(tripName: string) {

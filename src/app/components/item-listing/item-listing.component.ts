@@ -41,15 +41,15 @@ export class ItemListingComponent implements OnInit {
   isDeleting: boolean = false;
 
   toggleDeletingItem() {
-    this.isDeleting = this.isDeleting;
+    this.isDeleting = !this.isDeleting;
   }
 
   toggleEditing() {
-    this.isEditing = this.isEditing;
+    this.isEditing = !this.isEditing;
   }
 
   toggleUpdating() {
-    this.isUpdating = this.isUpdating;
+    this.isUpdating = !this.isUpdating;
   }
 
   updateItem() {

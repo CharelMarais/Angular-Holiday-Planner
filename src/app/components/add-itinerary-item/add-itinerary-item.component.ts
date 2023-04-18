@@ -5,7 +5,6 @@ import {
   OnDestroy,
   Output,
 } from '@angular/core';
-import { Router } from '@angular/router';
 import { Store } from '@ngrx/store';
 import { Observable, Subject, takeUntil } from 'rxjs';
 import { ITrip } from 'src/app/models/trips';
@@ -17,6 +16,7 @@ import { TripsState } from 'src/app/store/trips-store/reducers/trips.reducer';
 import { selectSelectedTrip } from 'src/app/store/trips-store/selectors/trips.selectors';
 import getUnixTime from 'date-fns/getUnixTime';
 import { IConversionData } from 'src/app/models/currency-api';
+import { FormBuilder, Validators } from '@angular/forms';
 
 @Component({
   selector: 'app-add-itinerary-item',
@@ -29,16 +29,19 @@ export class AddItineraryItemComponent implements OnDestroy {
 
   destroy$ = new Subject();
   selectedTripData$: Observable<ITrip>;
-  tripName = '';
-  tagValue = 'hotel';
-  name = '';
-  startDate = '';
-  startTime = '';
-  endDate = '';
-  endTime = '';
-  cost = 0;
-  location = '';
-  selectedCurrency = 1;
+
+  addItemForm = this.fb.group({
+    tripName: [''],
+    tag: ['hotel'],
+    name: [''],
+    startDate: [''],
+    startTime: [''],
+    endDate: [''],
+    endTime: [''],
+    cost: [0],
+    location: [''],
+    selectedCurrency: [1],
+  });
   userId = this.fireAuthService.auth.currentUser?.uid;
   currencyStore$: Observable<IConversionData[]>;
 
@@ -46,31 +49,52 @@ export class AddItineraryItemComponent implements OnDestroy {
     protected firebaseStore: FirebaseStoreService,
     protected fireAuthService: FirebaseAuthService,
     protected tripStore: Store<TripsState>,
-    protected currencyStore: Store<CurrencyState>
+    protected currencyStore: Store<CurrencyState>,
+    private fb: FormBuilder
   ) {
     this.selectedTripData$ = tripStore.select(selectSelectedTrip);
     this.selectedTripData$
       .pipe(takeUntil(this.destroy$))
-      .subscribe((trip) => (this.tripName = trip.tripName));
+      .subscribe(
+        (trip) =>
+          ((this.addItemForm.get('tripName')!.value as string) = trip.tripName)
+      );
 
     this.currencyStore$ = currencyStore.select(selectCurrencyApi);
   }
 
   closeAddItem() {
-    this.isAddingItemChange.emit(this.isAddingItem);
+    this.isAddingItemChange.emit(!this.isAddingItem);
   }
 
   addItineraryItem() {
     this.userId &&
-      this.tripName &&
+      (this.addItemForm.get('tripName')?.value as string) &&
       this.firebaseStore.addItineraryItem(
-        this.tripName,
-        this.name,
-        this.tagValue,
-        getUnixTime(new Date(this.startDate + ' ' + this.startTime)),
-        getUnixTime(new Date(this.endDate + ' ' + this.endTime)),
+        this.addItemForm.get('tripName')?.value as string,
+        this.addItemForm.get('name')?.value as string,
+        this.addItemForm.get('tag')?.value as string,
+        getUnixTime(
+          new Date(
+            (this.addItemForm.get('startDate')?.value as string) +
+              ' ' +
+              (this.addItemForm.get('startTime')?.value as string)
+          )
+        ),
+        getUnixTime(
+          new Date(
+            (this.addItemForm.get('endDate')?.value as string) +
+              ' ' +
+              (this.addItemForm.get('endTime')?.value as string)
+          )
+        ),
         this.userId,
-        parseFloat((this.cost * (1 / this.selectedCurrency)).toFixed(2))
+        parseFloat(
+          (
+            (this.addItemForm.get('cost')?.value as number) *
+            (1 / (this.addItemForm.get('selectedCurrency')?.value as number))
+          ).toFixed(2)
+        )
       );
     this.closeAddItem();
   }

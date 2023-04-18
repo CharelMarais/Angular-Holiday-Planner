@@ -33,10 +33,10 @@ export class DashboardComponent {
   }
 
   toggleAddingTrip() {
-    this.isAddingTrip = this.isAddingTrip;
+    this.isAddingTrip = !this.isAddingTrip;
   }
 
   toggleSigningOut() {
-    this.isSigningOut = this.isSigningOut;
+    this.isSigningOut = !this.isSigningOut;
   }
 }

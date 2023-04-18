@@ -19,7 +19,7 @@ export class AddTripsComponent {
   ) {}
 
   closeAddTrip() {
-    this.isAddingTripChange.emit(this.isAddingTrip);
+    this.isAddingTripChange.emit(!this.isAddingTrip);
   }
 
   addTrip() {

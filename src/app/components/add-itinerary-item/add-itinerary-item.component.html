@@ -9,6 +9,7 @@
   >
     <form
       #addForm="ngForm"
+      [formGroup]="addItemForm"
       (ngSubmit)="addItineraryItem(); addForm.reset()"
       id="addForm"
       name="add-item-form"
@@ -24,7 +25,7 @@
             class="hidden peer"
             [defaultChecked]="true"
             value="hotel"
-            [(ngModel)]="tagValue"
+            formControlName="tag"
           />
           <label
             for="hotel"
@@ -59,7 +60,7 @@
             id="food"
             class="hidden peer"
             value="food"
-            [(ngModel)]="tagValue"
+            formControlName="tag"
           />
           <label
             for="food"
@@ -90,7 +91,7 @@
             id="relax"
             class="hidden peer"
             value="relax"
-            [(ngModel)]="tagValue"
+            formControlName="tag"
           />
           <label
             for="relax"
@@ -121,7 +122,7 @@
             id="travel"
             class="hidden peer"
             value="travel"
-            [(ngModel)]="tagValue"
+            formControlName="tag"
           />
           <label
             for="travel"
@@ -153,7 +154,7 @@
             id="fun"
             class="hidden peer"
             value="fun"
-            [(ngModel)]="tagValue"
+            formControlName="tag"
           />
           <label
             for="fun"
@@ -184,7 +185,7 @@
             name="name"
             placeholder="Name"
             class="w-full pl-3 py-1 rounded-sm bg-blue-green-main/20 h-8"
-            [(ngModel)]="name"
+            formControlName="name"
           />
         </div>
       </div>
@@ -195,13 +196,13 @@
             type="date"
             name="startDate"
             class="pl-3 rounded-sm py-1 bg-blue-green-main/20 flex-grow"
-            [(ngModel)]="startDate"
+            formControlName="startDate"
           />
           <input
             type="time"
             name="startDate"
             class="w-4/12 pl-3 rounded-sm py-1 bg-blue-green-main/20"
-            [(ngModel)]="startTime"
+            formControlName="startTime"
           />
         </div>
       </div>
@@ -211,13 +212,13 @@
           <input
             type="date"
             name="endDate"
-            [(ngModel)]="endDate"
+            formControlName="endDate"
             class="pl-3 rounded-sm bg-blue-green-main/20 py-1 flex-grow"
           />
           <input
             type="time"
             name="endDate"
-            [(ngModel)]="endTime"
+            formControlName="endTime"
             class="w-4/12 pl-3 rounded-sm bg-blue-green-main/20 py-1 text-sm"
           />
         </div>
@@ -228,7 +229,7 @@
           <nz-select
             name="currency-selection"
             class="text-font-main"
-            [(ngModel)]="selectedCurrency"
+            formControlName="selectedCurrency"
           >
             <nz-option
               *ngFor="let currency of currencyStore$ | async"
@@ -239,7 +240,7 @@
           <input
             type="number"
             name="cost"
-            [(ngModel)]="cost"
+            formControlName="cost"
             placeholder="Cost"
             class="pl-3 rounded-sm bg-blue-green-main/20 py-1 h-8 flex-grow"
           />

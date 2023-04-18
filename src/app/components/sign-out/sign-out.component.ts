@@ -12,6 +12,6 @@ export class SignOutComponent {
   @Output() isSigningOutChange = new EventEmitter<boolean>();
 
   toggleSingingOut() {
-    this.isSigningOutChange.emit(this.isSigningOut);
+    this.isSigningOutChange.emit(!this.isSigningOut);
   }
 }
