@@ -18,7 +18,7 @@ export class ErrorPageComponent implements AfterViewInit {
   currentSlide = -1;
   playClicked: boolean = false;
 
-  constructor(private location: Location, private router: Router) {}
+  constructor(private location: Location) {}
 
   ngAfterViewInit() {
     this.slides = document.querySelectorAll('.slide');
@@ -50,7 +50,7 @@ export class ErrorPageComponent implements AfterViewInit {
   }
 
   goBack(): void {
-    this.router.navigate(['dashboard']);
+    this.location.back();
   }
 
   playClickSwitch() {
