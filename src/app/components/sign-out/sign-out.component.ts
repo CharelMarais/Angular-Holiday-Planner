@@ -8,10 +8,10 @@ import { FirebaseAuthService } from 'src/app/services/auth/firebase-auth.service
 })
 export class SignOutComponent {
   constructor(protected fireAuthService: FirebaseAuthService) {}
-  @Input() signingOut!: boolean;
-  @Output() signingOutChange = new EventEmitter<boolean>();
+  @Input() isSigningOut = false;
+  @Output() isSigningOutChange = new EventEmitter<boolean>();
 
-  cancelSignOut() {
-    this.signingOutChange.emit(!this.signingOut);
+  toggleSingingOut() {
+    this.isSigningOutChange.emit(!this.isSigningOut);
   }
 }

@@ -17,8 +17,8 @@ import { TripsState } from 'src/app/store/trips-store/reducers/trips.reducer';
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class DashboardComponent implements OnInit {
-  addingTrip: boolean = false;
-  signingOut: boolean = false;
+  isAddingTrip = false;
+  isSigningOut = false;
   loadingTrips$: Observable<boolean> | undefined;
   loadingItems$: Observable<boolean> | undefined;
 
@@ -41,11 +41,11 @@ export class DashboardComponent implements OnInit {
     this.loadingTrips$ = this.tripStore.select((state) => state.isLoading);
   }
 
-  addTripSwitch() {
-    this.addingTrip = !this.addingTrip;
+  toggleAddingTrip() {
+    this.isAddingTrip = !this.isAddingTrip;
   }
 
-  signingOutSwitch() {
-    this.signingOut = !this.signingOut;
+  toggleSigningOut() {
+    this.isSigningOut = !this.isSigningOut;
   }
 }

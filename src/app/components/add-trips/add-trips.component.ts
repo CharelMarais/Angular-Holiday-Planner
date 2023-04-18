@@ -8,8 +8,8 @@ import { FirebaseStoreService } from 'src/app/services/store/firebase-store.serv
   styleUrls: ['./add-trips.component.scss'],
 })
 export class AddTripsComponent {
-  @Input() addingTrip!: boolean;
-  @Output() addingTripChange = new EventEmitter<boolean>();
+  @Input() isAddingTrip = false;
+  @Output() isAddingTripChange = new EventEmitter<boolean>();
   tripName = '';
   userId = this.fireAuthService.auth.currentUser?.uid;
 
@@ -19,7 +19,7 @@ export class AddTripsComponent {
   ) {}
 
   closeAddTrip() {
-    this.addingTripChange.emit(!this.addingTrip);
+    this.isAddingTripChange.emit(!this.isAddingTrip);
   }
 
   addTrip() {

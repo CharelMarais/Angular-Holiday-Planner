@@ -28,28 +28,28 @@ export class ItemListingComponent implements OnInit {
     userId: undefined,
   };
 
-  formattedStartDate: string = '';
-  formattedEndDate: string = '';
-  durationMinutes: number = 0;
-  durationHours: number = 0;
-  durationDays: number = 0;
-  duration: string = '';
+  formattedStartDate = '';
+  formattedEndDate = '';
+  durationMinutes = 0;
+  durationHours = 0;
+  durationDays = 0;
+  duration = '';
+  updatedItemName = '';
 
-  activeEditing: boolean = false;
-  updatingTrip: boolean = false;
-  updatedItemName: string = '';
-  deleteItemCheck: boolean = false;
+  isEditing = false;
+  isUpdating = false;
+  isDeleting = false;
 
-  deleteItemCheckSwitch() {
-    this.deleteItemCheck = !this.deleteItemCheck;
+  toggleDeletingItem() {
+    this.isDeleting = !this.isDeleting;
   }
 
-  editSwitch() {
-    this.activeEditing = !this.activeEditing;
+  toggleEditing() {
+    this.isEditing = !this.isEditing;
   }
 
-  updateSwitch() {
-    this.updatingTrip = !this.updatingTrip;
+  toggleUpdating() {
+    this.isUpdating = !this.isUpdating;
   }
 
   updateItem() {
@@ -58,7 +58,7 @@ export class ItemListingComponent implements OnInit {
       this.itineraryItem.name,
       this.updatedItemName
     );
-    this.updateSwitch();
+    this.toggleUpdating();
   }
 
   deleteItem() {
@@ -66,7 +66,7 @@ export class ItemListingComponent implements OnInit {
       this.itineraryItem.tripName,
       this.itineraryItem.name
     );
-    this.deleteItemCheckSwitch();
+    this.toggleDeletingItem();
   }
 
   ngOnInit(): void {

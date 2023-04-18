@@ -1,4 +1,4 @@
-<app-sign-out [(signingOut)]="signingOut"></app-sign-out>
+<app-sign-out [(isSigningOut)]="isSigningOut"></app-sign-out>
 
 <div class="flex flex-col bg-dark-background-tertiary h-svh">
   <div
@@ -13,7 +13,7 @@
     </h1>
     <button
       aria-label="sign-out"
-      (click)="signingOutSwitch()"
+      (click)="toggleSigningOut()"
       class="flex items-center text-2xl pt-1 text-blue-green-main hover:text-blue-green-secondary hover:opacity-50"
     >
       <span nz-icon nzType="logout" nzTheme="outline"></span>
@@ -45,14 +45,14 @@
     </div>
     <button
       aria-label="add-trip"
-      (click)="addTripSwitch()"
+      (click)="toggleAddingTrip()"
       class="bg-blue-green-main rounded-full w-12 h-12 z-30 fixed flex justify-center items-center text-dark-background-main text-4xl bottom-5"
     >
       <span
         nz-icon
         nzType="plus"
         nzTheme="outline"
-        [class.rotate-45]="addingTrip"
+        [class.rotate-45]="isAddingTrip"
         class="duration-500"
       ></span>
     </button>
@@ -60,9 +60,9 @@
   <div class="bg-dark-background-tertiary">
     <div
       class="fixed duration-500 bg-dark-background-main -bottom-32 w-full h-32 z-0 border-2 border-opacity-20 p-2 rounded-md border-font-main"
-      [class.bottom-10]="addingTrip"
+      [class.bottom-10]="isAddingTrip"
     >
-      <app-add-trips [(addingTrip)]="addingTrip"></app-add-trips>
+      <app-add-trips [(isAddingTrip)]="isAddingTrip"></app-add-trips>
     </div>
   </div>
 </div>
