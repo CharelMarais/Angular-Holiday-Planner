@@ -1,12 +1,12 @@
 <ng-container *ngIf="isDeletingTrip">
   <div
-    class="absolute top-0 z-40 bg-dark-background-tertiary/70 w-full h-full flex justify-center items-center"
+    class="fixed top-0 z-40 bg-dark-background-tertiary/70 w-full h-full flex justify-center items-center"
   >
     <div
       style="font-family: 'Orbitron'"
       class="border-font-main flex flex-col items-center border-2 border-opacity-25 rounded-md p-4 bg-dark-background-secondary"
     >
-      <p class="m-0">
+      <p class="text-center">
         Are you sure <br />
         you want to delete
       </p>
@@ -52,7 +52,7 @@
         type="text"
         [placeholder]="trip.tripName"
         [(ngModel)]="updatedTripName"
-        class="text-sm w-32 h-full pl-2 rounded-l-md text-dark-background-tertiary"
+        class="text-sm w-32 h-full pl-2 rounded-l-md text-dark-background-tertiary bg-slate-200"
       />
 
       <button

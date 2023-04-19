@@ -56,7 +56,9 @@ export class ItemListingComponent implements OnInit {
     this.firebaseStore.updateItemByName(
       this.itineraryItem.tripName,
       this.itineraryItem.name,
-      this.updatedItemName
+      this.updatedItemName.length
+        ? this.updatedItemName
+        : this.itineraryItem.name
     );
     this.toggleUpdating();
   }

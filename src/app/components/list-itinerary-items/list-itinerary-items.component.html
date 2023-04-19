@@ -2,7 +2,12 @@
   <div class="pt-3 flex flex-col items-center">
     <app-calendar [itinerary]="tripItemMatch$ | async"></app-calendar>
     <ul class="w-full">
-      <li *ngFor="let item of tripItemMatch$ | async; trackBy: trackById">
+      <li
+        *ngFor="
+          let item of (tripItemMatch$ | async) ?? [] | orderBy : orderBy;
+          trackBy: trackById
+        "
+      >
         <app-item-listing [itineraryItem]="item"></app-item-listing>
       </li>
     </ul>

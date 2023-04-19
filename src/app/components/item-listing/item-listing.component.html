@@ -1,12 +1,12 @@
 <ng-container *ngIf="isDeleting">
   <div
-    class="absolute top-0 z-40 bg-dark-background-tertiary/70 w-full h-full flex justify-center items-center"
+    class="fixed top-0 z-40 bg-dark-background-tertiary/70 w-full h-full flex justify-center items-center"
   >
     <div
       style="font-family: 'Orbitron'"
       class="border-font-main flex flex-col items-center border-2 border-opacity-25 rounded-md p-4 bg-dark-background-secondary"
     >
-      <p class="m-0">
+      <p class="text-center">
         Are you sure <br />
         you want to delete
       </p>
@@ -63,7 +63,7 @@
         type="text"
         [placeholder]="itineraryItem.name"
         [(ngModel)]="updatedItemName"
-        class="text-sm w-32 h-full pl-2 rounded-l-md text-dark-background-tertiary"
+        class="text-sm w-32 h-full pl-2 rounded-l-md text-dark-background-tertiary bg-slate-200"
       />
 
       <button
@@ -133,7 +133,7 @@
       (click)="toggleEditing()"
       class="w-32 p-2 mb-3 mt-2 bg-blue-green-main/70 rounded-md hover:bg-opacity-40 hover:text-font-main text-dark-background-tertiary"
     >
-      <p class="m-0">{{ isEditing ? "Alter Item" : "Done" }}</p>
+      <p class="m-0">{{ isEditing ? "Done" : "Alter Item" }}</p>
     </button>
   </div>
 </div>

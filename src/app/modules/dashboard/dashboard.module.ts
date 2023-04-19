@@ -32,6 +32,7 @@ import { ItineraryItemsEffects } from '../../store/itinerary-items-store/effects
 import * as fromCurrencyApi from '../../store/currency/reducers/currency-api.reducer';
 import { CurrencyApiEffects } from '../../store/currency/effects/currency-api.effects';
 import { DashboardRootComponent } from './dashboard-root.component';
+import { OrderByPipe } from '../../pipes/order-by.pipe';
 
 @NgModule({
   declarations: [
@@ -47,6 +48,7 @@ import { DashboardRootComponent } from './dashboard-root.component';
     ItemListingComponent,
     TagIconDisplayComponent,
     DashboardRootComponent,
+    OrderByPipe,
   ],
   imports: [
     CommonModule,
