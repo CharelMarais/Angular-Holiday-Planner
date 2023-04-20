@@ -7,6 +7,7 @@ import differenceInDays from 'date-fns/differenceInDays';
 import fromUnixTime from 'date-fns/fromUnixTime';
 import format from 'date-fns/format';
 import { FirebaseStoreService } from 'src/app/services/store/firebase-store.service';
+import { flush } from '@angular/core/testing';
 
 @Component({
   selector: 'app-item-listing',
@@ -40,12 +41,18 @@ export class ItemListingComponent implements OnInit {
   isUpdating = false;
   isDeleting = false;
 
+  cancelDeletingItem() {
+    this.toggleDeletingItem();
+    this.toggleEditing();
+  }
+
   toggleDeletingItem() {
     this.isDeleting = !this.isDeleting;
   }
 
   toggleEditing() {
     this.isEditing = !this.isEditing;
+    this.isUpdating = false;
   }
 
   toggleUpdating() {

@@ -1,6 +1,6 @@
 <ng-container *ngIf="isDeleting">
   <div
-    class="fixed top-0 z-40 bg-dark-background-tertiary/70 w-full h-full flex justify-center items-center"
+    class="fixed top-0 left-0 z-40 bg-dark-background-tertiary/70 w-full h-full flex justify-center items-center"
   >
     <div
       style="font-family: 'Orbitron'"
@@ -20,7 +20,7 @@
           </button>
         </div>
         <div>
-          <button aria-label="no" (click)="toggleDeletingItem()" class="w-1/2">
+          <button aria-label="no" (click)="cancelDeletingItem()" class="w-1/2">
             No
           </button>
         </div>
@@ -31,7 +31,7 @@
 
 <div
   name="item-listing-container"
-  class="bg-blue-green-main/10 my-4 mx-4 flex flex-col rounded-md items-center cursor-pointer"
+  class="bg-blue-green-main/10 my-4 mx-4 lg:ml-2 flex flex-col rounded-md items-center cursor-pointer"
 >
   <div name="trip-heading" class="py-2 text-lg flex justify-between w-full">
     <button

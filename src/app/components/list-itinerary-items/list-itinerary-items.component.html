@@ -1,16 +1,23 @@
 <ng-container *ngIf="(tripItemMatch$ | async)?.length; else noItemToDisplay">
-  <div class="pt-3 flex flex-col items-center">
-    <app-calendar [itinerary]="tripItemMatch$ | async"></app-calendar>
-    <ul class="w-full">
-      <li
-        *ngFor="
-          let item of (tripItemMatch$ | async) ?? [] | orderBy : orderBy;
-          trackBy: trackById
-        "
-      >
-        <app-item-listing [itineraryItem]="item"></app-item-listing>
-      </li>
-    </ul>
+  <div class="pt-1 flex flex-col items-center lg:flex-row">
+    <div
+      class="lg:w-1/2 h-full lg:fixed lg:top-0 lg:h-svh lg:flex lg:items-center"
+    >
+      <app-calendar [itinerary]="tripItemMatch$ | async"></app-calendar>
+    </div>
+    <div class="lg:w-1/2"></div>
+    <div class="w-full lg:w-1/2">
+      <ul class="w-full">
+        <li
+          *ngFor="
+            let item of (tripItemMatch$ | async) ?? [] | orderBy : orderBy;
+            trackBy: trackById
+          "
+        >
+          <app-item-listing [itineraryItem]="item"></app-item-listing>
+        </li>
+      </ul>
+    </div>
   </div>
 </ng-container>
 <ng-template #noItemToDisplay>
