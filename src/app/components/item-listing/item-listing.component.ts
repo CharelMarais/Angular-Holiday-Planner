@@ -1,4 +1,4 @@
-import { AfterContentInit, Component, Input, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { IItineraryItem } from 'src/app/models/itinerary-item';
 import differenceInMinutes from 'date-fns/differenceInMinutes';
 import differenceInHours from 'date-fns/differenceInHours';
@@ -7,7 +7,6 @@ import differenceInDays from 'date-fns/differenceInDays';
 import fromUnixTime from 'date-fns/fromUnixTime';
 import format from 'date-fns/format';
 import { FirebaseStoreService } from 'src/app/services/store/firebase-store.service';
-import { flush } from '@angular/core/testing';
 
 @Component({
   selector: 'app-item-listing',

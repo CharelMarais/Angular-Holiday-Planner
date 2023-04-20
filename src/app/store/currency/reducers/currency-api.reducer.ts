@@ -1,4 +1,3 @@
-import { state } from '@angular/animations';
 import { createFeature, createReducer, on } from '@ngrx/store';
 import { IConversionData } from 'src/app/models/currency-api';
 import * as CurrencyApiActions from '../actions/currency-api.actions';

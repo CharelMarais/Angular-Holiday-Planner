@@ -1,13 +1,12 @@
+// General
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-
-import { DashboardRoutingModule } from './dashboard-routing.module';
-import { DashboardComponent } from '../../components/dashboard/dashboard.component';
-
-//General
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
-//Components
+// Modules
+import { DashboardRoutingModule } from './dashboard-routing.module';
+
+// Components
 import { ListItineraryItemsComponent } from '../../components/list-itinerary-items/list-itinerary-items.component';
 import { SignOutComponent } from '../../components/sign-out/sign-out.component';
 import { AddItineraryItemComponent } from '../../components/add-itinerary-item/add-itinerary-item.component';
@@ -18,11 +17,14 @@ import { TripListingComponent } from '../../components/trip-listing/trip-listing
 import { TripItineraryComponent } from '../../components/trip-itinerary/trip-itinerary.component';
 import { ItemListingComponent } from '../../components/item-listing/item-listing.component';
 import { TagIconDisplayComponent } from '../../components/tag-icon-display/tag-icon-display.component';
-//NG-Zorro
+import { DashboardComponent } from '../../components/dashboard/dashboard.component';
+import { DashboardRootComponent } from './dashboard-root.component';
+
+// NG-Zorro
 import { NzSelectModule } from 'ng-zorro-antd/select';
 import { NzIconModule } from 'ng-zorro-antd/icon';
 
-//ngrx-store
+// Ngrx-store
 import { StoreModule } from '@ngrx/store';
 import { EffectsModule } from '@ngrx/effects';
 import * as fromTrips from '../../store/trips-store/reducers/trips.reducer';
@@ -31,7 +33,8 @@ import * as fromItineraryItems from '../../store/itinerary-items-store/reducers/
 import { ItineraryItemsEffects } from '../../store/itinerary-items-store/effects/itinerary-items.effects';
 import * as fromCurrencyApi from '../../store/currency/reducers/currency-api.reducer';
 import { CurrencyApiEffects } from '../../store/currency/effects/currency-api.effects';
-import { DashboardRootComponent } from './dashboard-root.component';
+
+// Pipes
 import { OrderByPipe } from '../../pipes/order-by.pipe';
 
 @NgModule({

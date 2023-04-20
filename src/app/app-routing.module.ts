@@ -13,7 +13,7 @@ const routes: Routes = [
       { path: 'sign-up', component: SignUpComponent },
     ],
   },
-  { path: '', redirectTo: '/launchpage/sign-in', pathMatch: 'full' }, // redirect to `first-component`
+  { path: '', redirectTo: '/launchpage/sign-in', pathMatch: 'full' },
   {
     path: 'dashboard',
     loadChildren: () =>
