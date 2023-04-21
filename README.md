@@ -1,27 +1,54 @@
-# AngularHolidayPlanner
+# AngularHolidayPlanner (TrailBlazers)
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 15.2.4.
 
-## Development server
+## Hosted on Firebase
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The application will automatically reload if you change any of the source files.
+ follow the link to view [TrailBlazers](https://angular-holiday-planner.web.app/launchpage/sign-in)
 
-## Code scaffolding
+## PWA Ready
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
+follow the link to [TrailBlazers](https://angular-holiday-planner.web.app/launchpage/sign-in) .
+on desktop click the download button on the url bar.
+on mobile the download will be promted to accept or reject.
 
-## Build
+## Firesbase used for Auth
 
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory.
+[FirebaseAuth](https://firebase.google.com/docs/auth)
 
-## Running unit tests
+## Firestore and Angularfire used for datastorage
 
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
+[Firestore](https://firebase.google.com/docs/firestore)
+[Angularfire](https://github.com/angular/angularfire)
 
-## Running end-to-end tests
+## Full CRUD support with Auth check
 
-Run `ng e2e` to execute the end-to-end tests via a platform of your choice. To use this command, you need to first add a package that implements end-to-end testing capabilities.
+```
+rules_version = '2';
+service cloud.firestore {
+  match /databases/{database}/documents {
+    match /{document=**} {
+      allow read: if request.auth != null && resource.data.userId == request.auth.uid;
+      allow create: if request.auth != null;
+      allow update, delete: if request.auth != null;
+    }
+  }
+}
+```
 
-## Further help
+## State Managment
 
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI Overview and Command Reference](https://angular.io/cli) page.
+[NGRX/Store](https://ngrx.io/)
+All data handled through state management
+
+## Lazy loaded modules
+
+[Angular Lazy Loading](https://angular.io/guide/lazy-loading-ngmodules)
+
+## Extra Libraries
+
+[TailwindCSS](https://tailwindcss.com/)
+[NG-Zorro](https://ng.ant.design/components/icon/en)
+
+
+
