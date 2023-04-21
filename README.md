@@ -8,9 +8,9 @@ This project was generated with [Angular CLI](https://github.com/angular/angular
 
 ## PWA Ready
 
-follow the link to [TrailBlazers](https://angular-holiday-planner.web.app/launchpage/sign-in) .
-on desktop click the download button on the url bar.
-on mobile the download will be promted to accept or reject.
+follow the link to [TrailBlazers](https://angular-holiday-planner.web.app/launchpage/sign-in) . \
+On desktop click the download button on the url bar. \
+On mobile the download will be promted to accept or reject.
 
 ## Firesbase used for Auth
 
@@ -18,7 +18,7 @@ on mobile the download will be promted to accept or reject.
 
 ## Firestore and Angularfire used for datastorage
 
-[Firestore](https://firebase.google.com/docs/firestore)
+[Firestore](https://firebase.google.com/docs/firestore) \
 [Angularfire](https://github.com/angular/angularfire)
 
 ## Full CRUD support with Auth check
@@ -38,7 +38,7 @@ service cloud.firestore {
 
 ## State Managment
 
-[NGRX/Store](https://ngrx.io/)
+[NGRX/Store](https://ngrx.io/) \
 All data handled through state management
 
 ## Lazy loaded modules
@@ -47,7 +47,7 @@ All data handled through state management
 
 ## Extra Libraries
 
-[TailwindCSS](https://tailwindcss.com/)
+[TailwindCSS](https://tailwindcss.com/) \
 [NG-Zorro](https://ng.ant.design/components/icon/en)
 
 
