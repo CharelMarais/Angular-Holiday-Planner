@@ -1,6 +1,6 @@
 <ng-container *ngIf="(tripsData$ | async)?.length; else noTripFound">
-  <div class="pt-1 w-full flex mx-auto">
-    <ul class="w-full lg:flex lg:justify-center lg:flex-wrap lg:m-2">
+  <div class="mx-auto flex w-full pt-1">
+    <ul class="w-full lg:m-2 lg:flex lg:flex-wrap lg:justify-center">
       <li
         *ngFor="
           let tripWithItinerary of tripsWithItinerary$ | async;
@@ -22,7 +22,7 @@
 </ng-container>
 <ng-template #noTripFound>
   <div class="flex flex-col items-center">
-    <p class="opacity-60 pt-4">No trips added yet, lets start the process</p>
+    <p class="pt-4 opacity-60">No trips added yet, lets start the process</p>
     <p class="opacity-60">Just use the + to get started</p>
   </div>
 </ng-template>

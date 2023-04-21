@@ -1,10 +1,10 @@
 <ng-container *ngIf="isDeleting">
   <div
-    class="fixed top-0 left-0 z-40 bg-dark-background-tertiary/70 w-full h-full flex justify-center items-center"
+    class="fixed left-0 top-0 z-40 flex h-full w-full items-center justify-center bg-dark-background-tertiary/70"
   >
     <div
       style="font-family: 'Orbitron'"
-      class="border-font-main flex flex-col items-center border-2 border-opacity-25 rounded-md p-4 bg-dark-background-secondary"
+      class="flex flex-col items-center rounded-md border-2 border-font-main border-opacity-25 bg-dark-background-secondary p-4"
     >
       <p class="text-center">
         Are you sure <br />
@@ -12,7 +12,7 @@
       </p>
       <p>{{ itineraryItem.name }} ?</p>
       <div
-        class="flex text-blue-green-main text-lg w-full justify-between px-6"
+        class="flex w-full justify-between px-6 text-lg text-blue-green-main"
       >
         <div>
           <button aria-label="yes" (click)="deleteItem()" class="w-1/2">
@@ -31,14 +31,14 @@
 
 <div
   name="item-listing-container"
-  class="bg-blue-green-main/10 my-4 mx-4 lg:ml-2 flex flex-col rounded-md items-center cursor-pointer"
+  class="mx-4 my-4 flex cursor-pointer flex-col items-center rounded-md bg-blue-green-main/10 lg:ml-2"
 >
-  <div name="trip-heading" class="py-2 text-lg flex justify-between w-full">
+  <div name="trip-heading" class="flex w-full justify-between py-2 text-lg">
     <button
       aria-label="edit-item"
       (click)="toggleUpdating()"
       [class.hidden]="!isEditing"
-      class="my-auto ml-4 bg-dark-background-secondary/80 rounded-full flex w-9 h-9 justify-center items-center text-xl"
+      class="my-auto ml-4 flex h-9 w-9 items-center justify-center rounded-full bg-dark-background-secondary/80 text-xl"
     >
       <span nz-icon nzType="edit" nzTheme="outline"></span>
     </button>
@@ -50,26 +50,26 @@
     </app-tag-icon-display>
     <p
       [class.hidden]="isUpdating"
-      class="m-0 text-center my-auto"
+      class="m-0 my-auto text-center"
       style="font-family: 'Orbitron'"
     >
       {{ itineraryItem.name }}
     </p>
     <div
       [class.hidden]="!isUpdating"
-      class="px-2 flex justify-center items-center"
+      class="flex items-center justify-center px-2"
     >
       <input
         type="text"
         [placeholder]="itineraryItem.name"
         [(ngModel)]="updatedItemName"
-        class="text-sm w-32 h-full pl-2 rounded-l-md text-dark-background-tertiary bg-slate-200"
+        class="h-full w-32 rounded-l-md bg-slate-200 pl-2 text-sm text-dark-background-tertiary"
       />
 
       <button
         aria-label="update"
         (click)="updateItem()"
-        class="rounded-r-md text-sm h-full px-2 hover:bg-opacity-40 hover:text-font-main bg-blue-green-main/60 text-dark-background-tertiary"
+        class="h-full rounded-r-md bg-blue-green-main/60 px-2 text-sm text-dark-background-tertiary hover:bg-opacity-40 hover:text-font-main"
       >
         Update
       </button>
@@ -79,7 +79,7 @@
       aria-label="delete-trip"
       [class.hidden]="!isEditing"
       (click)="toggleDeletingItem()"
-      class="my-auto mr-4 bg-dark-background-secondary/80 rounded-full flex w-9 h-9 justify-center items-center text-xl"
+      class="my-auto mr-4 flex h-9 w-9 items-center justify-center rounded-full bg-dark-background-secondary/80 text-xl"
     >
       <svg
         class="text-red-500"
@@ -104,34 +104,34 @@
   </div>
   <div
     name="seperator"
-    class="w-10/12 border-t-2 border-font-main border-dashed border-opacity-30 mb-1"
+    class="mb-1 w-10/12 border-t-2 border-dashed border-font-main border-opacity-30"
   ></div>
   <div name="details" class="flex w-full flex-wrap p-2 px-7 text-xs">
-    <div name="cost" class="w-1/2 flex flex-col items-center">
-      <p class="m-0 text-blue-green-main font-bold">Cost:</p>
+    <div name="cost" class="flex w-1/2 flex-col items-center">
+      <p class="m-0 font-bold text-blue-green-main">Cost:</p>
       <p class="mb-2">R {{ itineraryItem.cost }}</p>
     </div>
-    <div name="Duration" class="w-1/2 flex flex-col items-center">
-      <p class="m-0 text-blue-green-main font-bold">Duration:</p>
+    <div name="Duration" class="flex w-1/2 flex-col items-center">
+      <p class="m-0 font-bold text-blue-green-main">Duration:</p>
       <p class="mb-2">{{ duration }}</p>
     </div>
-    <div name="Start" class="w-1/2 flex flex-col items-center">
-      <p class="m-0 text-blue-green-main font-bold">Start Date:</p>
+    <div name="Start" class="flex w-1/2 flex-col items-center">
+      <p class="m-0 font-bold text-blue-green-main">Start Date:</p>
       <p class="mb-2">{{ formattedStartDate }}</p>
     </div>
-    <div name="End" class="w-1/2 flex flex-col items-center">
-      <p class="m-0 text-blue-green-main font-bold">End Date:</p>
+    <div name="End" class="flex w-1/2 flex-col items-center">
+      <p class="m-0 font-bold text-blue-green-main">End Date:</p>
       <p class="mb-2">{{ formattedEndDate }}</p>
     </div>
   </div>
   <div
     name="seperator"
-    class="w-10/12 border-t-2 border-font-main border-dashed border-opacity-30 mb-1"
+    class="mb-1 w-10/12 border-t-2 border-dashed border-font-main border-opacity-30"
   ></div>
   <div>
     <button
       (click)="toggleEditing()"
-      class="w-32 p-2 mb-3 mt-2 bg-blue-green-main/70 rounded-md hover:bg-opacity-40 hover:text-font-main text-dark-background-tertiary"
+      class="mb-3 mt-2 w-32 rounded-md bg-blue-green-main/70 p-2 text-dark-background-tertiary hover:bg-opacity-40 hover:text-font-main"
     >
       <p class="m-0">{{ isEditing ? "Done" : "Alter Item" }}</p>
     </button>

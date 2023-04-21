@@ -1,10 +1,10 @@
 <ng-container *ngIf="isDeletingTrip">
   <div
-    class="fixed top-0 left-0 z-40 bg-dark-background-tertiary/70 w-full h-full flex justify-center items-center"
+    class="fixed left-0 top-0 z-40 flex h-full w-full items-center justify-center bg-dark-background-tertiary/70"
   >
     <div
       style="font-family: 'Orbitron'"
-      class="border-font-main flex flex-col items-center border-2 border-opacity-25 rounded-md p-4 bg-dark-background-secondary"
+      class="flex flex-col items-center rounded-md border-2 border-font-main border-opacity-25 bg-dark-background-secondary p-4"
     >
       <p class="text-center">
         Are you sure <br />
@@ -12,7 +12,7 @@
       </p>
       <p>{{ trip.tripName }} ?</p>
       <div
-        class="flex text-blue-green-main text-lg w-full justify-between px-6"
+        class="flex w-full justify-between px-6 text-lg text-blue-green-main"
       >
         <div>
           <button (click)="deleteTrip(trip.tripName)" class="w-1/2">Yes</button>
@@ -26,16 +26,16 @@
 >
 <div
   name="trip-listing-container"
-  class="bg-blue-green-main/10 my-4 lg:my-2 mx-4 lg:mx-2 flex flex-col rounded-md items-center"
+  class="mx-4 my-4 flex flex-col items-center rounded-md bg-blue-green-main/10 lg:mx-2 lg:my-2"
 >
   <div
     name="trip-heading"
-    class="text-lg flex justify-between w-full max-w-full my-3"
+    class="my-3 flex w-full max-w-full justify-between text-lg"
   >
     <button
       aria-label="edit-trip"
       (click)="toggleEditing()"
-      class="my-auto ml-4 bg-dark-background-secondary/80 rounded-full flex min-w-[2.25rem] w-9 h-9 justify-center items-center text-xl"
+      class="my-auto ml-4 flex h-9 w-9 min-w-[2.25rem] items-center justify-center rounded-full bg-dark-background-secondary/80 text-xl"
     >
       <ng-container *ngIf="!isEditing">
         <span nz-icon nzType="edit" nzTheme="outline"></span>
@@ -46,19 +46,19 @@
     </button>
     <div
       [class.hidden]="!isEditing"
-      class="px-2 flex justify-center items-center"
+      class="flex items-center justify-center px-2"
     >
       <input
         type="text"
         [placeholder]="trip.tripName"
         [(ngModel)]="updatedTripName"
-        class="text-sm w-32 h-full pl-2 rounded-l-md text-dark-background-tertiary bg-slate-200"
+        class="h-full w-32 rounded-l-md bg-slate-200 pl-2 text-sm text-dark-background-tertiary"
       />
 
       <button
         aria-label="update-trip"
         (click)="updateTrip()"
-        class="rounded-r-md text-sm h-full px-2 hover:bg-opacity-40 hover:text-font-main bg-blue-green-main/60 text-dark-background-tertiary"
+        class="h-full rounded-r-md bg-blue-green-main/60 px-2 text-sm text-dark-background-tertiary hover:bg-opacity-40 hover:text-font-main"
       >
         Update
       </button>
@@ -66,14 +66,14 @@
     <p
       style="font-family: 'Orbitron'"
       [class.hidden]="isEditing"
-      class="text-center my-auto"
+      class="my-auto text-center"
     >
       {{ trip.tripName }}
     </p>
     <button
       aria-label="delete-trip"
       (click)="toggleDeletingTrip()"
-      class="my-auto mr-4 bg-dark-background-secondary/80 rounded-full flex min-w-[2.25rem] w-9 h-9 justify-center items-center text-xl"
+      class="my-auto mr-4 flex h-9 w-9 min-w-[2.25rem] items-center justify-center rounded-full bg-dark-background-secondary/80 text-xl"
     >
       <svg
         class="text-red-500"
@@ -93,23 +93,23 @@
   </div>
   <div
     name="seperator"
-    class="w-10/12 border-t-2 border-font-main border-dashed border-opacity-30 mb-1"
+    class="mb-1 w-10/12 border-t-2 border-dashed border-font-main border-opacity-30"
   ></div>
   <div name="details" class="flex w-full flex-wrap p-2 px-7">
-    <div name="cost" class="w-1/2 flex flex-col items-center">
-      <p class="m-0 text-blue-green-main text-xs font-bold">Total Cost:</p>
+    <div name="cost" class="flex w-1/2 flex-col items-center">
+      <p class="m-0 text-xs font-bold text-blue-green-main">Total Cost:</p>
       <p class="mb-2">R {{ totalCost }}</p>
     </div>
-    <div name="Duration" class="w-1/2 flex flex-col items-center">
-      <p class="m-0 text-blue-green-main text-xs font-bold">Planned Items:</p>
+    <div name="Duration" class="flex w-1/2 flex-col items-center">
+      <p class="m-0 text-xs font-bold text-blue-green-main">Planned Items:</p>
       <p class="mb-2">{{ itemsCount }}</p>
     </div>
-    <div name="Start" class="w-1/2 flex flex-col items-center">
-      <p class="m-0 text-blue-green-main text-xs font-bold">Start Date:</p>
+    <div name="Start" class="flex w-1/2 flex-col items-center">
+      <p class="m-0 text-xs font-bold text-blue-green-main">Start Date:</p>
       <p class="mb-2">{{ itemsCount ? formatedStartDate : "N/A" }}</p>
     </div>
-    <div name="End" class="w-1/2 flex flex-col items-center">
-      <p class="m-0 text-blue-green-main text-xs font-bold">Duration:</p>
+    <div name="End" class="flex w-1/2 flex-col items-center">
+      <p class="m-0 text-xs font-bold text-blue-green-main">Duration:</p>
       <p class="mb-2">
         {{ itemsCount ? (duration < 1 ? 1 : duration) + " Day(s)" : "N/A" }}
       </p>
@@ -117,12 +117,12 @@
   </div>
   <div
     name="seperator"
-    class="w-10/12 border-t-2 border-font-main border-dashed border-opacity-30 mb-1"
+    class="mb-1 w-10/12 border-t-2 border-dashed border-font-main border-opacity-30"
   ></div>
   <div>
     <button
       (click)="setSelectedTrip(trip)"
-      class="p-2 mb-3 mt-2 bg-blue-green-main/70 rounded-md hover:bg-opacity-40 hover:text-font-main text-dark-background-tertiary"
+      class="mb-3 mt-2 rounded-md bg-blue-green-main/70 p-2 text-dark-background-tertiary hover:bg-opacity-40 hover:text-font-main"
     >
       View Itinerary
     </button>
