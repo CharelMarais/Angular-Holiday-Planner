@@ -10,13 +10,13 @@
           id="email"
           [(ngModel)]="email"
           required
-          class="bg-transparent border-2 rounded-lg border-dark-background-tertiary w-full pl-2"
+          class="w-full rounded-lg border-2 border-dark-background-tertiary bg-transparent pl-2"
         />
       </div>
     </div>
     <div class="flex place-content-between px-4">
       <label for="password" class="flex items-center">Password: </label>
-      <div class="w-44 ml-2">
+      <div class="ml-2 w-44">
         <input
           type="password"
           id="password"
@@ -24,13 +24,13 @@
           name="password"
           [(ngModel)]="password"
           required
-          class="bg-transparent border-2 rounded-lg border-dark-background-tertiary w-full pl-2"
+          class="w-full rounded-lg border-2 border-dark-background-tertiary bg-transparent pl-2"
         />
       </div>
     </div>
     <button
       type="button"
-      class="mx-auto bg-blue-green-secondary py-2 px-8 text-dark-background-tertiary rounded-xl hover:shadow-xl"
+      class="mx-auto rounded-xl bg-blue-green-secondary px-8 py-2 text-dark-background-tertiary hover:shadow-xl"
       (click)="login(email, password)"
     >
       Login

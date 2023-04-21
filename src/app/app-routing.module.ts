@@ -1,20 +1,10 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { DashboardComponent } from './components/dashboard/dashboard.component';
-import { ErrorPageComponent } from './components/error-page/error-page.component';
-import { AddItineraryItemComponent } from './components/add-itinerary-item/add-itinerary-item.component';
 import { LaunchPageComponent } from './components/launch-page/launch-page.component';
 import { SignInComponent } from './components/sign-in/sign-in.component';
 import { SignUpComponent } from './components/sign-up/sign-up.component';
-import { AuthGuard } from './gaurds/auth.guard';
-import { TripItineraryComponent } from './components/trip-itinerary/trip-itinerary.component';
 
 const routes: Routes = [
-  {
-    path: 'dashboard',
-    component: DashboardComponent,
-    canActivate: [AuthGuard],
-  },
   {
     path: 'launchpage',
     component: LaunchPageComponent,
@@ -23,18 +13,21 @@ const routes: Routes = [
       { path: 'sign-up', component: SignUpComponent },
     ],
   },
-  { path: '', redirectTo: '/launchpage/sign-in', pathMatch: 'full' }, // redirect to `first-component`
+  { path: '', redirectTo: '/launchpage/sign-in', pathMatch: 'full' },
   {
-    path: 'dashboard/add-item/:tripName',
-    component: AddItineraryItemComponent,
-    canActivate: [AuthGuard],
+    path: 'dashboard',
+    loadChildren: () =>
+      import('./modules/dashboard/dashboard.module').then(
+        (m) => m.DashboardModule
+      ),
   },
   {
-    path: 'trip/:tripName',
-    component: TripItineraryComponent,
-    canActivate: [AuthGuard],
+    path: '**',
+    loadChildren: () =>
+      import('./modules/error-page/error-page.module').then(
+        (m) => m.ErrorPageModule
+      ),
   },
-  { path: '**', component: ErrorPageComponent },
 ];
 
 @NgModule({

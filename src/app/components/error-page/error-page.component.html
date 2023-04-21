@@ -1,17 +1,17 @@
 <div
   [class.bg-black]="playClicked"
   [class.bg-opacity-100]="playClicked"
-  class="fixed bg-dark-background-tertiary/70 w-full h-full flex justify-center items-center"
+  class="fixed flex h-full w-full items-center justify-center bg-dark-background-tertiary/70"
 >
   <div
     [class.hidden]="playClicked"
     [class.bg-black]="playClicked"
     [class.bg-opacity-1]="playClicked"
     style="font-family: 'Orbitron'"
-    class="border-font-main flex flex-col items-center border-2 border-opacity-25 rounded-md p-4 bg-dark-background-secondary"
+    class="flex flex-col items-center rounded-md border-2 border-font-main border-opacity-25 bg-dark-background-secondary p-4"
   >
-    <p class="m-0">Are you sure?<br />Is the correct page?</p>
-    <div class="flex text-blue-green-main text-lg w-full justify-between px-6">
+    <p class="text-center">Are you sure?<br />Is the correct page?</p>
+    <div class="flex w-full justify-between px-6 text-lg text-blue-green-main">
       <div>
         <button id="play" (click)="playClickSwitch()" class="w-1/2">Yes</button>
       </div>

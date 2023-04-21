@@ -18,6 +18,7 @@ export class ListItineraryItemsComponent {
   itineryItemsStore$: Observable<IItineraryItem[]>;
   selectedTripData$: Observable<ITrip>;
   tripItemMatch$: Observable<IItineraryItem[]>;
+  orderBy: 'asc' | 'desc' = 'asc';
 
   constructor(
     protected firebaseAuth: FirebaseAuthService,

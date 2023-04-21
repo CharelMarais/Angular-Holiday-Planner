@@ -5,7 +5,7 @@ import {
   RouterStateSnapshot,
   UrlTree,
 } from '@angular/router';
-import { map, Observable, pipe } from 'rxjs';
+import { map, Observable } from 'rxjs';
 import { FirebaseAuthService } from '../services/auth/firebase-auth.service';
 
 @Injectable({

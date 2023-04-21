@@ -28,7 +28,7 @@ import { getItineraryItems } from 'src/app/store/itinerary-items-store/actions/i
   providedIn: 'root',
 })
 export class FirebaseStoreService {
-  private firestore: Firestore = inject(Firestore); // inject Cloud Firestore
+  private firestore: Firestore = inject(Firestore);
   itinerary$: Observable<IItineraryItem[]>;
   itineraryCollection: CollectionReference;
   trip_names$: Observable<ITrip[]> | undefined;
@@ -87,7 +87,6 @@ export class FirebaseStoreService {
     );
 
     const tripDocs = await getDocs(tripsQuery);
-
     tripDocs.forEach((tripDoc) => {
       deleteDoc(tripDoc.ref);
     });
@@ -135,10 +134,7 @@ export class FirebaseStoreService {
     startDate: number,
     endDate: number,
     userId: string,
-    cost: number,
-    startLocation?: string,
-    endLocation?: string,
-    notes?: string
+    cost: number
   ) {
     if (!(name || tag || startDate || endDate || cost)) return;
     addDoc(this.itineraryCollection, <IItineraryItem>{
@@ -181,7 +177,6 @@ export class FirebaseStoreService {
         ['name']: updatedItemName,
       });
     });
-
     this.itineraryItemStore.dispatch(getItineraryItems());
   }
 

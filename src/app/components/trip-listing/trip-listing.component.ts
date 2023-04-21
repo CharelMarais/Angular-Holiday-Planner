@@ -1,4 +1,4 @@
-import { AfterContentChecked, Component, Input, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { ITrip } from 'src/app/models/trips';
 import { FirebaseStoreService } from 'src/app/services/store/firebase-store.service';
 import differenceInDays from 'date-fns/differenceInDays';
@@ -21,9 +21,9 @@ export class TripListingComponent implements OnInit {
   @Input() startDate?: number;
   @Input() endDate?: number;
 
-  duration: number = 0;
-  formatedStartDate: string = '';
-  updatedTripName: string = '';
+  duration = 0;
+  formatedStartDate = '';
+  updatedTripName = '';
 
   isEditing = false;
   isDeletingTrip = false;
@@ -44,7 +44,7 @@ export class TripListingComponent implements OnInit {
   updateTrip() {
     this.firebaseStore.updateTripByTripName(
       this.trip.tripName,
-      this.updatedTripName
+      this.updatedTripName.length ? this.updatedTripName : this.trip.tripName
     );
     this.toggleEditing();
   }
@@ -70,6 +70,6 @@ export class TripListingComponent implements OnInit {
   setSelectedTrip(trip: ITrip) {
     const selectedTrip: ITrip = trip;
     this.tripStore.dispatch(setSelectedTrip({ selectedTrip }));
-    this.router.navigate([`trip/${trip.tripName}`]);
+    this.router.navigate([`dashboard/trip/${trip.tripName}`]);
   }
 }

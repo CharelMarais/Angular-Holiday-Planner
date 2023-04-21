@@ -1,4 +1,4 @@
-import { AfterContentInit, Component, Input, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { IItineraryItem } from 'src/app/models/itinerary-item';
 import differenceInMinutes from 'date-fns/differenceInMinutes';
 import differenceInHours from 'date-fns/differenceInHours';
@@ -40,12 +40,18 @@ export class ItemListingComponent implements OnInit {
   isUpdating = false;
   isDeleting = false;
 
+  cancelDeletingItem() {
+    this.toggleDeletingItem();
+    this.toggleEditing();
+  }
+
   toggleDeletingItem() {
     this.isDeleting = !this.isDeleting;
   }
 
   toggleEditing() {
     this.isEditing = !this.isEditing;
+    this.isUpdating = false;
   }
 
   toggleUpdating() {
@@ -56,7 +62,9 @@ export class ItemListingComponent implements OnInit {
     this.firebaseStore.updateItemByName(
       this.itineraryItem.tripName,
       this.itineraryItem.name,
-      this.updatedItemName
+      this.updatedItemName.length
+        ? this.updatedItemName
+        : this.itineraryItem.name
     );
     this.toggleUpdating();
   }

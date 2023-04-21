@@ -3,7 +3,6 @@
 
 import { AfterViewInit, Component } from '@angular/core';
 import { Location } from '@angular/common';
-import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-error-page',

@@ -1,6 +1,6 @@
-<div class="flex flex-col items-center px-4">
+<div class="flex flex-col items-center px-4 lg:pr-2">
   <div
-    class="flex justify-center w-full rounded-t-lg text-font-main font-bold pb-2 pt-1"
+    class="flex w-full justify-center rounded-t-lg pb-2 pt-1 font-bold text-font-main"
   >
     <button (click)="setMonth(-1)" class="flex items-center">
       <span nz-icon nzType="left" nzTheme="outline"></span>
@@ -15,7 +15,7 @@
   <div>
     <ul>
       <li
-        class="days inline-block border-[1px] border-blue-green-main border-opacity-50 hover:bg-none active:bg-none"
+        class="days inline-block border-[1px] border-blue-green-main border-opacity-50 hover:bg-none active:bg-none lg:py-2"
         *ngFor="let day of days"
       >
         {{ day }}
@@ -24,10 +24,10 @@
         *ngFor="let date of dates"
         [ngClass]="{ 'opacity-60': !isSameMonth(date) }"
         [ngClass]="{
-          'text-dark-background-tertiary bg-blue-green-main/60':
+          'bg-blue-green-main/60 text-dark-background-tertiary':
             tripActiveOnDay(date)
         }"
-        class="inline-block border-[1px] border-blue-green-main/80 hover:bg-blue-green-main/40"
+        class="inline-block border-[1px] border-blue-green-main/80 hover:bg-blue-green-main/40 lg:py-2"
       >
         {{ date | date : "d" }}
       </li>

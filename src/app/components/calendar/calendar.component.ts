@@ -17,8 +17,8 @@ export class CalendarComponent implements OnInit {
   days = ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'];
   date = new Date();
   @Input() itinerary?: IItineraryItem[] | null;
-  startDate: number = 32501076447;
-  endDate: number = 0;
+  startDate = 32501076447;
+  endDate = 0;
 
   constructor() {
     this.dates = this.getCalendarDays(this.date);
