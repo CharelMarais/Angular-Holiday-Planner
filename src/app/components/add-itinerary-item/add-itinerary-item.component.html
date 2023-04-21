@@ -1,0 +1,261 @@
+<div class="flex h-full flex-col items-center justify-center">
+  <p style="font-family: 'Orbitron'" class="text-sm font-bold">
+    Let's add a step to your journey
+  </p>
+
+  <div
+    name="add-item-container"
+    class="mx-4 mb-12 rounded-lg bg-dark-background-tertiary/80 p-4"
+  >
+    <form
+      #addForm="ngForm"
+      [formGroup]="addItemForm"
+      (ngSubmit)="addItineraryItem(); addForm.reset()"
+      id="addForm"
+      name="add-item-form"
+      class="items-centers flex flex-col gap-2"
+    >
+      <div name="tag-radio-buttons-container" class="flex gap-2 self-center">
+        <div name="hotel-tag" class="flex w-12 flex-col items-center">
+          <input
+            #tag
+            type="radio"
+            name="tag"
+            id="hotel"
+            class="peer hidden"
+            [defaultChecked]="true"
+            value="hotel"
+            formControlName="tag"
+          />
+          <label
+            for="hotel"
+            class="flex h-12 w-12 items-center justify-center rounded-full bg-dark-background-secondary/80 text-xl peer-checked:text-blue-green-main"
+          >
+            <svg
+              stroke="currentColor"
+              fill="currentColor"
+              stroke-width="0"
+              viewBox="0 0 24 24"
+              height="1em"
+              width="1em"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <g>
+                <path fill="none" d="M0 0h24v24H0z"></path>
+                <path
+                  d="M17 19h2v-8h-6v8h2v-6h2v6zM3 19V4a1 1 0 0 1 1-1h14a1 1 0 0 1 1 1v5h2v10h1v2H2v-2h1zm4-8v2h2v-2H7zm0 4v2h2v-2H7zm0-8v2h2V7H7z"
+                ></path>
+              </g>
+            </svg>
+          </label>
+          <label for="hotel" class="mt-1 peer-checked:text-blue-green-main"
+            >Hotel</label
+          >
+        </div>
+        <div name="food-tag" class="flex w-12 flex-col items-center">
+          <input
+            #tag
+            type="radio"
+            name="tag"
+            id="food"
+            class="peer hidden"
+            value="food"
+            formControlName="tag"
+          />
+          <label
+            for="food"
+            class="flex h-12 w-12 items-center justify-center rounded-full bg-dark-background-secondary/80 text-xl peer-checked:text-blue-green-main"
+            ><svg
+              stroke="currentColor"
+              fill="currentColor"
+              stroke-width="0"
+              viewBox="0 0 24 24"
+              height="1em"
+              width="1em"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <path fill="none" d="M0 0h24v24H0z"></path>
+              <path
+                d="M18.06 22.99h1.66c.84 0 1.53-.64 1.63-1.46L23 5.05h-5V1h-1.97v4.05h-4.97l.3 2.34c1.71.47 3.31 1.32 4.27 2.26 1.44 1.42 2.43 2.89 2.43 5.29v8.05zM1 21.99V21h15.03v.99c0 .55-.45 1-1.01 1H2.01c-.56 0-1.01-.45-1.01-1zm15.03-7c0-8-15.03-8-15.03 0h15.03zM1.02 17h15v2h-15z"
+              ></path></svg
+          ></label>
+          <label for="food" class="mt-1 peer-checked:text-blue-green-main"
+            >Food</label
+          >
+        </div>
+        <div name="relax-tag" class="flex w-12 flex-col items-center">
+          <input
+            #tag
+            type="radio"
+            name="tag"
+            id="relax"
+            class="peer hidden"
+            value="relax"
+            formControlName="tag"
+          />
+          <label
+            for="relax"
+            class="flex h-12 w-12 items-center justify-center rounded-full bg-dark-background-secondary/80 p-1 text-xl peer-checked:text-blue-green-main"
+            ><svg
+              stroke="currentColor"
+              fill="currentColor"
+              stroke-width="0"
+              viewBox="0 0 24 24"
+              height="1em"
+              width="1em"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <path fill="none" d="M0 0h24v24H0z"></path>
+              <path
+                d="M13.127 14.56l1.43-1.43 6.44 6.443L19.57 21zm4.293-5.73l2.86-2.86c-3.95-3.95-10.35-3.96-14.3-.02 3.93-1.3 8.31-.25 11.44 2.88zM5.95 5.98c-3.94 3.95-3.93 10.35.02 14.3l2.86-2.86C5.7 14.29 4.65 9.91 5.95 5.98zm.02-.02l-.01.01c-.38 3.01 1.17 6.88 4.3 10.02l5.73-5.73c-3.13-3.13-7.01-4.68-10.02-4.3z"
+              ></path></svg
+          ></label>
+          <label for="relax" class="mt-1 peer-checked:text-blue-green-main"
+            >Relax</label
+          >
+        </div>
+        <div name="travel-tag" class="flex w-12 flex-col items-center">
+          <input
+            #tag
+            type="radio"
+            name="tag"
+            id="travel"
+            class="peer hidden"
+            value="travel"
+            formControlName="tag"
+          />
+          <label
+            for="travel"
+            class="flex h-12 w-12 items-center justify-center rounded-full bg-dark-background-secondary/80 p-1 text-xl peer-checked:text-blue-green-main"
+          >
+            <svg
+              stroke="currentColor"
+              fill="currentColor"
+              stroke-width="0"
+              viewBox="0 0 16 16"
+              height="1em"
+              width="1em"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <path
+                d="M2.52 3.515A2.5 2.5 0 0 1 4.82 2h6.362c1 0 1.904.596 2.298 1.515l.792 1.848c.075.175.21.319.38.404.5.25.855.715.965 1.262l.335 1.679c.033.161.049.325.049.49v.413c0 .814-.39 1.543-1 1.997V13.5a.5.5 0 0 1-.5.5h-2a.5.5 0 0 1-.5-.5v-1.338c-1.292.048-2.745.088-4 .088s-2.708-.04-4-.088V13.5a.5.5 0 0 1-.5.5h-2a.5.5 0 0 1-.5-.5v-1.892c-.61-.454-1-1.183-1-1.997v-.413a2.5 2.5 0 0 1 .049-.49l.335-1.68c.11-.546.465-1.012.964-1.261a.807.807 0 0 0 .381-.404l.792-1.848ZM3 10a1 1 0 1 0 0-2 1 1 0 0 0 0 2Zm10 0a1 1 0 1 0 0-2 1 1 0 0 0 0 2ZM6 8a1 1 0 0 0 0 2h4a1 1 0 1 0 0-2H6ZM2.906 5.189a.51.51 0 0 0 .497.731c.91-.073 3.35-.17 4.597-.17 1.247 0 3.688.097 4.597.17a.51.51 0 0 0 .497-.731l-.956-1.913A.5.5 0 0 0 11.691 3H4.309a.5.5 0 0 0-.447.276L2.906 5.19Z"
+              ></path>
+            </svg>
+          </label>
+          <label for="travel" class="mt-1 peer-checked:text-blue-green-main"
+            >Travel</label
+          >
+        </div>
+        <div name="fun-tag" class="flex w-12 flex-col items-center">
+          <input
+            #tag
+            type="radio"
+            name="tag"
+            id="fun"
+            class="peer hidden"
+            value="fun"
+            formControlName="tag"
+          />
+          <label
+            for="fun"
+            class="flex h-12 w-12 items-center justify-center rounded-full bg-dark-background-secondary/80 p-1 text-xl peer-checked:text-blue-green-main"
+            ><svg
+              stroke="currentColor"
+              fill="currentColor"
+              stroke-width="0"
+              viewBox="0 0 512 512"
+              height="1em"
+              width="1em"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <path
+                d="M122.7 23.32l1.7 21.87-16.7 14.25 21.4 5.17 8.4 20.25L149 66.18l21.8-1.75-14.2-16.71 5.1-21.32-20.3 8.35-18.7-11.43zM464 32a16 16 0 0 0-16 16 16 16 0 0 0 16 16 16 16 0 0 0 16-16 16 16 0 0 0-16-16zM239.8 42.5a16 16 0 0 0-16 16 16 16 0 0 0 16 16 16 16 0 0 0 16-16 16 16 0 0 0-16-16zm183.9 6.84c-9.2 1.74-17.7 7.18-25.9 14.28-7.6 6.53-14.7 14.66-20.7 23.45-18.8 3.01-37.6 10.67-50.2 21.13-16.1 13.2-30.4 35.8-38.2 59.1-7.4 3.1-14.4 6.8-20.1 10.8-15.5 10.9-23.5 31.8-29.4 50-5.9 18.3-8.8 34.3-8.8 34.3l17.8 3.2s2.7-15 8.1-31.9c5.5-16.9 14.8-35.3 22.7-40.8 1.3-.9 3-1.9 4.5-2.8-.6 5.7-.6 11.4.3 16.8 1.8 11.4 8 22.3 19 28.2 7.8 4.2 16.6 3.2 24 .2 7.4-3.1 14-8.2 19.7-14.2 5.7-6 10.4-13.1 13.2-20.6 2.8-7.5 3.8-16 .2-23.9h-.1c-3.9-8.4-11.4-13.8-19.4-16.1-8-2.3-16.6-2.2-25.2-.9-1.5.2-2.9.7-4.4 1 7.4-15.8 18-30.7 27.5-38.6 6.2-5.1 16.6-10 27.7-13.6-1.4 3.8-2.5 7.6-3 11.5-1.6 10.5.7 21.9 9.1 29.7 6.1 5.6 14.3 6.5 21.5 5.3 7.1-1.2 14-4.4 20.2-8.5 6.2-4.2 11.7-9.4 15.6-15.5 3.9-6.1 6.5-13.9 4-21.7v-.1c-3.3-10.07-11.5-16.99-20.6-20.27-3.9-1.4-8-2.19-12.2-2.66 2.9-3.26 5.9-6.31 8.9-8.92 6.8-5.84 13.7-9.5 17.6-10.23l-3.4-17.68zM174.8 84.39l-15.2 9.56 34.5 55.25-56.4 2.9 26.5 57.8 16.4-7.6-15.5-33.6 60.6-3.1-50.9-81.21zm216.4 19.31c6.1-.1 11.5.6 15.5 2.1 5.4 1.9 8.1 4.3 9.5 8.8.4 1.1.2 3.3-1.9 6.6-2.2 3.4-6.1 7.2-10.5 10.2-4.5 3-9.5 5.1-13.2 5.7-3.8.7-5.5 0-6.3-.7-3.5-3.2-4.5-7.2-3.5-13.9.8-5.4 3.3-11.9 7-18.6 1.2 0 2.3-.2 3.4-.2zM94.99 123a16 16 0 0 0-16 16 16 16 0 0 0 16 16A16 16 0 0 0 111 139a16 16 0 0 0-16.01-16zm356.11 37.2l-14.4 16.6-21.8-1.8 11.4 18.8-8.5 20.2 21.4-5 16.6 14.3 1.9-21.9 18.7-11.4-20.2-8.5-5.1-21.3zm-123.5 16.5c2.9.1 5.6.5 7.7 1.1 4.3 1.2 6.6 3 8.2 6.4.9 1.9 1 5.4-.7 10-1.7 4.7-5.2 10.1-9.4 14.6s-9.3 8.1-13.5 9.8c-4.2 1.7-6.8 1.6-8.5.7h-.1c-5.8-3.2-8.6-7.8-9.7-15.2-1-6.3-.3-14.3 1.8-22.9 4.9-1.7 9.8-3.1 14.5-3.8 3.5-.5 6.7-.7 9.7-.7zm-202.4 51.9c-7.2-.2-11.7 1.5-14.5 4.3-2.8 2.8-4.5 7.3-4.3 14.5.2 7.3 2.6 16.9 7.2 27.6 9.2 21.5 27.3 47.4 51.6 71.8 24.3 24.3 50.3 42.3 71.8 51.5 10.6 4.6 20.2 7 27.5 7.2 7.3.3 11.7-1.5 14.5-4.3 2.8-2.8 4.6-7.2 4.3-14.5-.2-7.3-2.6-16.9-7.2-27.6-9.2-21.4-27.2-47.4-51.5-71.7-24.3-24.4-50.3-42.4-71.8-51.6-10.7-4.6-20.3-7-27.6-7.2zm232 31.3l-33 54-29.1-27.9-12.4 13 45.1 43.3 33.8-55.2 38.7 32.3 89.3-38.2-7-16.6-79.3 34-46.1-38.7zM93.43 272.6l-17.64 57.9c41.41 49.1 89.71 76.7 142.11 94.7l21.6-6.6c-3.1-1.1-6.4-2.4-9.7-3.8-24.4-10.4-51.7-29.6-77.3-55.3-25.7-25.7-44.9-53-55.34-77.4-1.41-3.2-2.65-6.4-3.73-9.5zm-23.82 78.2l-14.01 46c28.89 27 59 39.2 90.6 50.2l43.4-13.2c-43.2-17.6-84-43.3-119.99-83zM368 352a16 16 0 0 0-16 16 16 16 0 0 0 16 16 16 16 0 0 0 16-16 16 16 0 0 0-16-16zM49.81 415.9l-20.29 66.6 88.28-26.9c-22.77-9.1-45.78-20.7-67.99-39.7z"
+              ></path></svg
+          ></label>
+          <label for="fun" class="mt-1 peer-checked:text-blue-green-main"
+            >Fun</label
+          >
+        </div>
+      </div>
+      <div name="name-input" class="flex w-full flex-col gap-1">
+        <label for="name" name="name">Name: </label>
+        <div>
+          <input
+            type="text"
+            name="name"
+            placeholder="Name"
+            class="h-8 w-full rounded-sm bg-blue-green-main/20 py-1 pl-3"
+            formControlName="name"
+          />
+        </div>
+      </div>
+      <div name="start-date-input" class="flex w-full flex-col gap-1">
+        <label for="startDate" name="startDate">Start Time: </label>
+        <div class="flex h-8 gap-1">
+          <input
+            type="date"
+            name="startDate"
+            class="flex-grow rounded-sm bg-blue-green-main/20 py-1 pl-3"
+            formControlName="startDate"
+          />
+          <input
+            type="time"
+            name="startDate"
+            class="w-4/12 rounded-sm bg-blue-green-main/20 py-1 pl-3"
+            formControlName="startTime"
+          />
+        </div>
+      </div>
+      <div name="end-date-input" class="flex w-full flex-col gap-1">
+        <label for="endDate" name="endDate">End Time: </label>
+        <div class="flex h-8 gap-1">
+          <input
+            type="date"
+            name="endDate"
+            formControlName="endDate"
+            class="flex-grow rounded-sm bg-blue-green-main/20 py-1 pl-3"
+          />
+          <input
+            type="time"
+            name="endDate"
+            formControlName="endTime"
+            class="w-4/12 rounded-sm bg-blue-green-main/20 py-1 pl-3 text-sm"
+          />
+        </div>
+      </div>
+      <div name="cost-input" class="flex w-full flex-col gap-1 text-font-main">
+        <label for="cost" name="cost">Cost: </label>
+        <div class="flex gap-1">
+          <nz-select
+            name="currency-selection"
+            class="text-font-main"
+            formControlName="selectedCurrency"
+          >
+            <nz-option
+              *ngFor="
+                let currency of currencyStore$ | async;
+                trackBy: trackByCode
+              "
+              [nzLabel]="currency.code"
+              [nzValue]="currency.value"
+            ></nz-option>
+          </nz-select>
+          <input
+            type="number"
+            name="cost"
+            formControlName="cost"
+            placeholder="1"
+            class="h-8 flex-grow rounded-sm bg-blue-green-main/20 py-1 pl-3"
+          />
+        </div>
+      </div>
+
+      <button
+        type="submit"
+        class="mt-2 h-8 rounded-md bg-blue-green-main/70 text-dark-background-tertiary"
+      >
+        Add Item
+      </button>
+    </form>
+  </div>
+</div>

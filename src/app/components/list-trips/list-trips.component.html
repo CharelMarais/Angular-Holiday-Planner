@@ -1,0 +1,28 @@
+<ng-container *ngIf="(tripsData$ | async)?.length; else noTripFound">
+  <div class="mx-auto flex w-full pt-1">
+    <ul class="w-full lg:m-2 lg:flex lg:flex-wrap lg:justify-center">
+      <li
+        *ngFor="
+          let tripWithItinerary of tripsWithItinerary$ | async;
+          trackBy: trackById
+        "
+        class="lg:w-1/2"
+      >
+        <app-trip-listing
+          [trip]="tripWithItinerary.trip"
+          [totalCost]="tripWithItinerary.totalCost"
+          [itemsCount]="tripWithItinerary.totalItems"
+          [startDate]="tripWithItinerary.startDate"
+          [endDate]="tripWithItinerary.endDate"
+        >
+        </app-trip-listing>
+      </li>
+    </ul>
+  </div>
+</ng-container>
+<ng-template #noTripFound>
+  <div class="flex flex-col items-center">
+    <p class="pt-4 opacity-60">No trips added yet, lets start the process</p>
+    <p class="opacity-60">Just use the + to get started</p>
+  </div>
+</ng-template>

@@ -1,0 +1,77 @@
+<app-sign-out [(isSigningOut)]="isSigningOut"></app-sign-out>
+<div class="flex h-svh flex-col bg-dark-background-tertiary">
+  <div
+    class="fixed z-10 flex w-full place-content-between bg-dark-background-tertiary px-8 py-2"
+  >
+    <div
+      class="pt-1 text-2xl text-blue-green-main hover:text-blue-green-secondary hover:opacity-50"
+    >
+      <button (click)="goBack()">
+        <span nz-icon nzType="left" nzTheme="outline"></span>
+      </button>
+    </div>
+    <h1
+      style="font-family: 'Orbitron'"
+      class="z-20 m-0 w-full text-center text-5xl text-blue-green-secondary"
+    >
+      TB
+    </h1>
+    <button
+      aria-label="sign-out"
+      (click)="toggleSigningOut()"
+      class="flex items-center pt-1 text-2xl text-blue-green-main hover:text-blue-green-secondary hover:opacity-50"
+    >
+      <span nz-icon nzType="logout" nzTheme="outline"></span>
+    </button>
+  </div>
+  <div class="bg-dark-background-tertiary py-2">
+    <div
+      class="fixed mt-14 flex w-full items-center justify-center bg-dark-background-secondary py-2 text-center shadow-sm shadow-blue-green-main"
+    >
+      <h2
+        style="font-family: 'Orbitron'"
+        class="m-0 text-xl uppercase text-font-main"
+      >
+        {{ (selectedTripData$ | async)?.tripName }}
+      </h2>
+    </div>
+    <div class="mb-16 mt-24 flex h-fit flex-col overflow-y-auto">
+      <app-list-itinerary-items></app-list-itinerary-items>
+    </div>
+  </div>
+  <div
+    class="fixed bottom-0 z-10 flex h-10 w-full justify-center bg-dark-background-secondary shadow-main-upwards drop-shadow-xl"
+  ></div>
+
+  <div class="fixed z-10 flex w-full flex-col items-center">
+    <div class="flex justify-center">
+      <div
+        class="fixed bottom-3 z-20 h-16 w-16 rounded-full bg-dark-background-tertiary"
+      ></div>
+    </div>
+    <button
+      aria-label="add-item"
+      (click)="toggleAddingItem()"
+      class="fixed bottom-5 z-30 flex h-12 w-12 items-center justify-center rounded-full bg-blue-green-main text-4xl text-dark-background-main"
+    >
+      <span
+        nz-icon
+        nzType="plus"
+        nzTheme="outline"
+        [class.rotate-45]="isAddingItem"
+        class="duration-500"
+      ></span>
+    </button>
+  </div>
+  <div class="bg-dark-background-tertiary">
+    <div
+      [class.bottom-8]="isAddingItem"
+      [class.-bottom-100]="!isAddingItem"
+      class="fixed z-0 h-fit w-full rounded-md border-2 border-font-main border-opacity-20 bg-dark-background-main p-2 duration-500"
+    >
+      <app-add-itinerary-item
+        [(isAddingItem)]="isAddingItem"
+      ></app-add-itinerary-item>
+    </div>
+  </div>
+</div>

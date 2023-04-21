@@ -1,0 +1,55 @@
+<div
+  [class.bg-black]="playClicked"
+  [class.bg-opacity-100]="playClicked"
+  class="fixed flex h-full w-full items-center justify-center bg-dark-background-tertiary/70"
+>
+  <div
+    [class.hidden]="playClicked"
+    [class.bg-black]="playClicked"
+    [class.bg-opacity-1]="playClicked"
+    style="font-family: 'Orbitron'"
+    class="flex flex-col items-center rounded-md border-2 border-font-main border-opacity-25 bg-dark-background-secondary p-4"
+  >
+    <p class="text-center">Are you sure?<br />Is the correct page?</p>
+    <div class="flex w-full justify-between px-6 text-lg text-blue-green-main">
+      <div>
+        <button id="play" (click)="playClickSwitch()" class="w-1/2">Yes</button>
+      </div>
+      <div>
+        <button (click)="goBack()" class="w-1/2">No</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="slide" data-time="7">
+  <div class="screen screen-1">
+    <div class="title">FONY</div>
+    <div>
+      <div class="logo"></div>
+    </div>
+    <div class="subtitle">
+      COMPUTER <br />
+      <span>ENTERTAINMENT</span>
+    </div>
+  </div>
+</div>
+
+<div class="slide">
+  <div class="screen screen-2">
+    <div class="logo mx-auto">
+      <img
+        width="220"
+        src="https://res.cloudinary.com/dlb3jof8w/image/upload/v1581414060/codepen/ps-clipart-logo-3.png"
+        alt=""
+      />
+    </div>
+    <div class="title">Error 404<span> tm</span></div>
+    <div class="subtitle">
+      Licensed by <br />
+      The Page You Are Looking For Does Not Exist <br />
+      <br />
+      <button class="text-white" (click)="goBack()">Go Back</button>
+    </div>
+  </div>
+</div>

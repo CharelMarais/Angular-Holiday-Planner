@@ -1,0 +1,28 @@
+<ng-container *ngIf="(tripItemMatch$ | async)?.length; else noItemToDisplay">
+  <div class="flex flex-col items-center pt-3 lg:flex-row lg:pt-1">
+    <div
+      class="h-full lg:fixed lg:top-0 lg:flex lg:h-svh lg:w-1/2 lg:items-center"
+    >
+      <app-calendar [itinerary]="tripItemMatch$ | async"></app-calendar>
+    </div>
+    <div class="lg:w-1/2"></div>
+    <div class="w-full lg:w-1/2">
+      <ul class="w-full">
+        <li
+          *ngFor="
+            let item of (tripItemMatch$ | async) ?? [] | orderBy : orderBy;
+            trackBy: trackById
+          "
+        >
+          <app-item-listing [itineraryItem]="item"></app-item-listing>
+        </li>
+      </ul>
+    </div>
+  </div>
+</ng-container>
+<ng-template #noItemToDisplay>
+  <div class="m-0 mt-6 flex flex-col items-center px-2">
+    <p class="opacity-60">No items added yet, lets start the process</p>
+    <p class="opacity-60">Just use the + to add your first itinerary item</p>
+  </div>
+</ng-template>

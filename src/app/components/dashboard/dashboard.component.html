@@ -1,0 +1,68 @@
+<app-sign-out [(isSigningOut)]="isSigningOut"></app-sign-out>
+
+<div class="flex h-svh flex-col bg-dark-background-tertiary">
+  <div
+    class="fixed z-10 flex w-full place-content-between bg-dark-background-tertiary px-8 py-2"
+  >
+    <div class="w-7"></div>
+    <h1
+      style="font-family: 'Orbitron'"
+      class="z-20 m-0 w-full text-center text-5xl text-blue-green-secondary"
+    >
+      TB
+    </h1>
+    <button
+      aria-label="sign-out"
+      (click)="toggleSigningOut()"
+      class="flex items-center pt-1 text-2xl text-blue-green-main hover:text-blue-green-secondary hover:opacity-50"
+    >
+      <span nz-icon nzType="logout" nzTheme="outline"></span>
+    </button>
+  </div>
+  <div class="bg-dark-background-tertiary py-2">
+    <div
+      class="fixed mt-14 flex w-full items-center justify-center bg-dark-background-secondary py-2 text-center shadow-sm shadow-blue-green-main"
+    >
+      <h2
+        style="font-family: 'Orbitron'"
+        class="m-0 text-xl uppercase text-font-main"
+      >
+        Upcoming Trips
+      </h2>
+    </div>
+    <div class="mb-16 mt-24 flex h-fit flex-col justify-center overflow-y-auto">
+      <app-list-trips></app-list-trips>
+    </div>
+  </div>
+  <div
+    class="fixed bottom-0 z-10 flex h-10 w-full justify-center bg-dark-background-secondary shadow-main-upwards drop-shadow-xl"
+  ></div>
+  <div class="fixed z-10 flex w-full flex-col items-center">
+    <div class="flex justify-center">
+      <div
+        class="fixed bottom-3 z-20 h-16 w-16 rounded-full bg-dark-background-tertiary"
+      ></div>
+    </div>
+    <button
+      aria-label="add-trip"
+      (click)="toggleAddingTrip()"
+      class="fixed bottom-5 z-30 flex h-12 w-12 items-center justify-center rounded-full bg-blue-green-main text-4xl text-dark-background-main"
+    >
+      <span
+        nz-icon
+        nzType="plus"
+        nzTheme="outline"
+        [class.rotate-45]="isAddingTrip"
+        class="duration-500"
+      ></span>
+    </button>
+  </div>
+  <div class="bg-dark-background-tertiary">
+    <div
+      class="fixed -bottom-32 z-0 h-32 w-full rounded-md border-2 border-font-main border-opacity-20 bg-dark-background-main p-2 duration-500"
+      [class.bottom-10]="isAddingTrip"
+    >
+      <app-add-trips [(isAddingTrip)]="isAddingTrip"></app-add-trips>
+    </div>
+  </div>
+</div>
